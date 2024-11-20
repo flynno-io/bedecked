@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "backend server for the bedecked web application.",
+  "main": "server.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npm run build && node dist/server.js --ignore client",
+    "dev": "npx nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node dist/seeds/index.js"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts,json,js",
+    "exec": "npx tsc && node dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "typescript": "^5.6.3"
+  }
+}
