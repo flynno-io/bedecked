@@ -1,0 +1,56 @@
+// src/App.module.scss
+@use './styles/typography.scss' as *;
+
+// TODO: create a styles/index.scss file and import all the styles there including the typography.scss, variables.scss, theme.scss, etc.
+// TODO: move colors to the styles/theme.scss file
+$primary: darkgray;
+$white: #ecf0f1;
+$black: #2c3e50;
+
+.container {
+  display: grid;
+  grid-template-columns: 185px repeat(4, 1fr);
+  grid-template-rows: 35px 100vh max-content;
+  grid-template-areas:
+  "header header header header header"
+  "sideMenu main main main main"
+  "footer footer footer footer footer";
+}
+
+.header {
+  grid-area: header;
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: .85rem;
+}
+
+.sideMenu {
+  grid-area: sideMenu;
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.main {
+  grid-area: main;
+  background-color: $white;
+  color: $black;
+  padding: 20px;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: $primary;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
