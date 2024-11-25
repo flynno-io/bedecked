@@ -2,7 +2,7 @@ import React from 'react'
 
 function TopContainer() {
   return (
-    <div classname='topContainer'></div>
+    <div className='topContainer'></div>
   )
 }
 

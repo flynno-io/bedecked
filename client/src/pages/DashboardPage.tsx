@@ -1,13 +1,14 @@
-import React from 'react'
+// src/pages/DashboardPage.tsx
 import "./Dashboard.css";
 import TopContainer from './TopContainer';
 
-function dashboard() {
+const DashboardPage = () => {
   return (
     <div className='container'>
-        <TopContainer />
+      <TopContainer />
     </div>
   )
 }
 
-export default dashboard
+export default DashboardPage
+
