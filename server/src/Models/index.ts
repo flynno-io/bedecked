@@ -6,9 +6,9 @@ import { DeckFactory } from "./deck.js";
 import { DeckCardFactory} from './deckcard.js';
 
 // initialize the models
-const Card = CardFactory(sequelize);
-const Deck = DeckFactory(sequelize);
 const User = UserFactory(sequelize);
+const Deck = DeckFactory(sequelize);
+const Card = CardFactory(sequelize);
 const DeckCard = DeckCardFactory(sequelize);
 const Emblem = EmblemFactory(sequelize);
 
