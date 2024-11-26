@@ -12,10 +12,10 @@ const SideNav: React.FC = () => {
     return (
         <div className="container-md">
             <div className="row rows-col-2">
-                <div className="sidebar">
+                <div className="sidebar" >
                     <li className="">
                         <Link className="" to="/profile">
-                            {/* <SidebarIcon></SidebarIcon> */}
+                            {/*Profile icon*/}
                         </Link>
                     </li>
                     <ul className="nav flex-column">
@@ -31,16 +31,16 @@ const SideNav: React.FC = () => {
                             {isDeckOpen && (
                                 <ul className="">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/yourDecks">Your Decks</NavLink>
+                                        <NavLink className="nav-link" to="/decks">Your Decks</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/deckBuilder">Deck Builder</NavLink>
+                                        <NavLink className="nav-link" to="/deck-builder">Deck Builder</NavLink>
                                     </li>
                                 </ul>
                             )}
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="">Profile</NavLink>
+                            <NavLink className="nav-link" to="/profile/:id">Profile</NavLink>
                         </li>
                     </ul>
                 </div>
