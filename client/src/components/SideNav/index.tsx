@@ -1,6 +1,6 @@
 // src/components/SideNav/index.tsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import styles from "./SideMenu.module.scss";
 
