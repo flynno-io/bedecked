@@ -1,8 +1,8 @@
-import User from './user';
-import Card from './card';
-import Deck from './deck';
-import DeckCard from './deckcard';
-import Emblem from './emblem';
+import User from './user.js';
+import Card from './card.js';
+import Deck from './deck.js';
+import DeckCard from './deckcard.js';
+import Emblem from './emblem.js';
 
 // User and Deck (one-to-many)
 User.hasMany(Deck, { foreignKey: 'userId', as: 'decks' });

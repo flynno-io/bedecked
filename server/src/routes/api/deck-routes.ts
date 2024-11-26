@@ -1,6 +1,6 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import Deck from "../../models/deck"
+import Deck from "../../models/deck.js"
 import { WhereOptions, Op } from "sequelize"
 
 const router = Router()
