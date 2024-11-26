@@ -1,7 +1,7 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
 import Deck from "../../models/deck"
-import { Op } from "sequelize"
+import { WhereOptions, Op } from "sequelize"
 
 const router = Router()
 
@@ -11,9 +11,9 @@ type format = "Standard" | "Commander"
 
 // Define filters interface
 interface filters {
-  name?: { [Op.iLike]: string }
-  format?: { [Op.or]: format[] }
-  colors?: { [Op.or]: colors[] }
+  name?: string
+  format?: format[]
+  colors?: colors[]
   page?: number
   limit?: number
 }
@@ -26,28 +26,22 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
     colors,
     page = 1, // default is page 1
     limit = 100, // default is 100 decks per page
-  } = req.query as {
-    name?: string
-    format?: format[]
-    colors?: colors[]
-    page?: number
-    limit?: number
-  }
+  } = req.query as filters
 
   // Define filters object
-  const where: filters = {}
+  const filters: WhereOptions = {}
 
-  // Add filters to where object
-  if (name) where.name = { [Op.iLike]: `%${name}%` } // case-insensitive search
-  if (format) where.format = { [Op.or]: format } // case-insensitive search
-  if (colors) where.colors = { [Op.or]: colors } // case-insensitive search
+  // Add filters to filters object
+  if (name) filters.name = { [Op.iLike]: `%${name}%` } // case-insensitive search
+  if (format) filters.format = { [Op.or]: format } // case-insensitive search
+  if (colors) filters.colors = { [Op.or]: colors } // case-insensitive search
 
   // Define pagination variable
   const offset = (page - 1) * limit
 
   // Find and count all decks
   try {
-    const { count, rows } = await Deck.findAndCountAll({ where, offset, limit: limit })
+    const { count, rows } = await Deck.findAndCountAll({ where: filters, offset, limit: limit })
     res.status(200).json({
       total_decks: count, // total number of decks
       decks: rows, // array of decks
@@ -79,9 +73,9 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 
 // POST / - Create a new deck
 router.post("/", async (req: Request, res: Response): Promise<void> => {
-  const { name, format, colors, cards } = req.body
+  const { name, format, colors } = req.body
   try {
-    const deck = await Deck.create({ name, format, colors, cards })
+    const deck = await Deck.create({ name, format, colors })
     res.status(201).json(deck)
   } catch (error: any) {
     res.status(400).json({ error: error.message })
@@ -91,14 +85,14 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
 // PUT /:id - Update deck by ID
 router.put("/:id", async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params
-  const { name, format, colors, cards } = req.body
+  const { name, format, colors, description } = req.body
   try {
     const deck = await Deck.findByPk(id)
     if (deck) {
       if (name) deck.name = name
       if (format) deck.format = format
       if (colors) deck.colors = colors
-      if (cards) deck.cards = cards
+      if (description) deck.description = description
       await deck.save()
       res.json(deck)
     } else {

@@ -1,7 +1,7 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
 import Card from "../../models/card"
-import { Op } from "sequelize"
+import { Op, WhereOptions } from "sequelize"
 
 const router = Router()
 
@@ -10,16 +10,16 @@ type mana = "W" | "U" | "B" | "R" | "G" | "C"  // mana types - white, blue, blac
 
 // Define filters interface
 interface filters {
-	name?: { [Op.iLike]: string }
-	type_line?: { [Op.iLike]: string }
-	oracle_text?: { [Op.iLike]: string }
-	subtype?: { [Op.iLike]: string }
-	color?: { [Op.or]: mana[] }
-	cmc?: number // converted mana cost
-	power?: number
-	toughness?: number
-	page?: number
-	limit?: number
+  name?: string
+  type_line?: string
+  oracle_text?: string
+  subtype?: string
+  color?: mana[]
+  cmc?: number
+  power?: number
+  toughness?: number
+  page?: number
+  limit?: number
 }
 
 // GET / - Get all cards using query parameters and pagination
@@ -35,38 +35,27 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 		toughness,
 		page = 1, // default is page 1
 		limit = 100, // default is 100 cards per page
-	} = req.query as {
-    name?: string
-    type_line?: string
-    oracle_text?: string
-    subtype?: string
-    color?: mana[]
-    cmc?: number
-    power?: number
-    toughness?: number
-    page?: number
-    limit?: number
-  }
+	} = req.query as filters
 
 	// Define filters object
-	const where: filters = {}
+	const filters: WhereOptions = {}
 
-	// Add filters to where object
-	if (name) where.name = { [Op.iLike]: `%${name}%` } // case-insensitive search
-	if (type_line) where.type_line = { [Op.iLike]: `%${type_line}%` } // case-insensitive search
-	if (oracle_text) where.oracle_text = { [Op.iLike]: `%${oracle_text}%` } // case-insensitive search
-	if (subtype) where.subtype = { [Op.iLike]: `%${subtype}%` } // case-insensitive search
-	if (color) where.color = { [Op.or]: color} // exact match
-	if (cmc) where.cmc = cmc // exact match
-	if (power) where.power = power // exact match
-	if (toughness) where.toughness = toughness // exact match
+	// Add filters to filters object
+	if (name) filters.name = { [Op.iLike]: `%${name}%` } // case-insensitive search
+	if (type_line) filters.type_line = { [Op.iLike]: `%${type_line}%` } // case-insensitive search
+	if (oracle_text) filters.oracle_text = { [Op.iLike]: `%${oracle_text}%` } // case-insensitive search
+	if (subtype) filters.subtype = { [Op.iLike]: `%${subtype}%` } // case-insensitive search
+	if (color) filters.color = { [Op.or]: color} // exact match
+	if (cmc) filters.cmc = cmc // exact match
+	if (power) filters.power = power // exact match
+	if (toughness) filters.toughness = toughness // exact match
 
 	// Define pagination variables
 	const offset = (page - 1) * limit
 
 	// Find and count all cards
 	try {
-		const { count, rows } = await Card.findAndCountAll({ where, offset, limit: limit })
+		const { count, rows } = await Card.findAndCountAll({ where: filters, offset, limit: limit })
 		res.status(200).json({
 			total_cards: count, // total number of cards
 			cards: rows, // array of cards
