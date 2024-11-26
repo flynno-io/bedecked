@@ -1,14 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/connection';
 
+// Define deck colors and formats
 type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless
 type format = "Standard" | "Commander" 
 
 class Deck extends Model {
     public id!: number;
     public name!: string;
-    public colors!: colors[]
     public format!: format
+    public colors!: colors[]
     public description!: string | null;
     public userId!: number; // Foreign key to User
 }
