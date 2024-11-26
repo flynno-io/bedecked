@@ -1,10 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/connection';
 
+type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless
+type format = "Standard" | "Commander" 
+
 class Deck extends Model {
     public id!: number;
     public name!: string;
-    public dscription!: string | null;
+    public colors!: colors[]
+    public format!: format
+    public description!: string | null;
     public userId!: number; // Foreign key to User
 }
 
@@ -17,6 +22,14 @@ Deck.init (
         },
         name: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        format: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        colors: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
         },
         description: {
