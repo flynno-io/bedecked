@@ -9,7 +9,7 @@ interface DeckCardAttributes {
 interface DeckCardCreationAttributes
 	extends Optional<DeckCardAttributes, "id"> {}
 
-class DeckCard
+export class DeckCard
 	extends Model<DeckCardAttributes, DeckCardCreationAttributes>
 	implements DeckCardAttributes
 {
@@ -44,5 +44,3 @@ export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
 	)
 	return DeckCard
 }
-
-export default DeckCard
