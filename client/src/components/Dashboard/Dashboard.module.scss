@@ -1,0 +1,87 @@
+
+@use './styles/typography.scss' as *;
+
+$primary: darkgray;
+$white: #ecf0f1;
+$black: #2c3e50;
+
+.container {
+    height: 100%;
+    background-color: $white;
+    display: grid; 
+    padding: 20px; 
+    border: $black 1px solid;    
+}
+
+.topContainer {
+    display: flex; 
+    align-items: center;
+
+    
+}
+
+.topContainer .sectionTitle {
+    height: 50px; 
+    position: relative; 
+}
+
+.topContainer .title {
+    display: flex; 
+    padding: 10px;
+    font-weight: bold;
+}
+
+.topContainer .icon {
+    font-size: 50px;
+    display: flex; 
+}
+
+.topContainer .button {
+    font-size: 16px;
+    margin: 10px;
+    position: relative; 
+    border: none; 
+    background-color: $white;
+    color: $black;
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
+
+}
+
+.bottomContainer {
+    display: flex; 
+    align-items: center;
+}
+
+.bottomContainer .sectionTitle {
+    height: 50px; 
+    position: relative; 
+}
+
+.bottomContainer .title {
+    display: flex; 
+    padding: 10px;
+    font-weight: bold;
+}
+
+.bottomContainer .icon {
+    font-size: 50px;
+    display: flex; 
+}
+
+.bottomContainer .button {
+    font-size: 16px;
+    margin: 10px;
+    position: relative; 
+    border: none;
+    background-color: $white;
+    color: $black;
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
+}
