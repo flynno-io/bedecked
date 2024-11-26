@@ -1,6 +1,6 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import Card from "../../models/card"
+import Card from "../../models/card.js"
 import { Op, WhereOptions } from "sequelize"
 
 const router = Router()
