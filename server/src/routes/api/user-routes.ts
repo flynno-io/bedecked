@@ -1,11 +1,11 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import { User } from '../../models'
+import { User } from '../../models.user.js'
 
 const router = Router()
 
 // GET /users/:id - Get user by ID
-router.get("/:id", async (req: Request, res: Response) => {
+router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params
 	try {
 		const user = await User.findByPk(id)
@@ -20,7 +20,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 })
 
 // POST /users - Create a new user
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response): Promise<void> => {
 	const { name, email, password, manaTheme } = req.body
 	try {
 		const user = await User.create({ name, email, password, manaTheme })
@@ -31,7 +31,7 @@ router.post("/", async (req: Request, res: Response) => {
 })
 
 // PUT /users/:id - Update user by ID
-router.put("/:id", async (req: Request, res: Response) => {
+router.put("/:id", async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params
 	const { name, email, password, manaTheme } = req.body
 	try {
@@ -52,7 +52,7 @@ router.put("/:id", async (req: Request, res: Response) => {
 })
 
 // DELETE /users/:id - Delete user by ID
-router.delete("/:id", async (req: Request, res: Response) => {
+router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params
   try {
     const user = await User.findByPk(id)
