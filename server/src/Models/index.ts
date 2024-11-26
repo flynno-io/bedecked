@@ -3,12 +3,13 @@ import { UserFactory} from './user.js';
 import Emblem from './emblem.js';
 import { CardFactory } from './card.js';
 import { DeckFactory } from "./deck.js";
-import DeckCard from './deckcard.js';
+import { DeckCardFactory} from './deckcard.js';
 
 // initialize the models
 const Card = CardFactory(sequelize);
 const Deck = DeckFactory(sequelize);
 const User = UserFactory(sequelize);
+const DeckCard = DeckCardFactory(sequelize);
 
 // User and Deck (one-to-many)
 User.hasMany(Deck, { foreignKey: 'userId', as: 'decks' });
