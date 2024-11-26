@@ -1,6 +1,6 @@
 // src/components/SideNav/index.tsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import styles from "./SideMenu.module.scss";
 
@@ -12,10 +12,10 @@ const SideNav: React.FC = () => {
     return (
         <div className="container-md">
             <div className="row rows-col-2">
-                <div className="sidebar" style="width: 300px">
+                <div className="sidebar" >
                     <li className="">
                         <Link className="" to="/profile">
-                            <SidebarIcon></SidebarIcon>
+                            {/*Profile icon*/}
                         </Link>
                     </li>
                     <ul className="nav flex-column">
@@ -31,16 +31,16 @@ const SideNav: React.FC = () => {
                             {isDeckOpen && (
                                 <ul className="">
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/yourDecks">Your Decks</NavLink>
+                                        <NavLink className="nav-link" to="/decks">Your Decks</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/deckBuilder">Deck Builder</NavLink>
+                                        <NavLink className="nav-link" to="/deck-builder">Deck Builder</NavLink>
                                     </li>
                                 </ul>
                             )}
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="">Profile</NavLink>
+                            <NavLink className="nav-link" to="/profile/:id">Profile</NavLink>
                         </li>
                     </ul>
                 </div>
