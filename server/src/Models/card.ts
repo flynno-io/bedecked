@@ -6,13 +6,13 @@ class Card extends Model {
     public scryFallId!: string;
     public name!: string;
     public manaCost!: string | null ; //Nullable for lands
-    public cmc!: string; //cmc stands for Converted Mana Cost
+    public cmc!: string; // cmc stands for Converted Mana Cost
     public color!: string;
-    public colorIdentity!: string[]; //All colors that the card can represent
-    public power!: number | null; //Nullable for non-creatures
-    public toughness!: number | null; //Nullable for non-creatures
-    public oracleText!: string | null; //Nullable for some cards
-    public imgUris!: { small: string; normal: string }; //Path to the img formats "small" and "normal"
+    public colorIdentity!: string[]; // All colors that the card can represent
+    public power!: number | null; // Nullable for non-creatures
+    public toughness!: number | null; // Nullable for non-creatures
+    public oracleText!: string | null; // Nullable for some cards
+    public imgUris!: { small: string; normal: string }; // Path to the img formats "small" and "normal"
 }
 
 Card.init(
