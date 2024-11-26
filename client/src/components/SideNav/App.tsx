@@ -1,7 +1,7 @@
 // src/App.tsx
 import { Outlet } from "react-router-dom"
 import styles from './App.module.scss'
-import SideNav from "./components/SideNav"
+import SideNav from "../SideNav"
 
 function App() {
   return (
