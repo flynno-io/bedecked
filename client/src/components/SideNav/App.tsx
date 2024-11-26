@@ -14,7 +14,7 @@ function App() {
         <Outlet />
       </main>
       <footer className={styles.footer}>
-        <p>© 2021 Bedecked</p>
+        <p>© 2024 Bedecked</p>
       </footer>
     </div>
   )
