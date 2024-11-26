@@ -1,6 +1,6 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import User from "../../models/user.js"
+import { User } from "../../models/user.js"
 
 const router = Router()
 
@@ -21,9 +21,9 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 
 // POST /users - Create a new user
 router.post("/", async (req: Request, res: Response): Promise<void> => {
-	const { name, email, password, manaTheme } = req.body
+	const { username, email, password, manaTheme } = req.body
 	try {
-		const user = await User.create({ name, email, password, manaTheme })
+		const user = await User.create({ username, email, password, manaTheme })
 		res.status(201).json(user)
 	} catch (error: any) {
 		res.status(400).json({ error: error.message })

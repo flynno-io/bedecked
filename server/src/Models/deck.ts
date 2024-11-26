@@ -15,7 +15,7 @@ interface DeckAttributes {
 
 interface DeckCreationAttributes extends Optional<DeckAttributes, "id"> {}
 
-class Deck
+export class Deck
 	extends Model<DeckAttributes, DeckCreationAttributes>
 	implements DeckAttributes
 {
@@ -70,5 +70,3 @@ export function DeckFactory(sequelize: Sequelize): typeof Deck {
 	)
 	return Deck
 }
-
-export default Deck
