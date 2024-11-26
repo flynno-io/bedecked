@@ -1,34 +1,48 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/connection';
+import { DataTypes, Sequelize, Optional, Model } from "sequelize"
 
-class DeckCard extends Model {
-    public id!: number;
-    public deckId!: number;
-    public cardId!: number;
+interface DeckCardAttributes {
+	id: number
+	deckId: number
+	cardId: number
 }
 
-DeckCard.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        deckId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        cardId: {
-            type:DataTypes.INTEGER,
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        modelName: 'DeckCard',
-        tableName: 'deck_cards',
-        timestamps: false, // no timestamps needed for a join table
-    }
-);
+interface DeckCardCreationAttributes
+	extends Optional<DeckCardAttributes, "id"> {}
 
-export default DeckCard;
+class DeckCard
+	extends Model<DeckCardAttributes, DeckCardCreationAttributes>
+	implements DeckCardAttributes
+{
+	public id!: number
+	public deckId!: number
+	public cardId!: number
+}
+
+export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
+	DeckCard.init(
+		{
+			id: {
+				type: DataTypes.INTEGER,
+				autoIncrement: true,
+				primaryKey: true,
+			},
+			deckId: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			cardId: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+		},
+		{
+			sequelize,
+			modelName: "DeckCard",
+			tableName: "deck_cards",
+			timestamps: false, // no timestamps needed for a join table
+		}
+	)
+	return DeckCard
+}
+
+export default DeckCard

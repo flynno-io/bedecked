@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { userRouter } from './user-routes'
-import { cardRouter } from './card-routes'
-import { deckRouter } from './deck-routes'
+import { userRouter } from './user-routes.js'
+import { cardRouter } from './card-routes.js'
+import { deckRouter } from './deck-routes.js'
 
 const router = Router()
 

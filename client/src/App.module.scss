@@ -9,8 +9,8 @@ $black: #2c3e50;
 
 .container {
   display: grid;
-  grid-template-columns: 185px repeat(4, 1fr);
-  grid-template-rows: 35px 100vh max-content;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 35px 1fr;
   grid-template-areas:
   "header header header header header"
   "sideMenu main main main main"
@@ -40,7 +40,6 @@ $black: #2c3e50;
 
 .main {
   grid-area: main;
-  background-color: $white;
   color: $black;
   padding: 20px;
 }

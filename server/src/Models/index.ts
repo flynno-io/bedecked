@@ -1,8 +1,15 @@
-import User from './user';
-import Card from './card';
-import Deck from './deck';
-import DeckCard from './deckcard';
-import Emblem from './emblem';
+import sequelize from "../config/connection.js"
+import { UserFactory} from './user.js';
+import Emblem from './emblem.js';
+import { CardFactory } from './card.js';
+import { DeckFactory } from "./deck.js";
+import { DeckCardFactory} from './deckcard.js';
+
+// initialize the models
+const Card = CardFactory(sequelize);
+const Deck = DeckFactory(sequelize);
+const User = UserFactory(sequelize);
+const DeckCard = DeckCardFactory(sequelize);
 
 // User and Deck (one-to-many)
 User.hasMany(Deck, { foreignKey: 'userId', as: 'decks' });
@@ -14,6 +21,6 @@ Card.belongsToMany(Deck, { through: DeckCard, foreignKey: 'cardId' });
 
 //User and Emblem (one-to-one)
 User.hasOne(Emblem, { foreignKey: 'userId', as: 'emblem' });
-Emblem.belongsTo(Deck, { foreignKey: 'userId', as: 'user'});
+Emblem.belongsTo(Deck, { foreignKey: 'userId', as: 'user'}); // FIXME: an Emblem can belong to many users but on user can only belong to one emblem
 
 export { User, Card, Deck, DeckCard, Emblem };
