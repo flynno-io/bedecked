@@ -1,6 +1,6 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import Deck from "../../models/deck"
+import Deck from "../../models/deck.js"
 import { WhereOptions, Op } from "sequelize"
 
 const router = Router()
@@ -73,9 +73,9 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 
 // POST / - Create a new deck
 router.post("/", async (req: Request, res: Response): Promise<void> => {
-  const { name, format, colors } = req.body
+  const { name, format, colors, userId } = req.body
   try {
-    const deck = await Deck.create({ name, format, colors })
+    const deck = await Deck.create({ name, format, colors, userId })
     res.status(201).json(deck)
   } catch (error: any) {
     res.status(400).json({ error: error.message })

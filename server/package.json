@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "backend server for the bedecked web application.",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "build": "npx tsc",
