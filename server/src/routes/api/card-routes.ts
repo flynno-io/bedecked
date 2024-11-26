@@ -1,16 +1,20 @@
 import { Router } from "express"
 import type { Request, Response } from "express"
-import { Card } from "../../models"
+import { Card } from "../../models/card.js"
 import { Op } from "sequelize"
 
 const router = Router()
 
+// Define mana types
+type mana = "W" | "U" | "B" | "R" | "G" | "C"  // mana types - white, blue, black, red, green, colorless
+
+// Define filters interface
 interface filters {
 	name?: { [Op.iLike]: string }
 	type_line?: { [Op.iLike]: string }
 	oracle_text?: { [Op.iLike]: string }
 	subtype?: { [Op.iLike]: string }
-	color?: "W" | "U" | "B" | "R" | "G" | "C" | "M" // white, blue, black, red, green, colorless, multicolor
+	color?: { [Op.or]: mana[] }
 	cmc?: number // converted mana cost
 	power?: number
 	toughness?: number
@@ -31,7 +35,18 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 		toughness,
 		page = 1, // default is page 1
 		limit = 100, // default is 100 cards per page
-	} = req.query as filters
+	} = req.query as {
+    name?: string
+    type_line?: string
+    oracle_text?: string
+    subtype?: string
+    color?: mana[]
+    cmc?: number
+    power?: number
+    toughness?: number
+    page?: number
+    limit?: number
+  }
 
 	// Define filters object
 	const where: filters = {}
@@ -41,7 +56,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 	if (type_line) where.type_line = { [Op.iLike]: `%${type_line}%` } // case-insensitive search
 	if (oracle_text) where.oracle_text = { [Op.iLike]: `%${oracle_text}%` } // case-insensitive search
 	if (subtype) where.subtype = { [Op.iLike]: `%${subtype}%` } // case-insensitive search
-	if (color) where.color = color // exact match
+	if (color) where.color = { [Op.or]: color} // exact match
 	if (cmc) where.cmc = cmc // exact match
 	if (power) where.power = power // exact match
 	if (toughness) where.toughness = toughness // exact match
@@ -65,3 +80,20 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 		res.status(400).json({ error: error.message })
 	}
 })
+
+// GET /:id - Get card by ID
+router.get("/:id", async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params
+  try {
+    const card = await Card.findByPk(id)
+    if (card) {
+      res.json(card)
+    } else {
+      res.status(404).json({ error: "Card not found" })
+    }
+  } catch (error: any) {
+    res.status(400).json({ error: error.message })
+  }
+})
+
+export { router as cardRouter }
