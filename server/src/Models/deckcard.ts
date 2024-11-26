@@ -27,7 +27,7 @@ DeckCard.init(
         sequelize,
         modelName: 'DeckCard',
         tableName: 'deck_cards',
-        timestamps: false, //no timestamps needed for a join table
+        timestamps: false, // no timestamps needed for a join table
     }
 );
 
