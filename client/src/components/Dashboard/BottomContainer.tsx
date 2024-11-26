@@ -1,4 +1,4 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { GiCardPick } from 'react-icons/gi';
 import styles from './Dashboard.module.scss'
 
@@ -16,9 +16,7 @@ function BottomContainer() {
                 <button className={styles.button}>Color</button>
                 <button className={styles.button}>Date Added</button>
             </div>
-            
         </div>
-
         <div className={styles.deckContainer}>
 
         </div>

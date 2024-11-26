@@ -1,4 +1,4 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'
 
