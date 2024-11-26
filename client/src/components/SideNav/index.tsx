@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
-import styles from "./SideMenu.module.scss";
+// import styles from "./SideMenu.module.scss";
 
 const SideNav: React.FC = () => {
   const [isDeckOpen, setIsDeckOpen] = useState(false);
@@ -12,10 +12,10 @@ const SideNav: React.FC = () => {
     return (
         <div className="container-md">
             <div className="row rows-col-2">
-                <div className="sidebar" style="width: 300px">
+                <div className="sidebar">
                     <li className="">
                         <Link className="" to="/profile">
-                            <SidebarIcon></SidebarIcon>
+                            {/* <SidebarIcon></SidebarIcon> */}
                         </Link>
                     </li>
                     <ul className="nav flex-column">
