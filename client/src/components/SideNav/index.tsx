@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { NavLink, Link } from "react-router-dom";
-import styles from "./SideMenu.module.scss";
 
 const SideNav: React.FC = () => {
   const [isDeckOpen, setIsDeckOpen] = useState(false);
