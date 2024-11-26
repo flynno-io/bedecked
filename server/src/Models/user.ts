@@ -6,6 +6,7 @@ class User extends Model {
     public id!:number;
     public username!: string;
     public email!: string;
+    public manaTheme!: string;
     public password!: string;
 }
 
@@ -28,6 +29,11 @@ User.init(
             validate: {
                 isEmail: true, // ensures valid email
             }
+        },
+        manaTheme: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'white',
         },
         password: {
             type: DataTypes.STRING,

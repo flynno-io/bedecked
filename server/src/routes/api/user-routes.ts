@@ -33,11 +33,11 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
 // PUT /users/:id - Update user by ID
 router.put("/:id", async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params
-	const { name, email, password, manaTheme } = req.body
+	const { username, email, password, manaTheme } = req.body
 	try {
 		const user = await User.findByPk(id)
 		if (user) {
-			if (name) user.name = name
+			if (username) user.username = username
 			if (email) user.email = email
 			if (password) user.password = password
 			if (manaTheme) user.manaTheme = manaTheme
