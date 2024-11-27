@@ -33,6 +33,8 @@ export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
 					model: "decks",
 					key: "id",
 				},
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
 			},
 			cardId: {
 				type: DataTypes.INTEGER,
@@ -41,6 +43,8 @@ export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
 					model: "cards",
 					key: "id",
 				},
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
 			},
 		},
 		{

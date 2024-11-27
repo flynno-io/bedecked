@@ -7,7 +7,8 @@
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
-    "start:first": "npm run build && node ./dist/seeds/syncScript.js && node dist/server.js --ignore client",
+    "start:first": "npm run build && npm run flush && node ./dist/seeds/syncScript.js && node dist/server.js --ignore client",
+    "flush": "psql -U flynno -f ./db/schema.sql",
     "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node dist/seeds/index.js"

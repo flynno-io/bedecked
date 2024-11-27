@@ -1,7 +1,7 @@
 [
 	{
 		"object": "card",
-		"scryFallId" "4fedf84e-55ca-4334-a2c1-6e991112bb68",
+		"id": "4fedf84e-55ca-4334-a2c1-6e991112bb68",
 		"oracle_id": "7bf8bb41-6f46-492c-b6cf-5cfb29f973a4",
 		"multiverse_ids": [652009],
 		"mtgo_id": 123412,
@@ -143,7 +143,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "9e5a7117-b1e2-46bd-873e-baf9d9fac009",
+		"id": "9e5a7117-b1e2-46bd-873e-baf9d9fac009",
 		"oracle_id": "d6ee95a9-e518-49fd-bc11-02453c3220cd",
 		"multiverse_ids": [73556],
 		"mtgo_id": 20894,
@@ -254,7 +254,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "2e64f2cc-67bd-482a-938b-8dca1a1c6ac1",
+		"id": "2e64f2cc-67bd-482a-938b-8dca1a1c6ac1",
 		"oracle_id": "5f46f86a-9779-4ed3-99cb-76a03d380598",
 		"multiverse_ids": [45202],
 		"mtgo_id": 19299,
@@ -363,7 +363,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "4cdfb792-fe55-4aa0-88df-4296db794bc5",
+		"id": "4cdfb792-fe55-4aa0-88df-4296db794bc5",
 		"oracle_id": "5ae4a172-b846-4ec2-8178-a8b762134bfe",
 		"multiverse_ids": [620737],
 		"mtgo_id": 113134,
@@ -474,7 +474,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "2203b2cd-48e5-471a-85fe-dc81012e5d61",
+		"id": "2203b2cd-48e5-471a-85fe-dc81012e5d61",
 		"oracle_id": "3cda958a-f777-433d-850e-a6c8f581db4e",
 		"multiverse_ids": [616845],
 		"mtgo_id": 111940,
@@ -591,7 +591,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "e384c20b-d0c1-4781-9d11-e89e5a6bf3fc",
+		"id": "e384c20b-d0c1-4781-9d11-e89e5a6bf3fc",
 		"oracle_id": "5b3b5f6a-375e-4479-9384-a942eda83f9b",
 		"multiverse_ids": [616849],
 		"mtgo_id": 111948,
@@ -704,7 +704,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "b422ce26-06fb-4748-9c01-32c4be914a77",
+		"id": "b422ce26-06fb-4748-9c01-32c4be914a77",
 		"oracle_id": "7a80212a-aae3-483b-abb6-7271a62dff8a",
 		"multiverse_ids": [620103],
 		"mtgo_id": 111492,
@@ -818,7 +818,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "d939ad90-b4b6-452d-a318-b8895d185a0c",
+		"id": "d939ad90-b4b6-452d-a318-b8895d185a0c",
 		"oracle_id": "59119143-c0fa-49dd-adf0-e2fd3029c48b",
 		"multiverse_ids": [622599],
 		"mtgo_id": 111850,
@@ -930,7 +930,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "f332cd21-46ed-4fff-9fd9-d5975bf0004d",
+		"id": "f332cd21-46ed-4fff-9fd9-d5975bf0004d",
 		"oracle_id": "7d0efc64-151f-45b4-8c0b-c32609f9d862",
 		"multiverse_ids": [612441],
 		"mtgo_id": 110834,
@@ -1042,7 +1042,7 @@
 	},
 	{
 		"object": "card",
-		"scryFallId": "a120de1b-cfc2-4a21-9eb0-ddabb3d90896",
+		"id": "a120de1b-cfc2-4a21-9eb0-ddabb3d90896",
 		"oracle_id": "51f4eb1f-abf2-425a-b78e-cafac177da89",
 		"multiverse_ids": [447056],
 		"tcgplayer_id": 168326,
