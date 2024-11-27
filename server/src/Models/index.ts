@@ -1,6 +1,6 @@
 import sequelize from "../config/connection.js"
 import { UserFactory} from './user.js';
-import Emblem from './emblem.js';
+import { EmblemFactory} from './emblem.js';
 import { CardFactory } from './card.js';
 import { DeckFactory } from "./deck.js";
 import { DeckCardFactory} from './deckcard.js';
@@ -10,6 +10,7 @@ const Card = CardFactory(sequelize);
 const Deck = DeckFactory(sequelize);
 const User = UserFactory(sequelize);
 const DeckCard = DeckCardFactory(sequelize);
+const Emblem = EmblemFactory(sequelize);
 
 // User and Deck (one-to-many)
 User.hasMany(Deck, { foreignKey: 'userId', as: 'decks' });
