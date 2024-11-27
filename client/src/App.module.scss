@@ -1,16 +1,16 @@
 // src/App.module.scss
 @use './styles/typography.scss' as *;
 
-// TODO: create a styles/index.scss file and import all the styles there including the typography.scss, variables.scss, theme.scss, etc.
-// TODO: move colors to the styles/theme.scss file
+// TODO: create a styles/index.scss file and import all the styles there including the typography.scss, variables.scss, themes.scss, etc.
+// TODO: move colors to the styles/themes.scss file
 $primary: darkgray;
 $white: #ecf0f1;
 $black: #2c3e50;
 
 .container {
   display: grid;
-  grid-template-columns: 185px repeat(4, 1fr);
-  grid-template-rows: 35px 100vh max-content;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 35px 1fr;
   grid-template-areas:
   "header header header header header"
   "sideMenu main main main main"
@@ -19,8 +19,8 @@ $black: #2c3e50;
 
 .header {
   grid-area: header;
-  background-color: $primary;
-  color: $white;
+  background-color: var(--inset-bg);
+  color: var(--text-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,8 +30,8 @@ $black: #2c3e50;
 
 .sideMenu {
   grid-area: sideMenu;
-  background-color: $primary;
-  color: $white;
+  background-color: var(--inset-bg);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,15 +40,14 @@ $black: #2c3e50;
 
 .main {
   grid-area: main;
-  background-color: $white;
-  color: $black;
+  color: var(--input-border);
   padding: 20px;
 }
 
 .footer {
   grid-area: footer;
-  background-color: $primary;
-  color: $white;
+  background-color: var(--inset-bg);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
