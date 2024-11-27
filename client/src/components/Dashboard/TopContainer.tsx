@@ -3,6 +3,14 @@
 // import "react-multi-carousel/lib/styles.css";
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
+import Card from '../Card/Card';
+
+const cardData = [
+    { id: 1, name: "Black Lotus", manaCost: "0", type: "Artifact" },
+    { id: 2, name: "Blue Elemental Blast", manaCost: "U", type: "Instant" },
+    { id: 3, name: "Lightning Bolt", manaCost: "R", type: "Instant" },
+    // Add more card objects...
+  ];
 
 function TopContainer() { 
 
@@ -24,14 +32,10 @@ return (
         </div>
         </div>
         <div className={styles.cardContainer}>
-            <p>Card Gallery</p>
-            <span>card1</span>
-            <span>card2</span>
-            <span>card3</span>
-            <span>card4</span>
-            <span>card5</span>
+            {cardData.map((card) => (
+                <Card key={card.id} {...card} />
+            ))};
         </div>
-    
     </div>
     
 )
