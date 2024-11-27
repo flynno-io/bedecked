@@ -10,8 +10,10 @@ const DashboardPage = () => {
       <div className={styles.topContainer}>
         <TopContainer />  
       </div>
-      
-      <BottomContainer />
+      <div className={styles.bottomContainer}>
+        <BottomContainer />
+      </div>
+  
     </div>
   )
 }
