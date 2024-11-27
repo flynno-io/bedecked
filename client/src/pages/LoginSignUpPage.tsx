@@ -1,6 +1,8 @@
 // src/pages/LoginSignUpPage.tsx
 
-import React, { useState} from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
+import Auth from '../utils/auth';
+import { login } from "../api/authAPI";
 import Logo from '../components/Logo';
 import '../../styles/_themes.scss';
 import '../../styles/loginRegister.scss';
@@ -17,6 +19,31 @@ const LoginSignUpPage = () => {
   const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLogin(e.target.id === 'login');
   };
+  
+  const [loginData, setLoginData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
+      [name]: value
+    });
+  };
+
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      console.log(loginData);
+      const data = await login(loginData);
+      Auth.login(data.token);
+    } catch (err) {
+      console.error('Failed to login', err);
+    }
+  };
+
   return (
     <section className="register">
       <Logo />
@@ -28,15 +55,28 @@ const LoginSignUpPage = () => {
         <label htmlFor="register">New User</label>
       </div>
       {isLogin ? (
-        <form name="login" className="login">
-          <input type="text" placeholder="Username" name="Username" autoComplete="on" />
-          <input type="password" placeholder="Password" name="Password" autoComplete="on" />
-          <button type="button" id="loginConfirm">Login</button>
+        <form name="login" className="login" onSubmit={handleLogin}>
+          <input 
+            type="text"
+            placeholder="Username" 
+            name="Username" 
+            autoComplete="on" 
+            value={loginData.username || ''}
+            onChange={handleChange}
+          />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            name="Password" 
+            autoComplete="on"
+            value={loginData.password || ''}
+            onChange={handleChange}  />
+          <button type="submit" id="loginConfirm">Login</button>
         </form>
       ) : (
         <form name="register" className="registration">
           <select id="manaColor" onChange={handleThemeChange}>
-            <option value="">Mana Theme</option>
+            <option value="default">Mana Theme</option>
             <option value="colorless">Colorless</option>
             <option value="white">White</option>
             <option value="blue">Blue</option>
@@ -47,11 +87,11 @@ const LoginSignUpPage = () => {
           <input type="text" placeholder="Username" name="Username" autoComplete="on" />
           <input id="email" type="email" placeholder="Email Address" name="Email" autoComplete="on" />
           <input type="password" placeholder="Password" name="Password" autoComplete="on" />
-          <button type="button" id="registrationConfirm">Register</button>
+          <button type="submit" id="registrationConfirm">Register</button>
         </form>
       )}
     </section>
   )
 }
 
-export default LoginSignUpPage
+export default LoginSignUpPage;
