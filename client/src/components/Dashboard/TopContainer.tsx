@@ -1,16 +1,9 @@
-// import React, { useState, useEffect } from 'react'
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+import React, { useState, useEffect } from 'react'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
-import Card from '../Card/Card';
-
-const cardData = [
-    { id: 1, name: "Black Lotus", manaCost: "0", type: "Artifact" },
-    { id: 2, name: "Blue Elemental Blast", manaCost: "U", type: "Instant" },
-    { id: 3, name: "Lightning Bolt", manaCost: "R", type: "Instant" },
-    // Add more card objects...
-  ];
+import Cards from '../../assets/Cards/Cards.json';
 
 function TopContainer() { 
 
@@ -32,9 +25,13 @@ return (
         </div>
         </div>
         <div className={styles.cardContainer}>
-            {cardData.map((card) => (
-                <Card key={card.id} {...card} />
-            ))}
+            {Cards.map((card) => {
+                return(
+                    <div className={styles.card} key={card.id}>
+                        {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
+                    </div>
+                )
+            })}
         </div>
     </div>
     
