@@ -39,7 +39,7 @@ export function EmblemFactory(sequelize: Sequelize): typeof Emblem {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 				references: {
-					model: "Users", // table name in the database
+					model: "users", // table name in the database
 					key: "id",
 				},
 				onDelete: "CASCADE",

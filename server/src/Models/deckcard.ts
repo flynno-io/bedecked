@@ -29,10 +29,18 @@ export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
 			deckId: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
+        references: {
+					model: "decks",
+					key: "id",
+				},
 			},
 			cardId: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
+        references: {
+					model: "cards",
+					key: "id",
+				},
 			},
 		},
 		{
