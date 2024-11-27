@@ -4,6 +4,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(21,11,0);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-blue {
@@ -12,6 +13,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(14,104,171);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-colorless {
@@ -20,6 +22,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(125,125,125);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-default {
@@ -28,6 +31,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(152,73,30);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-green {
@@ -36,6 +40,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(0,115,62);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-red {
@@ -44,6 +49,7 @@
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(211,32,42);
     --text-color: rgb(255,255,255);
+    --text-low-contrast: rgb(0,0,0);
   }
   
   .theme-white {
@@ -52,4 +58,5 @@
     --inset-bg: rgba(255,255,255,0.5);
     --input-border: rgb(248,231,185);
     --text-color: rgb(0,0,0);
+    --text-low-contrast: rgb(255,255,255);
   }

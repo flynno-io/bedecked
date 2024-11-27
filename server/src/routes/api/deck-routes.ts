@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getAllDecks, getDeckById, createDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers"
+import { getAllDecks, getDeckById, createDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers.js"
 
 const router = Router()
 
