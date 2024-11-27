@@ -42,6 +42,9 @@ const SideNav = () => {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/profile/:id">Profile</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/login">Login or Register</NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="col">

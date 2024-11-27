@@ -55,7 +55,7 @@ export function DeckFactory(sequelize: Sequelize): typeof Deck {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 				references: {
-					model: "User",
+					model: "users",
 					key: "id",
 				},
 				onDelete: "CASCADE",
