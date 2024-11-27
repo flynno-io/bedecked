@@ -1,62 +1,69 @@
 .theme-black {
-    --bg-img: url('../public/themeimages/blackMascot.png');
+    --bg-img: url('../src/assets/themeimages/blackMascot.png');
     --bg-color: rgb(21,11,0);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(21,11,0);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/black.png');
   }
   
   .theme-blue {
-    --bg-img: url('../public/themeimages/blueMascot.png');
+    --bg-img: url('../src/assets/themeimages/blueMascot.png');
     --bg-color: rgb(14, 104, 171);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(14,104,171);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/blue.png');
   }
   
   .theme-colorless {
-    --bg-img: url('../public/themeimages/colorlessMascot.png');
+    --bg-img: url('../src/assets/themeimages/colorlessMascot.png');
     --bg-color: rgb(125,125,125);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(125,125,125);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/colorless.png');
   }
   
   .theme-default {
-    --bg-img: url('../public/themeimages/default.png');
+    --bg-img: url('../src/assets/themeimages/default.png');
     --bg-color: rgb(152,73,30);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(152,73,30);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/default.png');
   }
   
   .theme-green {
-    --bg-img: url('../public/themeimages/greenMascot.png');
+    --bg-img: url('../src/assets/themeimages/greenMascot.png');
     --bg-color: rgb(0, 115, 62);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(0,115,62);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/green.png');
   }
   
   .theme-red {
-    --bg-img: url('../public/themeimages/redMascot.png');
+    --bg-img: url('../src/assets/themeimages/redMascot.png');
     --bg-color: rgb(211, 32, 42);
     --inset-bg: rgba(0,0,0,0.5);
     --input-border: rgb(211,32,42);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --avatar: url('../src/assets/Mana/red.png');
   }
   
   .theme-white {
-    --bg-img: url('../public/themeimages/whiteMascot.png');
+    --bg-img: url('../src/assets/themeimages/whiteMascot.png');
     --bg-color: rgb(248, 231, 185);
     --inset-bg: rgba(255,255,255,0.5);
     --input-border: rgb(248,231,185);
     --text-color: rgb(0,0,0);
     --text-low-contrast: rgb(255,255,255);
+    --avatar: url('../src/assets/Mana/white.png');
   }

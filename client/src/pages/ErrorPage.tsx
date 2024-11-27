@@ -1,8 +1,14 @@
 // src/pages/ErrorPage.tsx
+import '../../styles/index.scss';
 
 const ErrorPage = () => {
   return (
-    <h1>404 - Page not Found</h1>
+    <section className="errorbody">
+      <div className="fourohfour">
+        <h1>404 - Page not Found</h1>
+        <a href="/">Bedecked Home</a>
+      </div>
+    </section>
   )
 }
 

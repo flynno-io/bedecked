@@ -43,7 +43,8 @@ function Login() {
             name="Password" 
             autoComplete="on"
             value={loginData.password || ''}
-            onChange={handleChange}  />
+            onChange={handleChange}
+          />
           <button type="submit" id="loginConfirm">Login</button>
     </form>
  )

@@ -10,7 +10,7 @@ $black: #2c3e50;
 .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 35px 1fr;
+  grid-template-rows: 60px 1fr;
   grid-template-areas:
   "header header header header header"
   "sideMenu main main main main"
@@ -26,6 +26,19 @@ $black: #2c3e50;
   align-items: center;
   padding: 0 20px;
   font-size: .85rem;
+
+  & a:link, & a:active, & a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size:200%;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    transition-duration:0.3s;
+  }
+
+  & a:hover {
+    color: var(--bg-color);
+  }
 }
 
 .sideMenu {
@@ -51,5 +64,9 @@ $black: #2c3e50;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
+
+  & p {
+    margin-bottom:0;
+  }
 }
