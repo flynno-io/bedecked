@@ -34,7 +34,7 @@ return (
         <div className={styles.cardContainer}>
             {cardData.map((card) => (
                 <Card key={card.id} {...card} />
-            ))};
+            ))}
         </div>
     </div>
     
