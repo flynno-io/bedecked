@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { Deck } from "../Models/index.js"
+import { Deck } from "../models/index.js"
 import { WhereOptions, Op } from "sequelize"
 
 // Define deck colors

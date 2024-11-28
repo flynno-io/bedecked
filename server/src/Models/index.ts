@@ -1,9 +1,9 @@
 import sequelize from "../config/connection.js"
-import { UserFactory } from "../Models/user.js"
-import { EmblemFactory } from "../Models/emblem.js"
-import { CardFactory } from "../Models/card.js"
-import { DeckFactory } from "../Models/deck.js"
-import { DeckCardFactory } from "../Models/deckcard.js"
+import { UserFactory } from "../models/user.js"
+import { EmblemFactory } from "../models/emblem.js"
+import { CardFactory } from "../models/card.js"
+import { DeckFactory } from "../models/deck.js"
+import { DeckCardFactory } from "../models/deckcard.js"
 
 // initialize the models
 const User = UserFactory(sequelize)
