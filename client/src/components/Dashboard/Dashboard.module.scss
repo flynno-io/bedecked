@@ -39,7 +39,11 @@ $black: #2c3e50;
 
 .icon {
     font-size: 50px;
-    display: flex; 
+    cursor: pointer;
+    transition: color 0.3s ease;
+    &:hover {
+        color: $black;
+    }
 }
 
 .button {
@@ -48,7 +52,6 @@ $black: #2c3e50;
     position: relative; 
     border: none; 
     color: $black;
-
     &:hover {
         background-color: $black;
         color: $white;
@@ -66,7 +69,6 @@ $black: #2c3e50;
     border-radius: 10px;
     background-color: $white;
     opacity: 0.8;
-
     &:hover {
         background-color: $white;
         opacity: 1;
@@ -74,11 +76,11 @@ $black: #2c3e50;
 }
 
 .clickableTitle {
+    display: flex;
     cursor: pointer;
     transition: color 0.3s ease;
-}
-
-.clickableTitle:hover {
-    color: $black
+    &:hover {
+        color: $black;
+    }
 }
 
