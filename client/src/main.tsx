@@ -12,8 +12,6 @@ import CardsPage from './pages/CardsPage.tsx';
 import DecksPage from './pages/DecksPage.tsx';
 import DeckBuilderPage from './pages/DeckBuilderPage.tsx';
 import ProfilePage from './pages/ProfilePage.tsx';
-import TopContainer from './components/Dashboard/TopContainer.tsx';
-import BottomContainer from './components/Dashboard/BottomContainer.tsx';
 
 const router = createBrowserRouter([
   {
@@ -33,10 +31,6 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashboardPage />
       },
-      // {
-      //   path: '/cards',
-      //   element: <TopContainer />
-      // },
       {
         path: '/cards',
         element: <CardsPage />
@@ -45,10 +39,6 @@ const router = createBrowserRouter([
         path: '/cards/:id',
         element: <CardsPage />
       },
-      // {
-      //   path: '/decks',
-      //   element: <BottomContainer />
-      // },
       {
         path: '/decks',
         element: <DecksPage />

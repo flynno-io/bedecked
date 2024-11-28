@@ -1,6 +1,6 @@
-import React from 'react'
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+// import React from 'react'
+// // import Carousel from "react-multi-carousel";
+// // import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from 'react-router-dom';
 import { GiCardPick } from 'react-icons/gi';
 import styles from './Dashboard.module.scss'
