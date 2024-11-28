@@ -1,2 +1,32 @@
-
+@use './_themes.scss' as *;
 @use './typography.scss' as *;
+
+.errorbody {
+    align-content:center;
+    min-height:100vh;
+    display:block;
+}
+
+.fourohfour {
+    margin: 0 auto;
+    width:50%;
+    min-width:400px;
+    padding: 100px 50px;
+    text-align: center;
+    background-color: var(--inset-bg);
+    border: 2px solid var(--input-border);
+    color: var(--text-color);
+
+    & a:link, & a:visited, & a:active {
+        color: var(--text-color);
+        font-size:120%;
+        font-family: var(--font-sans);
+        text-transform:uppercase;
+        letter-spacing:1px;
+        transition-duration:0.3s;
+    }
+
+    & a:hover {
+        color: var(--bg-color);
+    }
+}

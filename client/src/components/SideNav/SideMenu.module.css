@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap");
+:root {
+  font-family: "Yusei Magic", Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.theme-black {
+  --bg-img: url("../public/themeimages/blackMascot.png");
+  --bg-color: rgb(21,11,0);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(21,11,0);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-blue {
+  --bg-img: url("../public/themeimages/blueMascot.png");
+  --bg-color: rgb(14, 104, 171);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(14,104,171);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-colorless {
+  --bg-img: url("../public/themeimages/colorlessMascot.png");
+  --bg-color: rgb(125,125,125);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(125,125,125);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-default {
+  --bg-img: url("../public/themeimages/default.png");
+  --bg-color: rgb(152,73,30);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(152,73,30);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-green {
+  --bg-img: url("../public/themeimages/greenMascot.png");
+  --bg-color: rgb(0, 115, 62);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(0,115,62);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-red {
+  --bg-img: url("../public/themeimages/redMascot.png");
+  --bg-color: rgb(211, 32, 42);
+  --inset-bg: rgba(0,0,0,0.5);
+  --input-border: rgb(211,32,42);
+  --text-color: rgb(255,255,255);
+}
+
+.theme-white {
+  --bg-img: url("../public/themeimages/whiteMascot.png");
+  --bg-color: rgb(248, 231, 185);
+  --inset-bg: rgba(255,255,255,0.5);
+  --input-border: rgb(248,231,185);
+  --text-color: rgb(0,0,0);
+}
+
+.nav {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.nav a {
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-style: normal;
+  text-decoration: none;
+}
+.nav a:hover {
+  background-color: #f9f9f9;
+  color: black;
+}/*# sourceMappingURL=SideMenu.module.css.map */

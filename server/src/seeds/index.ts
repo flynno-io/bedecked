@@ -13,6 +13,18 @@ const seedAll = async (): Promise<void> => {
     
     await seedCards();
     console.log('\n----- CARDS SEEDED -----\n');
+
+    // TODO: create seed functions for the decks
+    // await seedDecks();
+    // console.log('\n----- DECKS SEEDED -----\n');
+
+    // TODO: create seed functions for the deck cards
+    // await seedDeckCards();
+    // console.log('\n----- DECKS & CARD RELATIONS SEEDED -----\n');
+
+    // TODO: create seed functions for the emblems
+    // await seedEmblems();
+    // console.log('\n----- EMBLEMS SEEDED -----\n');
     
     process.exit(0);
   } catch (error) {

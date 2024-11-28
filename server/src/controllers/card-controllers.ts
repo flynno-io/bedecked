@@ -11,7 +11,7 @@ interface filters {
   type_line?: string
   oracle_text?: string
   subtype?: string
-  color?: mana[]
+  colors?: mana[]
   cmc?: number
   power?: number
   toughness?: number
@@ -26,13 +26,13 @@ export const getAllCards = async (req: Request, res: Response): Promise<void> =>
 		type_line,
 		oracle_text,
 		subtype,
-		color,
+		colors,
 		cmc,
 		power,
 		toughness,
 		page = 1, // default is page 1
 		limit = 100, // default is 100 cards per page
-	} = req.query as filters
+	} = req.body as filters
 
 	// Define filters object
 	const filters: WhereOptions = {}
@@ -42,7 +42,7 @@ export const getAllCards = async (req: Request, res: Response): Promise<void> =>
 	if (type_line) filters.type_line = { [Op.iLike]: `%${type_line}%` } // case-insensitive search
 	if (oracle_text) filters.oracle_text = { [Op.iLike]: `%${oracle_text}%` } // case-insensitive search
 	if (subtype) filters.subtype = { [Op.iLike]: `%${subtype}%` } // case-insensitive search
-	if (color) filters.color = { [Op.or]: color} // exact match
+	if (colors) filters.colors = { [Op.contains]: colors} // exact match
 	if (cmc) filters.cmc = cmc // exact match
 	if (power) filters.power = power // exact match
 	if (toughness) filters.toughness = toughness // exact match
