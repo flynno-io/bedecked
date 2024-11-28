@@ -15,6 +15,7 @@ $black: #2c3e50;
 .topContainer {
     display: flex; 
     align-items: center; 
+    width: 100%;
 }
 
 .bottomContainer {
@@ -38,7 +39,11 @@ $black: #2c3e50;
 
 .icon {
     font-size: 50px;
-    display: flex; 
+    cursor: pointer;
+    transition: color 0.3s ease;
+    &:hover {
+        color: $black;
+    }
 }
 
 .button {
@@ -47,7 +52,6 @@ $black: #2c3e50;
     position: relative; 
     border: none; 
     color: $black;
-
     &:hover {
         background-color: $black;
         color: $white;
@@ -66,11 +70,18 @@ $black: #2c3e50;
     background-color: $white;
     opacity: 0.6;
     transition-duration:0.3s;
-
     &:hover {
         background-color: $white;
         opacity: 1;
     }
 }
 
+.clickableTitle {
+    display: flex;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    &:hover {
+        color: $black;
+    }
+}
 

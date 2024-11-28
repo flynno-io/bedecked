@@ -1,9 +1,8 @@
 // src/pages/DashboardPage.tsx
-// import "Dashboard.scss";
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
-import CardGallery from '../components/Dashboard/CardGallery';
-
+import CardGallery from "../components/Dashboard/CardGallery";
+// import DeckGallery from "../components/Dashboard/DeckGallery";
 
 const DashboardPage = () => {
   return (
@@ -11,6 +10,7 @@ const DashboardPage = () => {
         <TopContainer />
         <CardGallery />
         <BottomContainer />
+        {/* <DeckGallery /> */}
     </div>
   
   )
