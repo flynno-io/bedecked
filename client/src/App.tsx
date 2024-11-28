@@ -7,7 +7,14 @@ import SideNav from "./components/SideNav"
 function App() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>Bedecked: Compile your Magic!</header>
+      <header className={styles.header}>
+        <a href="/">
+          Bedecked
+        </a>
+        <span>
+          Compile your Magic!
+        </span>
+        </header>
       <div className={styles.sideMenu}>
         <SideNav/>
       </div>
