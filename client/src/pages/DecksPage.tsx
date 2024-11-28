@@ -1,8 +1,13 @@
 // src/pages/DecksPage.tsx
+import BottomContainer from "../components/Dashboard/BottomContainer";
 
 const DecksPage = () => {
   return (
-    <h1>DecksPage</h1>
+    <div>
+      <BottomContainer/>
+      {/* <DetailedDeckView/>
+      <DeckGallery/> */}
+    </div>
   )
 }
 

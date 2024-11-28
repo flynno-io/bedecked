@@ -7,48 +7,14 @@ $black: #2c3e50;
 
 .container {
     height: 100%;
-    background-color: $white;
     display: grid; 
     padding: 20px; 
     border: $black 1px solid;    
 }
 
 .topContainer {
-    display: flex; 
-    align-items: center;
-
-    
-}
-
-.topContainer .sectionTitle {
-    height: 50px; 
-    position: relative; 
-}
-
-.topContainer .title {
-    display: flex; 
-    padding: 10px;
-    font-weight: bold;
-}
-
-.topContainer .icon {
-    font-size: 50px;
-    display: flex; 
-}
-
-.topContainer .button {
-    font-size: 16px;
-    margin: 10px;
-    position: relative; 
-    border: none; 
-    background-color: $white;
-    color: $black;
-
-    &:hover {
-        background-color: $black;
-        color: $white;
-    }
-
+    display: grid; 
+    align-items: center; 
 }
 
 .bottomContainer {
@@ -56,32 +22,52 @@ $black: #2c3e50;
     align-items: center;
 }
 
-.bottomContainer .sectionTitle {
-    height: 50px; 
-    position: relative; 
-}
-
-.bottomContainer .title {
+.title {
+    background-color: $white ;
+    opacity: 0.8;
     display: flex; 
     padding: 10px;
     font-weight: bold;
 }
 
-.bottomContainer .icon {
+.icon {
     font-size: 50px;
     display: flex; 
 }
 
-.bottomContainer .button {
+.button {
     font-size: 16px;
     margin: 10px;
     position: relative; 
-    border: none;
-    background-color: $white;
+    border: none; 
     color: $black;
 
     &:hover {
         background-color: $black;
         color: $white;
     }
+
+}
+
+.cardContainer {
+    display: flex; 
+    align-items: center;
+}
+
+.card {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border: $black 1px solid;
+    border-radius: 10px;
+    background-color: $white;
+    opacity: 0.8;
+}
+
+.deckContainer {
+    display: flex; 
+    justify-content: space-between;
+    
 }
