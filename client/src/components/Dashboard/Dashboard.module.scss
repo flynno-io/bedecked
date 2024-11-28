@@ -1,5 +1,5 @@
-
-@use './styles/typography.scss' as *;
+@use '../../../styles/typography.scss' as *;
+@use '../../../styles/_themes.scss' as *;
 
 $primary: darkgray;
 $white: #ecf0f1;
@@ -25,15 +25,15 @@ $black: #2c3e50;
 .deckContainer {
     display: flex; 
     justify-content: space-between;
-    
 }
 
 .title {
-    background-color: $white ;
-    opacity: 0.8;
+    background-color: var(--inset-bg);
     display: flex; 
     padding: 10px;
     font-weight: bold;
+    width:100%;
+    color:var(--text-color);
 }
 
 .icon {
@@ -64,7 +64,8 @@ $black: #2c3e50;
     border: $black 1px solid;
     border-radius: 10px;
     background-color: $white;
-    opacity: 0.8;
+    opacity: 0.6;
+    transition-duration:0.3s;
 
     &:hover {
         background-color: $white;

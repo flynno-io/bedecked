@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Avatar.scss';
 import '../../../styles/_themes.scss';
 
 function Avatar() {
-    const [username, setUsername] = useState('JohnDoe');
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const fetchUsername = () => {
+          // Assuming the username is stored in local storage
+          const storedUsername = localStorage.getItem('username');
+          if (storedUsername) {
+            setUsername(storedUsername);
+          }
+        };
+
+        fetchUsername();
+    }, []);
 
     return (
         <div className="avatara">
