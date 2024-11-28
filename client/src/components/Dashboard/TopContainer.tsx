@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
-import CardGallery from './CardGallery';
 
 function TopContainer() { 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        console.log('Navigating to the Cards Page');
+        navigate('/cards')
+    }
 
 return (
     <div>
         <div className={styles.topContainer}>
-
             <div className={styles.title}>
                 <i className={styles.icon} >
                     <GiCardPlay/>
-                </i>    
-                <h2>Cards</h2>
+                </i>  
 
+                  {/* Add onClick handler to Cards */}
+                <h2 onClick={handleClick} className={styles.clickableTitle}>Cards</h2>
+
+                {/* Buttons for filtering/sorting */}
                 <button className={styles.button}>A to Z</button>
                 <button className={styles.button}>Mana</button>
                 <button className={styles.button}>Cost</button>
