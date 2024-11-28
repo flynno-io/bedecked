@@ -13,13 +13,19 @@ $black: #2c3e50;
 }
 
 .topContainer {
-    display: grid; 
+    display: flex; 
     align-items: center; 
 }
 
 .bottomContainer {
     display: flex; 
     align-items: center;
+}
+
+.deckContainer {
+    display: flex; 
+    justify-content: space-between;
+    
 }
 
 .title {
@@ -49,11 +55,6 @@ $black: #2c3e50;
 
 }
 
-.cardContainer {
-    display: flex; 
-    align-items: center;
-}
-
 .card {
     display: flex; 
     flex-direction: column; 
@@ -64,10 +65,11 @@ $black: #2c3e50;
     border-radius: 10px;
     background-color: $white;
     opacity: 0.8;
+
+    &:hover {
+        background-color: $white;
+        opacity: 1;
+    }
 }
 
-.deckContainer {
-    display: flex; 
-    justify-content: space-between;
-    
-}
+
