@@ -1,0 +1,45 @@
+.mainpage {
+    background: var(--inset-bg);
+    margin:25px 0 0 25px;
+    padding: 25px;
+    min-width:300px;
+
+    & h1 {
+        color: var(--text-color);
+        background: var(--bg-color);
+        font-family: var(--font-header);
+        font-weight:700;
+        text-align: center;
+        padding: 10px;
+    }
+
+    & p {
+        color:var(--text-color);
+        font-family: var(--font-sans);
+        letter-spacing:1px;
+    }
+
+    & button {
+        font-family: var(--font-sans);
+        background:linear-gradient(to bottom right, var(--bg-color) 50%, var(--accent), var(--bg-color));
+        background-size:100%;
+        background-position: top left;
+        color:var(--text-color);
+        border:0;
+        transition:0.3s;
+        box-shadow:5px 5px 5px var(--text-low-contrast);
+    }
+
+    & button:hover {
+        transform: translate(3px, -3px);
+        border:0;
+        background-size:200%;
+        background-position:bottom right;
+        box-shadow:10px 10px 5px var(--text-low-contrast);
+    }
+
+    & button:active {
+        transform: translate(0);
+        box-shadow:5px 5px 5px var(--text-low-contrast);
+    }
+}
