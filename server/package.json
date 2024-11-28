@@ -7,11 +7,11 @@
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
-    "start:first": "npm run build && npm run flush && node ./dist/seeds/syncScript.js && node dist/server.js --ignore client",
-    "flush": "psql -U flynno -f ./db/schema.sql",
+    "db:update": "node dist/scripts/fetch-scryfall-data",
     "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node dist/seeds/index.js"
+    "seed": "node dist/seeds/index.js",
+    "db:flush": "psql -U flynno -f db/schema.sql"
   },
   "nodemonConfig": {
     "watch": [
@@ -30,6 +30,7 @@
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
+    "p-limit": "^6.1.0",
     "pg": "^8.13.1",
     "sequelize": "^6.37.5"
   },
