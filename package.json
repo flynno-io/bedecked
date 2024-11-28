@@ -15,7 +15,8 @@
     "client:dev": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "seed": "cd server && npm run seed",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm run build",
+    "db:flush": "cd server && npm run db:flush"
   },
   "repository": {
     "type": "git",

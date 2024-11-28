@@ -1,9 +1,9 @@
 import sequelize from "../config/connection.js";
-import { UserFactory } from "./user.js";
-import { EmblemFactory } from "./emblem.js";
-import { CardFactory } from "./card.js";
-import { DeckFactory } from "./deck.js";
-import { DeckCardFactory } from "./deckcard.js";
+import { UserFactory } from "../models/user.js";
+import { EmblemFactory } from "../models/emblem.js";
+import { CardFactory } from "../models/card.js";
+import { DeckFactory } from "../models/deck.js";
+import { DeckCardFactory } from "../models/deckcard.js";
 // initialize the models
 const User = UserFactory(sequelize);
 const Deck = DeckFactory(sequelize);
@@ -12,29 +12,14 @@ const DeckCard = DeckCardFactory(sequelize);
 const Emblem = EmblemFactory(sequelize);
 // define relationships
 // User and Deck (one-to-many)
-User.hasMany(Deck, { foreignKey: "userId", as: "decks" });
-Deck.belongsTo(User, { foreignKey: "userId", as: "user" });
+User.hasMany(Deck, { foreignKey: "userId", as: "decks", onDelete: 'CASCADE' });
+Deck.belongsTo(User, { foreignKey: "userId", as: "user", onDelete: 'CASCADE' });
 // Deck and Card (many-to-many)
-Deck.belongsToMany(Card, { through: DeckCard, foreignKey: "deckId" });
-Card.belongsToMany(Deck, { through: DeckCard, foreignKey: "cardId" });
+// Deck.belongsToMany(Card, { through: DeckCard, foreignKey: "deckId", onDelete: 'CASCADE' })
+// Card.belongsToMany(Deck, { through: DeckCard, foreignKey: "cardId", onDelete: 'CASCADE' })
+Deck.belongsToMany(Card, { through: DeckCard });
+Card.belongsToMany(Deck, { through: DeckCard });
 //User and Emblem (one-to-one)
-User.hasOne(Emblem, { foreignKey: "userId", as: "emblem" });
+User.hasOne(Emblem, { foreignKey: "userId", as: "emblem", onDelete: 'CASCADE' });
 Emblem.belongsTo(Deck, { foreignKey: "userId", as: "user" }); // FIXME: an Emblem can belong to many users but on user can only belong to one emblem
-const syncDatabase = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log("Database connected.");
-        // Sync tables in order
-        await User.sync();
-        await Deck.sync();
-        await Card.sync();
-        await DeckCard.sync();
-        await Emblem.sync();
-        console.log("Database synced successfully.");
-    }
-    catch (error) {
-        console.error("Sync error:", error);
-    }
-};
-syncDatabase();
 export { User, Card, Deck, DeckCard, Emblem };

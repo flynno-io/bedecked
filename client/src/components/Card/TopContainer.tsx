@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { GiCardPlay } from "react-icons/gi";
-import styles from './Dashboard.module.scss'; 
+import styles from './card.module.scss'; 
+
 
 function TopContainer() { 
 
@@ -21,9 +22,8 @@ return (
                 <button className={styles.button}>Deck</button>
             </div>
         </div>
-
-
     </div>
+
 )
 }
 

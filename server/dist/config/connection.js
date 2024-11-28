@@ -9,5 +9,10 @@ const sequelize = process.env.DB_URL
         dialectOptions: {
             decimalNumbers: true,
         },
+        pool: {
+            max: 20, // Maximum number of connections
+            min: 5, // Minimum number of connections
+            idle: 10000, // Connection idle time before releasing
+        },
     });
 export default sequelize;

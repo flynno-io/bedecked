@@ -1,8 +1,14 @@
 // src/pages/CardsPage.tsx
+import TopContainer from "../components/Card/TopContainer";
+import CardGallery from '../components/Dashboard/CardGallery';
 
 const CardsPage = () => {
   return (
-    <h1>CardsPage</h1>
+    <div>
+      <TopContainer />
+      <CardGallery />
+    </div>
+    
   )
 }
 

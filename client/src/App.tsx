@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom"
 import styles from './App.module.scss'
 import SideNav from "./components/SideNav"
 
+
 function App() {
   return (
     <div className={styles.container}>

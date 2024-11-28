@@ -18,15 +18,16 @@ export function CardFactory(sequelize) {
             allowNull: false,
         },
         cmc: {
-            type: DataTypes.DECIMAL(4, 2),
+            type: DataTypes.DECIMAL(1000, 2),
             allowNull: false,
             validate: {
                 min: 0,
             },
         },
         colors: {
-            type: DataTypes.STRING,
-            allowNull: true,
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
+            defaultValue: [],
         },
         color_identity: {
             type: DataTypes.ARRAY(DataTypes.STRING),
@@ -46,6 +47,27 @@ export function CardFactory(sequelize) {
         },
         image_uris: {
             type: DataTypes.JSON,
+            allowNull: false,
+        },
+        rarity: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        flavor_text: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: ''
+        },
+        mana_cost: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        type_line: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        scryfall_uri: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
     }, {
