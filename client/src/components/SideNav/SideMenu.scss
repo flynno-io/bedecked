@@ -41,6 +41,8 @@ $font-weight-regular: 400;
     text-decoration: none;
     letter-spacing:2px;
     border:2px solid transparent;
+    transition-duration:0.3s;
+    background-color:transparent;
   }
 
   & a:hover {
@@ -58,6 +60,7 @@ $font-weight-regular: 400;
   letter-spacing:2px;
   position:relative;
   border:2px solid transparent;
+  transition-duration:0.3s;
 }
 
 .sidebarbutton:hover {

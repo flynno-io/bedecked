@@ -87,25 +87,38 @@ body {
   .registration ::placeholder, .login ::placeholder {
     color:var(--text-color);
   }
+
   .registration button, .login button {
     height:50px;
-    font-family:var(--font-serif);
-    color:var(--text-color);
+    font-family: var(--font-serif);
     font-size:0.8rem;
     text-align:center;
-    font-weight:bold;
+    font-weight:700;
     text-transform:uppercase;
     letter-spacing:4px;
-    background:var(--input-border);
-    transition:0.4s;
+    background:linear-gradient(to bottom right, var(--bg-color) 50%, var(--accent), var(--bg-color));
+    background-size:100%;
+    background-position: top left;
+    color:var(--text-color);
     border:0;
-    border-radius:25px;
-    box-shadow:10px 10px 5px var(--inset-bg);
-  }
-  .registration button:hover, .login button:hover {
+    border-radius:0.5rem;
+    transition:0.4s;
+    box-shadow:5px 5px 5px var(--text-low-contrast);
     cursor:pointer;
-    font-size:1.1rem;
-  }
+}
+
+.registration button:hover, .login button:hover {
+    transform: translate(3px, -3px);
+    border:0;
+    background-size:200%;
+    background-position:bottom right;
+    box-shadow:10px 10px 5px var(--text-low-contrast);
+}
+
+.registration button:active, .login button:active {
+    transform: translate(0);
+    box-shadow:5px 5px 5px var(--text-low-contrast);
+}
   
   @media (max-width:1500px) or (max-height:700px) {
     #bedecked {

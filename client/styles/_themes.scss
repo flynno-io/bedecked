@@ -5,6 +5,7 @@
     --input-border: rgb(21,11,0);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent:rgb(166,159,157);
     --avatar: url('../src/assets/Mana/black.png');
   }
   
@@ -15,6 +16,7 @@
     --input-border: rgb(14,104,171);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent: rgb(179, 206, 234);
     --avatar: url('../src/assets/Mana/blue.png');
   }
   
@@ -25,6 +27,7 @@
     --input-border: rgb(125,125,125);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent: rgb(200,200,200);
     --avatar: url('../src/assets/Mana/colorless.png');
   }
   
@@ -35,6 +38,7 @@
     --input-border: rgb(152,73,30);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent:orange;
     --avatar: url('../src/assets/Mana/default.png');
   }
   
@@ -45,6 +49,7 @@
     --input-border: rgb(0,115,62);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent:rgb(196, 211, 202);
     --avatar: url('../src/assets/Mana/green.png');
   }
   
@@ -55,6 +60,7 @@
     --input-border: rgb(211,32,42);
     --text-color: rgb(255,255,255);
     --text-low-contrast: rgb(0,0,0);
+    --accent: rgb(235, 159, 130);
     --avatar: url('../src/assets/Mana/red.png');
   }
   
@@ -65,5 +71,6 @@
     --input-border: rgb(248,231,185);
     --text-color: rgb(0,0,0);
     --text-low-contrast: rgb(255,255,255);
+    --accent:rgb(249, 250, 244);
     --avatar: url('../src/assets/Mana/white.png');
   }

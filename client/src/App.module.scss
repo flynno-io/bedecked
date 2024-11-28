@@ -30,9 +30,11 @@ $black: #2c3e50;
   & a:link, & a:active, & a:visited {
     color: var(--text-color);
     text-decoration: none;
+    font-family:var(--font-header);
+    font-weight: 700;
     font-size:200%;
     text-transform:uppercase;
-    letter-spacing:2px;
+    letter-spacing:3px;
     transition-duration:0.3s;
   }
 

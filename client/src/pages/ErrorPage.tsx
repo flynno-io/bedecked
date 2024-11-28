@@ -1,5 +1,5 @@
 // src/pages/ErrorPage.tsx
-import '../../styles/index.scss';
+import '../../styles/error.scss';
 
 const ErrorPage = () => {
   return (
