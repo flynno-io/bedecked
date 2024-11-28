@@ -16,12 +16,12 @@ return (
         <div className={styles.topContainer}>
             <div className={styles.title}>
 
-                {/* Add onClick handler to title */}
+                {/* onClick handler to title */}
                 <h2 onClick={handleClick} className={styles.clickableTitle}>
                     <i className={styles.icon}>
                         <GiCardPlay/>
                     </i>
-                    <p>Cards</p>
+                    Cards
                 </h2>
 
                 {/* Buttons for filtering/sorting */}
