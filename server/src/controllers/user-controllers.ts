@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { User } from "../models/index.js"
+import { User } from "../Models/index.js"
 
 // Get user by ID
 export const getUserById = async (req: Request, res: Response): Promise<void> => {

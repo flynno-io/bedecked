@@ -13,7 +13,7 @@ $black: #2c3e50;
 }
 
 .topContainer {
-    display: flex; 
+    display: grid; 
     align-items: center; 
 }
 
@@ -51,7 +51,19 @@ $black: #2c3e50;
 
 .cardContainer {
     display: flex; 
-    align-items: center;    
+    align-items: center;
+}
+
+.card {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border: $black 1px solid;
+    border-radius: 10px;
+    background-color: $white;
+    opacity: 0.8;
 }
 
 .deckContainer {
