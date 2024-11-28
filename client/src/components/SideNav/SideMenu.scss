@@ -1,18 +1,26 @@
 @use '../../../styles/typography.scss' as *;
 @use '../../../styles/_themes.scss' as *;
 
-$color-background-light: #f9f9f9;
 $font-size-regular: 1rem;
 $font-weight-regular: 400;
 
 .sidebar {
   min-height:100vh;
+  font-family: var(--font-sans);
+  
+  & a:link, & a:active, & a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing:1px;
+  }
 }
 
-.sidebar ul li{
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.avatara {
+  display:flex;
+  height:50px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom:10px;
 }
 
 .nav {
@@ -27,31 +35,37 @@ $font-weight-regular: 400;
   font-weight: $font-weight-regular;
 
   & a:link, & a:active, & a:visited {
-    padding: .25rem 1rem;
-    border-radius: 0.5rem;
-    color: white;
+    padding: .5rem 1rem;
+    color: var(--text-color);
     font-style: normal;
     text-decoration: none;
-
-    &:hover {
-      background-color:var(--text-color);
-      color: var(--text-low-contrast);
-    }
+    letter-spacing:2px;
+    border:2px solid transparent;
   }
 
+  & a:hover {
+    background-color:var(--inset-bg);
+    border: 2px solid var(--bg-color);
+  }
 }
 
 .sidebarbutton {
   background-color: transparent;
   color: var(--text-color);
   font-weight:400;
-  padding:.25rem 1rem;
-  border-radius:0.5rem;
+  padding:.5rem 1rem;
   margin:0;
+  letter-spacing:2px;
+  position:relative;
+  border:2px solid transparent;
 }
 
 .sidebarbutton:hover {
-  background-color:var(--text-color);
-  color: var(--text-low-contrast);
-  border:1px solid transparent;
+  background-color:var(--inset-bg);
+  border:2px solid var(--bg-color);
+}
+
+.decksmenu {
+  list-style-type: square;
+  margin-left:10px;
 }

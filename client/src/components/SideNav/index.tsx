@@ -31,7 +31,7 @@ const SideNav = () => {
                             <button className="sidebarbutton" onClick={toggleDecks}>Decks</button>
                             {/*This is to determine if the Decks button is toggled or not and to display the submenu*/}
                             {isDeckOpen && (
-                                <ul className="">
+                                <ul className="decksmenu">
                                     <li className="nav-item">
                                         <NavLink className="nav-link" to="/decks">Your Decks</NavLink>
                                     </li>

@@ -7,3 +7,12 @@
     height:50px;
     margin: 0;
 }
+
+.greeting {
+    display: inline-block;
+    font-style:italic;
+    font-size:0.8rem;
+    font-weight:400;
+    color:var(--text-color);
+    margin: 0 10px;
+}
