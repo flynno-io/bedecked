@@ -1,9 +1,15 @@
-// import React from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
 
-function TopContainer() { 
+function TopContainer({
+    sortAlphabetically, 
+    sortByMana,
+    sortByCost,
+    // onSortByDateAdded,
+    // onFilterByDeck,
+}) { 
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -17,7 +23,7 @@ return (
             <div className={styles.title}>
 
                 {/* onClick handler to title */}
-                <h2 onClick={handleClick} className={styles.clickableTitle}>
+                <h2 className={styles.clickableTitle} onClick={handleClick}>
                     <i className={styles.icon}>
                         <GiCardPlay/>
                     </i>
@@ -25,11 +31,11 @@ return (
                 </h2>
 
                 {/* Buttons for filtering/sorting */}
-                <button className={styles.button}>A to Z</button>
-                <button className={styles.button}>Mana</button>
-                <button className={styles.button}>Cost</button>
-                <button className={styles.button}>Date Added</button>
-                <button className={styles.button}>Deck</button>
+                <button className={styles.button} onClick={sortAlphabetically}>A to Z</button>
+                <button className={styles.button} onClick={sortByMana}>Mana</button>
+                <button className={styles.button} onClick={sortByCost}>Cost</button>
+                {/* <button className={styles.button} onClick={sortByDateAdded}>Date Added</button> */}
+                {/* <button className={styles.button} onClick={onFilterByDeck}>Deck</button> */}
             </div>
         </div>
     </div>
