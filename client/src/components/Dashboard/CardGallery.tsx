@@ -28,7 +28,7 @@ const CardCarousel = () => {
       arrows={true}
       swipeable={true}
       draggable={false}
-      showDots={false}
+      showDots={true}
       responsive={responsive}
       ssr={true}
       infinite={true}
