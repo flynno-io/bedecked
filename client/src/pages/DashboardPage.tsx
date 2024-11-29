@@ -5,7 +5,7 @@ import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
-import Cards from '../assets/Cards/Cards.json';
+import Cards from '../../../server/db/card.test.json';
 
 type Card ={
   id: string;

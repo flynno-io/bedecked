@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
-import Cards from '../../assets/Cards/Cards.json';
+import Card from '../../../../server/db/card.test.json';
 
 type Card ={
     id: string;

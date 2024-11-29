@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import TopContainer from "../components/Card/TopContainer";
 import CardGallery from '../components/Dashboard/CardGallery';
-import Cards from '../assets/Cards/Cards.json';
+import Cards from '../../../server/db/card.test.json';
 
 type Card ={
   id: string;
