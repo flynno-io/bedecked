@@ -17,7 +17,6 @@ type CardCarouselProps = {
   displayedCards: Card[];
 }
 
-
 const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
   const responsive = {
     desktop: {

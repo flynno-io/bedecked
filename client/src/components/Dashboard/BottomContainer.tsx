@@ -24,7 +24,7 @@ function BottomContainer() {
                         <i className={styles.icon} >
                             <GiCardPick/>
                         </i> 
-                        DECKS
+                        BUILT DECKS
                     </h2>
 
                     {/* Buttons for filtering/sorting */}

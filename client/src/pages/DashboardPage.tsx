@@ -15,18 +15,25 @@ type Card ={
   };
   cmc: number;
   in_deck?: boolean;
+  favorited?: boolean;
 }
 
 function DashboardPage() {
-    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards);
-    const navigate = useNavigate();
+    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards)
+    const navigate = useNavigate()
+
+    // const filterFavoritedCards = () => {
+    //   const filteredCards = Cards.filter((card) => card.favorited);
+    //   setDisplayedCards(filteredCards);
+    //   console.log('Filtered favorited cards')
+    // }
 
     // Filtering/sorting handlers
     const sortAlphabetically = () => {
-      const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name));
-      setDisplayedCards(sortedCards);
-      console.log('Sorted A to Z');
-    };
+      const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name))
+      setDisplayedCards(sortedCards)
+      console.log('Sorted A to Z')
+    }
 
     const sortByMana = () => {
         const sortedCards = [...Cards].sort((a, b) => a.cmc - b.cmc);
