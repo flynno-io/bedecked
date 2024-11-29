@@ -28,7 +28,6 @@
 
 .title {
     padding: 0 0 0 10px; 
-    background-color: var(--inset-bg);
     display: flex; 
     align-items: center;
     width:100%;
@@ -42,7 +41,7 @@
     cursor: pointer;
     transition: color 0.3s ease;
     &:hover {
-        color:var(--bg-color);
+        color:var(--accent);
     }
 }
 
