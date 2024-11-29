@@ -1,10 +1,24 @@
-// import * as React from 'react'; 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
-import Cards from '../../assets/Cards/Cards.json';
+import Card from '../../../../server/db/card.test.json';
+import cardRouter from '../../../../src/routes/api/cardRouter';
 
-const CardCarousel = () => {
+type Card ={
+    id: string;
+    name: string; 
+    image_uris: {
+        small: string; 
+    };
+    cmc: number;
+    in_deck?: boolean;
+}
+
+type CardCarouselProps = {
+  displayedCards: Card[];
+}
+
+const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -28,7 +42,7 @@ const CardCarousel = () => {
       arrows={true}
       swipeable={true}
       draggable={false}
-      showDots={false}
+      showDots={true}
       responsive={responsive}
       ssr={true}
       infinite={true}
@@ -36,8 +50,9 @@ const CardCarousel = () => {
       keyBoardControl={true}
       customTransition="all .5"
       transitionDuration={500}
-  >
-      {Cards && Cards.map((card) => {
+    >
+
+      {displayedCards.map((card) => {
           return(
               <div className={styles.card} key={card.id}>
                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}

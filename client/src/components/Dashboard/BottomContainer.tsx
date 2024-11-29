@@ -20,11 +20,11 @@ function BottomContainer() {
              <div className={styles.title}>
                        
                     {/* onClick handler to title */}
-                    <h2 onClick={handleClick} className={styles.clickableTitle}>
+                    <h2 className={styles.clickableTitle} onClick={handleClick}>
                         <i className={styles.icon} >
                             <GiCardPick/>
                         </i> 
-                        Decks
+                        YOUR DECKS
                     </h2>
 
                     {/* Buttons for filtering/sorting */}
