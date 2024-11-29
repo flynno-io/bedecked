@@ -2,9 +2,9 @@ import { Card } from "../models/index.js";
 import { Op } from "sequelize";
 // Get all cards using query parameters and pagination
 export const getAllCards = async (req, res) => {
-    const { name, type_line, oracle_text, subtype, color, cmc, power, toughness, page = 1, // default is page 1
+    const { name, type_line, oracle_text, subtype, colors, cmc, power, toughness, page = 1, // default is page 1
     limit = 100, // default is 100 cards per page
-     } = req.query;
+     } = req.body;
     // Define filters object
     const filters = {};
     // Add filters to filters object
@@ -16,8 +16,8 @@ export const getAllCards = async (req, res) => {
         filters.oracle_text = { [Op.iLike]: `%${oracle_text}%` }; // case-insensitive search
     if (subtype)
         filters.subtype = { [Op.iLike]: `%${subtype}%` }; // case-insensitive search
-    if (color)
-        filters.color = { [Op.or]: color }; // exact match
+    if (colors)
+        filters.colors = { [Op.contains]: colors }; // exact match
     if (cmc)
         filters.cmc = cmc; // exact match
     if (power)
