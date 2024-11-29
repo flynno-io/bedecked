@@ -59,6 +59,14 @@ function DashboardPage() {
       </div>
     )}
 
+  // if (!displayedDecks || displayedDecks.length === 0) {
+  //   return (
+  //     <div>
+  //       <h1>Start building your first deck</h1>
+  //       <button onClick={() => navigate("/decks")}>Deck Builder</button>
+  //     </div>
+  //   )}
+
   return (
     <div>
         <TopContainer 
