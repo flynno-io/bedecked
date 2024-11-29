@@ -34,7 +34,7 @@ return (
                     <i className={styles.icon}>
                         <GiCardPlay/>
                     </i>
-                    Cards
+                    CARDS
                 </h2>
 
                 {/* Buttons for filtering/sorting */}
