@@ -1,13 +1,25 @@
 // src/pages/DashboardPage.tsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 import Cards from '../assets/Cards/Cards.json';
 
+type Card ={
+  id: string;
+  name: string; 
+  image_uris: {
+      small: string; 
+  };
+  cmc: number;
+  in_deck?: boolean;
+}
+
 function DashboardPage() {
-    const [displayedCards, setDisplayedCards] = useState(Cards);
+    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards);
+    const navigate = useNavigate();
 
     // Filtering/sorting handlers
     const sortAlphabetically = () => {
@@ -39,6 +51,14 @@ function DashboardPage() {
     //     setDisplayedCards(filteredCards);
     //     console.log('Filtered by Deck');
     
+  if (!displayedCards || displayedCards.length === 0) {
+    return (
+      <div>
+        <h1>Start browsing for your next Legendary creature</h1>
+        <button onClick={() => navigate("/cards")}>Browse Cards</button>
+      </div>
+    )}
+
   return (
     <div>
         <TopContainer 

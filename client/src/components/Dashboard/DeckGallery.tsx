@@ -2,7 +2,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
-import Cards from '../../assets/Cards/Cards.json';
+// import Decks from '../../assets/Cards/Cards.json';
 
 const DeckCarousel = () => {
   const responsive = {
@@ -37,7 +37,7 @@ const DeckCarousel = () => {
       customTransition="all .5"
       transitionDuration={500}
   >
-      {Cards && Cards.map((card) => {
+      {Decks && Cards.map((card) => {
           return(
               <div className={styles.card} key={card.id}>
                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
