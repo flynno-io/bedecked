@@ -35,7 +35,7 @@ return (
                     <i className={styles.icon}>
                         <GiCardPlay/>
                     </i>
-                    FAVORITE CARDS
+                    CARDS
                 </h2>
 
                 {/* Buttons for filtering/sorting */}
