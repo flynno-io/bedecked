@@ -1,11 +1,13 @@
 // src/pages/DashboardPage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 import Cards from '../../../server/db/card.test.json';
+import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
+import { deckRouter } from '../../../server/src/routes/api/deckRouter';
 
 type Card ={
   id: string;
@@ -18,17 +20,53 @@ type Card ={
   favorited?: boolean;
 }
 
+type Deck = {
+  id: string; 
+  name: string; 
+  cards: Card[];
+}
+
 function DashboardPage() {
     const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards)
+    const [displayedDecks, setDisplayedDecks] = useState<Card[]>(Cards)
     const navigate = useNavigate()
 
-    // const filterFavoritedCards = () => {
-    //   const filteredCards = Cards.filter((card) => card.favorited);
-    //   setDisplayedCards(filteredCards);
-    //   console.log('Filtered favorited cards')
-    // }
+    useEffect(() => {
+      const loadData = async () => {
+        try {
+          // const cards = await cardRouter.get()
+          // setDisplayedCards(cards || [])
+          // setDisplayedDecks(decks || [])
+        } catch (error) {
+          console.error('Error loading data', error)
+        }
+      }
+    loadData()
+    }, [])
+
+    if (!displayedCards || displayedCards.length === 0) {
+    return (
+      <div>
+        <h1>Start browsing for your next Legendary creature</h1>
+        <button onClick={() => navigate("/cards")}>Browse Cards</button>
+      </div>
+    )}
+
+  if (!displayedDecks || displayedDecks.length === 0) {
+    return (
+      <div>
+        <h1>Start building your first deck</h1>
+        <button onClick={() => navigate("/decks")}>Deck Builder</button>
+      </div>
+    )}  
 
     // Filtering/sorting handlers
+    const filterFavoritedCards = () => {
+      const filteredCards = Cards.filter((card) => card.favorited);
+      setDisplayedCards(filteredCards);
+      console.log('Filtered favorited cards')
+    }
+
     const sortAlphabetically = () => {
       const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name))
       setDisplayedCards(sortedCards)
@@ -58,21 +96,7 @@ function DashboardPage() {
     //     setDisplayedCards(filteredCards);
     //     console.log('Filtered by Deck');
     
-  if (!displayedCards || displayedCards.length === 0) {
-    return (
-      <div>
-        <h1>Start browsing for your next Legendary creature</h1>
-        <button onClick={() => navigate("/cards")}>Browse Cards</button>
-      </div>
-    )}
 
-  // if (!displayedDecks || displayedDecks.length === 0) {
-  //   return (
-  //     <div>
-  //       <h1>Start building your first deck</h1>
-  //       <button onClick={() => navigate("/decks")}>Deck Builder</button>
-  //     </div>
-  //   )}
 
   return (
     <div>
