@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { GiCardPlay } from "react-icons/gi";
 import styles from './card.module.scss'; 
 
