@@ -54,7 +54,7 @@ function Register() {
           display: submitted ? '' : 'none',
         }}
       >
-        <h3>User {userData.username} successfully registered!!</h3>
+        <h3>{userData.username} successfully registered!</h3>
       </div>
     );
   };
@@ -67,17 +67,13 @@ function Register() {
           display: error ? '' : 'none',
         }}
       >
-        <h3>Please enter all the fields</h3>
+        <h3>Please ensure all fields are filled!</h3>
       </div>
     );
   };
 
 
   return (
-    <><div className="messages">
-    {errorMessage()}
-    {successMessage()}
-  </div>
     <form name="register" className="registration" onSubmit={handleRegistration}>
 
       <select id="manaColor" name="manaTheme" onChange={handleThemeChange}>
@@ -117,8 +113,11 @@ function Register() {
       <button type="submit" id="registrationConfirm">
         Register
       </button>
+      <div className="regmessages">
+        {errorMessage()}
+        {successMessage()}
+      </div>
     </form>
-    </>
   );
 }
 
