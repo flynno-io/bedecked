@@ -1,0 +1,90 @@
+@use '../../../styles/index.scss';
+
+$white: rgb(255,255,255);
+$black: rgb(0,0,0);
+$blue: rgb(14,104,171);
+$red: rgb(211,32,42);
+$green: rgb(0,115,62);
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-right: 1.8rem;
+}
+
+.manaSelector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.manaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: .5rem;
+  font-size: .8rem;
+  font-weight: 500;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition-duration: 0.3s;
+
+  &.w.selected {
+    background-color: $white;
+    border-color: $white;
+    color: $black;
+  }
+
+  &.u.selected {
+    background-color: $blue;
+    border-color: $blue;
+    color: $white;
+  }
+
+  &.b.selected {
+    background-color: $black;
+    border-color: $black;
+    color: $white;
+  }
+
+  &.r.selected {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+
+  &.g.selected {
+    background-color: $green;
+    border-color: $green;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: var(--inset-bg);
+    border: 2px solid $black;
+  }
+
+  &.selected:hover {
+    border: 2px solid var(--text-color);
+  }
+
+  &.selected.w:hover {
+    border-color: gray;
+    color: $black;
+  }
+}

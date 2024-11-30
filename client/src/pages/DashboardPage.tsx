@@ -6,7 +6,7 @@ import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 import Cards from '../../../server/db/card.test.json';
-// TODO: import deck and card routes from coming soon client/src/api
+// TODO: import deck and card api classes from coming soon client/src/api
 
 type Card ={
   id: string;

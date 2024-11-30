@@ -4,14 +4,27 @@ import DeckBuilder from "../components/DeckBuilder"
 import DeckTitle from "../components/DeckTitle"
 import NewDeckForm from "../components/NewDeckForm"
 
-const DeckBuilderPage = () => { 
-
-  // useState hook to manage the deck settings
+const DeckBuilderPage = () => {
+	// useState hook to manage the deck settings
 	const [deckSettings, setDeckSettings] = useState<{
 		deckName: string
 		format: string
 		colors: string[]
-	}>({ deckName: "Untitled", format: "", colors: [] })
+		creatureType: string[]
+		creatureMix: number
+		landMix: number
+		spellMix: number
+	}>({ // Initial state
+		deckName: "Untitled",
+		format: "",
+		colors: [],
+		creatureType: [],
+		creatureMix: 0,
+		landMix: 0,
+		spellMix: 0,
+	})
+
+  // useState hook to manage the visibility of the New Deck Form
 	const [showForm, setShowForm] = useState(true)
 
 	// Inline styles for the deck builder wrapper
@@ -30,13 +43,18 @@ const DeckBuilderPage = () => {
 		},
 	}
 
-  // Update the deck settings and close the New Deck Form
+	// Update the deck settings and close the New Deck Form
 	const updateDeckSettings = (key: string, value: string | string[]) => {
 		setDeckSettings((prev) => ({ ...prev, [key]: value }))
 	}
 
-  const setDeckName = (deckName: string) => {
-    setDeckSettings({ ...deckSettings, deckName })
+	// Set the deck name // TODO: consolidate this function with the updateDeckSettings function above
+	const setDeckName = (deckName: string) => {
+		setDeckSettings({ ...deckSettings, deckName })
+	}
+
+  const handleGenerateDeck = () => {
+    console.log('Generating deck...')
   }
 
 	return (
@@ -45,12 +63,19 @@ const DeckBuilderPage = () => {
 				<NewDeckForm
 					deckSettings={deckSettings}
 					updateDeckSettings={updateDeckSettings}
-          setShowForm={setShowForm}
+					setShowForm={setShowForm}
 				/>
 			) : (
 				<div style={styles.deckBuilderWrapper}>
-					<DeckTitle deckName={deckSettings.deckName} setDeckName={setDeckName} />
-					<DeckBuilder />
+					<DeckTitle
+						deckName={deckSettings.deckName}
+						setDeckName={setDeckName}
+					/>
+					<DeckBuilder
+            deckSettings={deckSettings}
+            updateDeckSettings={updateDeckSettings}
+            handleGenerateDeck={handleGenerateDeck}
+          />
 				</div>
 			)}
 		</>
