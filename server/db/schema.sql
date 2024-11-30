@@ -1,5 +1,7 @@
 -- DROP DATABASE
 DROP DATABASE IF EXISTS bedecked_db;
+DROP DATABASE IF EXISTS bedecked_users;
 
 -- CREATE DATABASE
 CREATE DATABASE bedecked_db;
+CREATE DATABASE bedecked_users;
