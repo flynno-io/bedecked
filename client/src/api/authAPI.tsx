@@ -5,7 +5,7 @@ interface LoginResponse {
 }
 
 const login = async (userInfo: UserLogin) => {
-  const response = await fetch('/auth/login', {
+  const response = await fetch('/dashboard', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
