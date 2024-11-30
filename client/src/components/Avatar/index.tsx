@@ -7,7 +7,6 @@ function Avatar() {
 
     useEffect(() => {
         const fetchUsername = () => {
-          // Assuming the username is stored in local storage
           const storedUsername = localStorage.getItem('username');
           if (storedUsername) {
             setUsername(storedUsername);

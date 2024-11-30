@@ -24,12 +24,8 @@ function BottomContainer() {
 						</i>
 						Decks
 					</h2>
-    const handleClick = () => {
-        console.log('Navigating to the Decks Page');
-        navigate('/decks')
-    }
-   
-  return (
+				</div>
+			</div>
     <div>
         <div className={styles.bottomContainer}>
              <div className={styles.title}>
@@ -57,6 +53,7 @@ function BottomContainer() {
 				<span>deck1</span>
 			</div>
 		</div>
+	</div>
 	)
 }
 
