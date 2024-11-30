@@ -10,7 +10,7 @@ interface RegisterResponse {
 }
 
 const login = async (userInfo: UserLogin) => {
-  const response = await fetch('/dashboard', {
+  const response = await fetch('/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -45,4 +45,4 @@ const register = async (userInfo: UserRegister) => {
   return data;
 }
 
-export { login, register };
+export { login, register};
