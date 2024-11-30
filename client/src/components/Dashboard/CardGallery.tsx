@@ -1,8 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
-import Card from '../../../../server/db/card.test.json';
-import { cardRouter } from '../../../../src/routes/api/cardRouter';
 
 type Card ={
     id: string;
@@ -14,11 +13,12 @@ type Card ={
     in_deck?: boolean;
 }
 
-type CardCarouselProps = {
-  displayedCards: Card[];
-}
+const CardCarousel: React.FC = () => {
+  const [displayedCards, setDisplayedCards] = useState<Card[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
-const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
+  const fetchCards = async () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
