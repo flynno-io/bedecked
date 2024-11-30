@@ -2,7 +2,6 @@
 import { useState } from "react"
 import { TbCardsFilled } from "react-icons/tb"
 import { FiEdit2 } from "react-icons/fi"
-import startCase from 'lodash.startcase'
 
 import styles from "./DeckTitle.module.scss"
 
@@ -35,7 +34,7 @@ const DeckTitle = ({ deckName, setDeckName }: DeckTitleProps) => {
               tabIndex={0}
 							type="text"
 							value={deckName}
-							onChange={(e) => setDeckName(startCase(e.target.value))}
+							onChange={(e) => setDeckName(e.target.value)}
               autoFocus
 						/>
             <button tabIndex={0} onClick={toggleEdit}>
