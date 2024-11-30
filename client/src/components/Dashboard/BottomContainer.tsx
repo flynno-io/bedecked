@@ -12,22 +12,6 @@ function BottomContainer() {
 		console.log("Navigating to the Decks Page")
 		navigate("/decks")
 	}
-
-	return (
-		<div>
-			<div className={styles.bottomContainer}>
-				<div className={styles.title}>
-					{/* onClick handler to title */}
-					<h2 onClick={handleClick} className={styles.clickableTitle}>
-						<i className={styles.icon}>
-							<GiCardPick />
-						</i>
-						Decks
-					</h2>
-    const handleClick = () => {
-        console.log('Navigating to the Decks Page');
-        navigate('/decks')
-    }
    
   return (
     <div>
