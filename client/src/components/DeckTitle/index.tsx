@@ -2,15 +2,16 @@
 import { useState } from "react"
 import { TbCardsFilled } from "react-icons/tb"
 import { FiEdit2 } from "react-icons/fi"
+import startCase from 'lodash.startcase'
 
 import styles from "./DeckTitle.module.scss"
 
 interface DeckTitleProps {
 	deckName: string
+  setDeckName: (deckName: string) => void
 }
 
-const DeckTitle = ({ deckName }: DeckTitleProps) => {
-	const [deckTitle, setDeckTitle] = useState(deckName)
+const DeckTitle = ({ deckName, setDeckName }: DeckTitleProps) => {
 	const [editTitle, setEditTitle] = useState(false)
 
   const toggleEdit = (event: React.KeyboardEvent<SVGElement> | React.MouseEvent<HTMLButtonElement> | React.MouseEvent<SVGElement>) => {
@@ -33,8 +34,8 @@ const DeckTitle = ({ deckName }: DeckTitleProps) => {
 						<input
               tabIndex={0}
 							type="text"
-							value={deckTitle}
-							onChange={(e) => setDeckTitle(e.target.value)}
+							value={deckName}
+							onChange={(e) => setDeckName(startCase(e.target.value))}
               autoFocus
 						/>
             <button tabIndex={0} onClick={toggleEdit}>
@@ -43,7 +44,7 @@ const DeckTitle = ({ deckName }: DeckTitleProps) => {
 					</div>
 				) : (
 					<div className={styles.titleContainer}>
-						<h2>{deckTitle}</h2>
+						<h2>{deckName} Deck</h2>
 						<FiEdit2 tabIndex={0} className={styles.actionIcon} onClick={toggleEdit} onKeyDown={toggleEdit} />
 					</div>
 				)}
