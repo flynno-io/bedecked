@@ -1,0 +1,48 @@
+@use '../../../styles/index.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 1rem;
+  column-gap: 1rem;
+  align-items: center;
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  & label, & input, & select {
+    font-size: 1.2rem;
+  }
+
+  & input, & select {
+    padding: 0 0.5rem;
+  }
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+
+  & label > p {
+    margin-bottom: 0;
+  }
+}
+
+.radio {
+  & label {
+    display: flex;
+    align-items: baseline;
+    align-content: center;
+    column-gap: 1rem;
+    margin-right: 1rem;
+  }
+}
+
