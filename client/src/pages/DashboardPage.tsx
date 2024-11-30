@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
+// import Cards from '../../../server/db/card.test.json';
+import { cardRouter } from '../../../server/src/routes/api/card-routes.js';
 // import DeckGallery from "../components/Dashboard/DeckGallery";
-import Cards from '../../../server/db/card.test.json';
+
 
 type Card ={
   id: string;
@@ -32,9 +34,9 @@ function DashboardPage() {
     useEffect(() => {
       const loadData = async () => {
         try {
-          // const cards = await cardRouter.get()
-          // setDisplayedCards(cards || [])
-          // setDisplayedDecks(decks || [])
+          const cards = await cardRouter.get()
+          setDisplayedCards(cards || [])
+          setDisplayedDecks(decks || [])
         } catch (error) {
           console.error('Error loading data', error)
         }
@@ -83,6 +85,12 @@ function DashboardPage() {
         console.log('Sorted by Cost');
     };
 
+    const sortByRarity = () => {
+        const sortedCards = [...Cards].sort((a, b) => a.rarity.localeCompare(b.rarity));
+        setDisplayedCards(sortedCards);
+        console.log('Sorted by Rarity');
+    }
+
     // const sortByDateAdded = () => {
     //     const sortedCards = [...Cards].sort((a, b) => new Date(b.date_added) - new Date(a.date_added));
     //     setDisplayedCards(sortedCards);
@@ -102,6 +110,7 @@ function DashboardPage() {
             sortAlphabetically={sortAlphabetically}
             sortByMana={sortByMana}
             sortByCost={sortByCost}
+            sortByRarity={sortByRarity}
             // sortByDateAdded={sortByDateAdded}
             // filterByDeck={filterByDeck}
 
