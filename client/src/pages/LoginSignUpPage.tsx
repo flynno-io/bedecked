@@ -65,7 +65,7 @@ const LoginSignUpPage = () => {
             value={loginData.password}
             onChange={handleChange}
           />
-          <button type="submit" id="loginConfirm">Login</button>
+          <button type="submit" id="loginConfirm" onClick={handleLogin}>Login</button>
         </form>
       ) : (
         <Register />
