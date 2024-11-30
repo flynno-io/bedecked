@@ -67,10 +67,31 @@ const LoginSignUpPage = () => {
           />
           <button type="submit" id="loginConfirm" onClick={handleLogin}>Login</button>
         </form>
+        <form name="login" className="login" onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            autoComplete="on"
+            value={loginData.username}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            autoComplete="on"
+            value={loginData.password}
+            onChange={handleChange}
+          />
+          <button type="submit" id="loginConfirm">Login</button>
+        </form>
       ) : (
         <Register />
       )}
     </section>
+  );
+};
   );
 };
 
