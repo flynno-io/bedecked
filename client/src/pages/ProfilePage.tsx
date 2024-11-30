@@ -1,8 +1,14 @@
 // src/pages/ProfilePage.tsx
 
+import '../../styles/profile.scss';
+import Avatar from '../components/Avatar';
+
 const ProfilePage = () => {
   return (
-    <h1>ProfilePage</h1>
+    <section className="profile">
+      <Avatar />
+      
+    </section>
   )
 }
 
