@@ -6,8 +6,7 @@ import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 import Cards from '../../../server/db/card.test.json';
-import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
-import { deckRouter } from '../../../server/src/routes/api/deckRouter';
+// TODO: import deck and card routes from coming soon client/src/api
 
 type Card ={
   id: string;
