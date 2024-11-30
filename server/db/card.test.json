@@ -139,7 +139,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F535233%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Ravnica-Clue-Edition/Apothecary-White?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/123412?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": true
 	},
 	{
 		"object": "card",
@@ -250,7 +251,9 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F11910%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Fifth-Dawn/Bringer-of-the-White-Dawn?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/20894?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": false
+
 	},
 	{
 		"object": "card",
@@ -359,7 +362,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F10974%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Eighth-Edition/Circle-of-Protection-White?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/19299?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": true
 	},
 	{
 		"object": "card",
@@ -470,7 +474,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F499651%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Commander-The-Lord-of-the-Rings-Tales-of-Middle-earth/Elrond-of-the-White-Council?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/113134?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		},
+		"favorited": false
 	},
 	{
 		"object": "card",
@@ -587,7 +592,9 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F499188%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/The-Lord-of-the-Rings-Tales-of-Middle-earth/Flowering-of-the-White-Tree?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/111940?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": true
+
 	},
 	{
 		"object": "card",
@@ -700,7 +707,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F498325%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/The-Lord-of-the-Rings-Tales-of-Middle-earth/Gandalf-the-White?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/111948?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": false
 	},
 	{
 		"object": "card",
@@ -814,7 +822,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F499940%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/The-Lord-of-the-Rings-Tales-of-Middle-earth-Extras/Gandalf-White-Rider-V1?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/111492?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": true
 	},
 	{
 		"object": "card",
@@ -926,7 +935,8 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F499320%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Commander-The-Lord-of-the-Rings-Tales-of-Middle-earth-Extras/Karakas-V1?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/111850?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": false
 	},
 	{
 		"object": "card",
@@ -1038,7 +1048,9 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F491363%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Commander-March-of-the-Machine/Knight-of-the-White-Orchid?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards/110834?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": true
+
 	},
 	{
 		"object": "card",
@@ -1147,6 +1159,7 @@
 			"tcgplayer": "https://tcgplayer.pxf.io/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F168326%3Fpage%3D1",
 			"cardmarket": "https://www.cardmarket.com/en/Magic/Products/Singles/Global-Series-Jiang-Yanggu-Mu-Yanling/NineTail-White-Fox?referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
 			"cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Nine-Tail+White+Fox&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
-		}
+		}, 
+		"favorited": false
 	}
 ]

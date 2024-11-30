@@ -1,9 +1,23 @@
-// import React from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
 
-function TopContainer() { 
+type TopContainerProps ={
+    sortAlphabetically: () => void; 
+    sortByMana: () => void; 
+    sortByCost: () => void; 
+    // sortByDateAdded?: () => void; 
+    // filterByDeck?: () => void; 
+}
+
+const TopContainer: React.FC<TopContainerProps> = ({
+    sortAlphabetically, 
+    sortByMana,
+    sortByCost,
+    // sortByDateAdded,
+    // filterByDeck,
+}) => { 
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -17,19 +31,24 @@ return (
             <div className={styles.title}>
 
                 {/* onClick handler to title */}
-                <h2 onClick={handleClick} className={styles.clickableTitle}>
+                <h2 className={styles.clickableTitle} onClick={handleClick}>
                     <i className={styles.icon}>
                         <GiCardPlay/>
                     </i>
-                    Cards
+                    CARDS
                 </h2>
 
                 {/* Buttons for filtering/sorting */}
-                <button className={styles.button}>A to Z</button>
-                <button className={styles.button}>Mana</button>
-                <button className={styles.button}>Cost</button>
-                <button className={styles.button}>Date Added</button>
-                <button className={styles.button}>Deck</button>
+                <button className={styles.button} onClick={sortAlphabetically}>A to Z</button>
+                <button className={styles.button} onClick={sortByMana}>Mana</button>
+                <button className={styles.button} onClick={sortByCost}>Cost</button>
+                {/* {sortByDateAdded && (
+                   <button className={styles.button} onClick={sortByDateAdded}>Date Added</button> 
+                )}
+                {filterByDeck && (
+                    <button className={styles.button} onClick={filterByDeck}>Deck</button> 
+                )} */}
+      
             </div>
         </div>
     </div>
