@@ -58,6 +58,15 @@ body {
     height:125px;
     margin:0 auto 25px;
   }
+  .regmessages h3 {
+    color: red;
+    font-size:0.8rem;
+    font-weight:400;
+    letter-spacing:1px;
+    font-family: var(--font-sans);
+    text-transform:uppercase;
+    margin-top:0px;
+  }
   .registration, .login {
     margin:50px 0;
     display:flex;

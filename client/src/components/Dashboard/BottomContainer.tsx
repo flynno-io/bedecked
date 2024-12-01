@@ -1,6 +1,3 @@
-// import React from 'react'
-// // import Carousel from "react-multi-carousel";
-// // import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom"
 import { GiCardPick } from "react-icons/gi"
 import styles from "./Dashboard.module.scss"
@@ -12,8 +9,10 @@ function BottomContainer() {
 		console.log("Navigating to the Decks Page")
 		navigate("/decks")
 	}
-   
-  return (
+
+	return (
+	<div>
+	
     <div>
         <div className={styles.bottomContainer}>
              <div className={styles.title}>
@@ -41,6 +40,7 @@ function BottomContainer() {
 				<span>deck1</span>
 			</div>
 		</div>
+	</div>
 	)
 }
 

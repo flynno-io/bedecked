@@ -1,11 +1,10 @@
 // src/pages/DashboardPage.tsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
-// import Cards from '../../../server/db/card.test.json';
-import { cardRouter } from '../../../server/src/routes/api/card-routes.js';
+import Cards from '../../../server/db/card.test.json';
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 
 
@@ -34,9 +33,9 @@ function DashboardPage() {
     useEffect(() => {
       const loadData = async () => {
         try {
-          const cards = await cardRouter.get()
-          setDisplayedCards(cards || [])
-          setDisplayedDecks(decks || [])
+          // const cards = await cardRouter.get()
+          // setDisplayedCards(cards || [])
+          // setDisplayedDecks(decks || [])
         } catch (error) {
           console.error('Error loading data', error)
         }
