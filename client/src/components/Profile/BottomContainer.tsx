@@ -1,4 +1,4 @@
-import DeckCarousel from "../Dashboard/DeckGallery";
+// import DeckCarousel from "../Dashboard/DeckGallery";
 import { GiCardPick } from "react-icons/gi"
 
 
