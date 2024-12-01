@@ -1,5 +1,5 @@
 // src/pages/CardsPage.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TopContainer from "../components/Card/TopContainer";
 import CardGallery from '../components/Dashboard/CardGallery';
 import Cards from '../../../server/db/card.test.json';

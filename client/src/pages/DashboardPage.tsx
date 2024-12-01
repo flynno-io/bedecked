@@ -1,13 +1,13 @@
 // src/pages/DashboardPage.tsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
 // import DeckGallery from "../components/Dashboard/DeckGallery";
 import Cards from '../../../server/db/card.test.json';
-import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
-import { deckRouter } from '../../../server/src/routes/api/deckRouter';
+// import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
+// import { deckRouter } from '../../../server/src/routes/api/deckRouter';
 
 type Card ={
   id: string;
@@ -20,15 +20,15 @@ type Card ={
   favorited?: boolean;
 }
 
-type Deck = {
-  id: string; 
-  name: string; 
-  cards: Card[];
-}
+// type Deck = {
+  // id: string; 
+  // name: string; 
+  // cards: Card[];
+// }
 
 function DashboardPage() {
     const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards)
-    const [displayedDecks, setDisplayedDecks] = useState<Card[]>(Cards)
+    const [displayedDecks] = useState<Card[]>(Cards)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -61,11 +61,11 @@ function DashboardPage() {
     )}  
 
     // Filtering/sorting handlers
-    const filterFavoritedCards = () => {
-      const filteredCards = Cards.filter((card) => card.favorited);
-      setDisplayedCards(filteredCards);
-      console.log('Filtered favorited cards')
-    }
+    // const filterFavoritedCards = () => {
+      // const filteredCards = Cards.filter((card) => card.favorited);
+      // setDisplayedCards(filteredCards);
+      // console.log('Filtered favorited cards')
+    // }
 
     const sortAlphabetically = () => {
       const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name))

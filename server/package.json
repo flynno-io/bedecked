@@ -4,6 +4,7 @@
   "description": "backend server for the bedecked web application.",
   "type": "module",
   "main": "server.js",
+  "proxy": "http://localhost:3001", 
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
