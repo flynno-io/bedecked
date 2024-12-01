@@ -16,7 +16,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
 	}
 }
 
-// Create a new user
+// Create a new user // http://localhost:3001/users POST
 export const createUser = async (req: Request, res: Response): Promise<void> => {
 	const { username, email, password, manaTheme } = req.body
 	try {

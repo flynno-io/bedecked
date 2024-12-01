@@ -28,26 +28,16 @@ function BottomContainer() {
 			</div>
 			<div>
 				<div className={styles.bottomContainer}>
-					<div className={styles.title}>
-						{/* onClick handler to title */}
-						<h2 className={styles.clickableTitle} onClick={handleClick}>
-							<i className={styles.icon}>
-								<GiCardPick />
-							</i>
-							YOUR DECKS
-						</h2>
-
 						{/* Buttons for filtering/sorting */}
 						<button className={styles.button}>A to Z</button>
 						<button className={styles.button}>Mana</button>
 						<button className={styles.button}>Color</button>
 						<button className={styles.button}>Date Added</button>
 					</div>
-				</div>
 				<div className={styles.deckContainer}>
 					<p>Deck Gallery</p>
 					<p>deck1</p>
-					<p>deck1</p>
+					<p>deck2</p>
 					<span>deck1</span>
 				</div>
 			</div>

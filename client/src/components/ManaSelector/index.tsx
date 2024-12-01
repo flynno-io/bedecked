@@ -25,6 +25,7 @@ const ManaSelector = ({ selectedMana, handleChange }: ManaSelectorProps) => {
 			<div className={styles.manaSelector}>
 				{["W", "U", "B", "R", "G"].map((m) => (
 					<button
+            key={m}
 						className={`${mana.includes(m) ? styles.selected : ""} ${
 							styles[m.toLowerCase()]
 						} ${styles.manaButton}`}

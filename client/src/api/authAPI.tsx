@@ -23,7 +23,7 @@ const login = async (userInfo: UserLogin) => {
   }
 
   const data: LoginResponse = await response.json();
-  console.log(data);
+  console.log(data); // TODO: save the JWT token to local storage
   return data;
 }
 

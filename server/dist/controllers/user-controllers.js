@@ -15,7 +15,7 @@ export const getUserById = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
-// Create a new user
+// Create a new user // http://localhost:3001/users POST
 export const createUser = async (req, res) => {
     const { username, email, password, manaTheme } = req.body;
     try {
