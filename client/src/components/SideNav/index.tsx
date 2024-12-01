@@ -43,9 +43,6 @@ const SideNav = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="col">
-                    {/* Main content here based on routes*/}
-                </div>
             </div>
         </div>
     );
