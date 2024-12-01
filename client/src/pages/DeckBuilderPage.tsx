@@ -3,6 +3,7 @@ import { useState, CSSProperties } from "react"
 import DeckBuilder from "../components/DeckBuilder"
 import DeckTitle from "../components/DeckTitle"
 import NewDeckForm from "../components/NewDeckForm"
+import '../../styles/_themes.scss'
 
 const DeckBuilderPage = () => { 
 

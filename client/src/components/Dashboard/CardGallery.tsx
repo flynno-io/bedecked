@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
+import Card from '../../../../server/db/card.test.json';
+// import cardRouter from '../../../../src/routes/api/cardRouter';
 
 type Card ={
     id: string;

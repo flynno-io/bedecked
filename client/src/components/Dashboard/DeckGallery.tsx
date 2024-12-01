@@ -1,8 +1,8 @@
-// // import * as React from 'react'; 
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
-// import styles from './Dashboard.module.scss'; 
-// // import Decks from '../../assets/Cards/Cards.json';
+// import * as React from 'react'; 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import './Dashboard.module.scss'; 
+// import Decks from '../../assets/Cards/Cards.json';
 
 // const DeckCarousel = () => {
 //   const responsive = {
@@ -23,27 +23,28 @@
 //     }
 //   };
 
-//   return (
-//     <Carousel 
-//       arrows={true}
-//       swipeable={true}
-//       draggable={false}
-//       showDots={false}
-//       responsive={responsive}
-//       ssr={true}
-//       infinite={true}
-//       autoPlaySpeed={1000}
-//       keyBoardControl={true}
-//       customTransition="all .5"
-//       transitionDuration={500}
-//   >
-//       {Decks && Cards.map((card) => {
-//           return(
-//               <div className={styles.card} key={card.id}>
-//                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
-//               </div>
-//           )
-//       })}
+  return (
+    <Carousel 
+      arrows={true}
+      children={false}
+      swipeable={true}
+      draggable={false}
+      showDots={false}
+      responsive={responsive}
+      ssr={true}
+      infinite={true}
+      autoPlaySpeed={1000}
+      keyBoardControl={true}
+      customTransition="all .5"
+      transitionDuration={500}
+  >
+      {/* {Decks && Cards.map((card) => {
+          return(
+              <div className={styles.card} key={card.id}>
+                  {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
+              </div>
+          )
+      })} */}
     
 //     </Carousel>
       

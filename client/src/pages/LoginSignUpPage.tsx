@@ -10,7 +10,7 @@ import '../../styles/loginRegister.scss';
 const LoginSignUpPage = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [loginData, setLoginData] = useState({
-    username: '',
+    email: '',
     password: ''
   });
 
@@ -50,11 +50,11 @@ const LoginSignUpPage = () => {
       {isLogin ? (
         <form name="login" className="login" onSubmit={handleLogin}>
           <input
-            type="text"
-            placeholder="Username"
-            name="username"
+            type="email"
+            placeholder="Email"
+            name="email"
             autoComplete="on"
-            value={loginData.username}
+            value={loginData.email}
             onChange={handleChange}
           />
           <input
