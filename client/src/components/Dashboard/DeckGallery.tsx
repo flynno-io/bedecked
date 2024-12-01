@@ -23,30 +23,30 @@ import './Dashboard.module.scss';
 //     }
 //   };
 
-  return (
-    <Carousel 
-      arrows={true}
-      children={false}
-      swipeable={true}
-      draggable={false}
-      showDots={false}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-  >
-      {/* {Decks && Cards.map((card) => {
-          return(
-              <div className={styles.card} key={card.id}>
-                  {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
-              </div>
-          )
-      })} */}
+//   return (
+//     <Carousel 
+//       arrows={true}
+//       children={false}
+//       swipeable={true}
+//       draggable={false}
+//       showDots={false}
+//       responsive={responsive}
+//       ssr={true}
+//       infinite={true}
+//       autoPlaySpeed={1000}
+//       keyBoardControl={true}
+//       customTransition="all .5"
+//       transitionDuration={500}
+//   >
+//       {/* {Decks && Cards.map((card) => {
+//           return(
+//               <div className={styles.card} key={card.id}>
+//                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
+//               </div>
+//           )
+//       })} */}
     
-//     </Carousel>
+// //     </Carousel>
       
 //   );
 // };
