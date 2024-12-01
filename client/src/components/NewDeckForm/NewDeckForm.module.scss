@@ -8,8 +8,41 @@
   padding: 1rem;
   column-gap: 1rem;
   align-items: center;
-  margin: 1rem auto;
+  margin: 1rem 5% 1rem 0;
   width: fit-content;
+  font-family:var(--font-sans);
+  font-size:1.1rem;
+  letter-spacing:1px;
+
+  & button {
+    height:50px;
+    font-family: var(--font-serif);
+    text-transform:uppercase;
+    font-weight:700;
+    font-size:0.8rem;
+    letter-spacing:2px;
+    background:linear-gradient(to bottom right, var(--bg-color) 50%, var(--accent), var(--bg-color));
+    background-size:100%;
+    background-position: top left;
+    color:var(--text-color);
+    border:0;
+    transition:0.3s;
+    box-shadow:5px 5px 5px var(--text-low-contrast);
+    border-radius:0.25rem;
+  }
+
+& button:hover {
+    transform: translate(3px, -3px);
+    border:0;
+    background-size:200%;
+    background-position:bottom right;
+    box-shadow:10px 10px 5px var(--text-low-contrast);
+  }
+
+& button:active {
+    transform: translate(0);
+    box-shadow:5px 5px 5px var(--text-low-contrast);
+  }
 }
 
 .form {
@@ -17,13 +50,25 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  text-align:center;
 
-  & label, & input, & select {
-    font-size: 1.2rem;
+  & select, & input {
+    background:var(--inset-bg);
+    padding: 0 0.5rem;
+    border:2px solid var(--input-border);
+    height:50px;
+    letter-spacing:1px;
+    color:var(--text-color);
+    text-align:center;
   }
 
-  & input, & select {
-    padding: 0 0.5rem;
+  & select option {
+    background:#000;
+    color:#fff;
+    letter-spacing:3px;
+  }
+  & select ::placeholder {
+    color:var(--text-color);
   }
 }
 
@@ -36,13 +81,106 @@
   }
 }
 
+fieldset {
+  display:flex;
+  flex-direction:row !important;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  align-content:center;
+}
+
 .radio {
   & label {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     align-content: center;
     column-gap: 1rem;
     margin-right: 1rem;
+    background: var(--inset-bg);
+    padding:0.5rem 1rem;
+    cursor:pointer;
+    color:var(--text-color);
+    border:2px solid transparent;
+    border-radius:2rem;
+  }
+  & input {
+    height:fit-content;
+    display:none;
   }
 }
 
+.radio input:checked + [for="white"] {
+  background: white;
+  color:black;
+  border:2px solid var(--input-border);
+}
+
+.radio input:checked + [for="black"] {
+    background: gray;
+    color:black;
+    border:2px solid var(--input-border);
+}
+
+.radio input:checked + [for="blue"] {
+  background: darkblue;
+  color:white;
+  border:2px solid var(--input-border);
+}
+
+.radio input:checked + [for="red"] {
+  background: darkred;
+  color:white;
+  border:2px solid var(--input-border);
+}
+
+.radio input:checked + [for="green"] {
+  background: darkgreen;
+  color:white;
+  border:2px solid var(--input-border);
+}
+
+[for="white"]::before {
+  background: url('../../assets/Mana/white.png') no-repeat center;
+  background-size:cover;
+  width:25px;
+  height:25px;
+  display:block;
+  content:'';
+}
+
+[for="black"]::before {
+  background: url('../../assets/Mana/black.png') no-repeat center;
+  background-size:cover;
+  width:25px;
+  height:25px;
+  display:block;
+  content:'';
+}
+
+[for="blue"]::before {
+  background: url('../../assets/Mana/blue.png') no-repeat center;
+  background-size:cover;
+  width:25px;
+  height:25px;
+  display:block;
+  content:'';
+}
+
+[for="red"]::before {
+  background: url('../../assets/Mana/red.png') no-repeat center;
+  background-size:cover;
+  width:25px;
+  height:25px;
+  display:block;
+  content:'';
+}
+
+[for="green"]::before {
+  background: url('../../assets/Mana/green.png') no-repeat center;
+  background-size:cover;
+  width:25px;
+  height:25px;
+  display:block;
+  content:'';
+}

@@ -45,7 +45,7 @@ $black: #2c3e50;
 
 .sideMenu {
   grid-area: sideMenu;
-  background-color: var(--inset-bg);
+  background-color: transparent;
   color: var(--text-color);
   display: flex;
   flex-direction: column;
