@@ -7,11 +7,39 @@ import { DeckCardCreationAttributes } from "../models/deckcard.js"
 // Define the decks to seed
 const decks: DeckCreationAttributes[] = [
 	{
-		name: "Standard Deck",
+		name: "User 1 - Deck 1",
 		format: "Standard",
 		colors: ["W"],
-		description: "A standard deck with only white cards",
+		description: "Test deck one - only white cards",
 		userId: 1,
+	},
+  {
+		name: "User 1 - Deck 2",
+		format: "Standard",
+		colors: ["U"],
+		description: "Test deck two - only white cards",
+		userId: 1,
+	},
+  {
+		name: "User 2 - Deck 1",
+		format: "Standard",
+		colors: ["G"],
+		description: "Test deck two - only white cards",
+		userId: 2,
+	},
+  {
+		name: "User 2 - Deck 2",
+		format: "Standard",
+		colors: ["B"],
+		description: "Test deck two - only white cards",
+		userId: 2,
+	},
+  {
+		name: "User 2 - Deck 3",
+		format: "Standard",
+		colors: ["R"],
+		description: "Test deck two - only white cards",
+		userId: 2,
 	},
 	// {
 	// 	name: "Commander Deck",
@@ -44,11 +72,24 @@ export const seedDecks = async (): Promise<void> => {
       // convert the array of cards objects into json objects
       const cards = rows.map(card => card.toJSON())
 
-      console.log('cards:', cards)
+      let manaType
+      if (newDeck.colors.includes("W")) {
+        manaType = "Plains"
+      } else if (newDeck.colors.includes("U")) {
+        manaType = "Island"
+      } else if (newDeck.colors.includes("G")) {
+        manaType = "Forest"
+      } else if (newDeck.colors.includes("R")) {
+        manaType = "Mountain"
+      } else if (newDeck.colors.includes("B")) {
+        manaType = "Swamp"
+      } else (
+        manaType = "Plains" // if no color specified, default to white
+      )
 
 			// Get and add the necessary basic lands (plains) to the deck
 			const plainsCard = await Card.findAndCountAll({
-				where: { name: { [Op.iLike]: "Plains" }},
+				where: { name: { [Op.iLike]: manaType }},
 			})
 
 			const deckCards: DeckCardCreationAttributes[] = cards.map((card) => ({
