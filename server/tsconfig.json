@@ -2,11 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     /* Modules */
+    "module": "ESNext" /* Specify what module code is generated. */,
+    "target": "ES2020" /* Specify ECMAScript target version. */,
     "rootDir": "src" /* Specify the root folder within your source files. */,
     "allowJs": true /* Allow JavaScript files to be imported. */,
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for common patterns. */,
     "resolveJsonModule": true,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
 
     /* Emit */
     "outDir": "dist" /* Specify an output folder for all emitted files. */
