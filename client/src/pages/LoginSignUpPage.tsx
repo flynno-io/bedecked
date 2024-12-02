@@ -1,13 +1,16 @@
 // src/pages/LoginSignUpPage.tsx
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 import Logo from '../components/LoginLogo';
 import Register from '../components/Register';
 import Auth from '../utils/auth';
 import { login } from "../api/authAPI";
+import { AuthContext } from '../context/AuthContext';
 import '../../styles/loginRegister.scss';
 
 const LoginSignUpPage = () => {
+  const authContext = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -32,10 +35,15 @@ const LoginSignUpPage = () => {
       console.log(loginData);
       const data = await login(loginData);
       Auth.login(data.token);
+      authContext?.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);
     }
   };
+
+  if (authContext?.isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <section className="register">

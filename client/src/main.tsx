@@ -1,6 +1,5 @@
-import ReactDOM from 'react-dom/client'
-
-
+import ReactDOM from 'react-dom/client';
+import { AuthProvider } from './context/AuthContext';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.tsx'
@@ -64,8 +63,10 @@ const router = createBrowserRouter([
 ]);
 
 const rootElement = document.getElementById('root');
-if(rootElement) {
+if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
