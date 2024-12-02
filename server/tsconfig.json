@@ -3,11 +3,15 @@
   "compilerOptions": {
     /* Modules */
     "rootDir": "src" /* Specify the root folder within your source files. */,
+    "allowJs": true /* Allow JavaScript files to be imported. */,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
 
     /* Emit */
     "outDir": "dist" /* Specify an output folder for all emitted files. */
     // "noEmitOnError": true /* Disable emitting files if any type checking errors are reported. */
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "typeRoots": ["./node_modules/@types", "./src/types"]
 }
