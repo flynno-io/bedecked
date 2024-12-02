@@ -20,6 +20,7 @@ const TopContainer: React.FC<TopContainerProps> = ({
 
 }) => { 
     const navigate = useNavigate();
+    
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleClick = () => {
@@ -35,7 +36,7 @@ const TopContainer: React.FC<TopContainerProps> = ({
 
 return (
     <div>
-        <div className={styles.topContainer}>
+        <div className={styles.topContainer} >
             <div className={styles.title}>
 
                 {/* onClick handler to title */}
@@ -47,7 +48,7 @@ return (
                 </h2>
 
                 {/* Search bar */}
-                <input
+                <input 
                     type="text"
                     placeholder="Search cards..."
                     value={searchQuery}
