@@ -1,4 +1,4 @@
-import { Card } from "../../Models/index.js"
+import { Card } from "../../models/index.js"
 import pLimit from "p-limit" // Import p-limit package
 
 const BATCH_SIZE = 500 // Define batch size
