@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Build and manage decks for the Magic the Gathering card game.",
   "main": "index.js",
+  "proxy": "http://localhost:3001", 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npm run seed && npm run build && npm run start:dev",

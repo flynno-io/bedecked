@@ -3,6 +3,7 @@ import { useState, CSSProperties } from "react"
 import DeckBuilder from "../components/DeckBuilder"
 import DeckTitle from "../components/DeckTitle"
 import NewDeckForm from "../components/NewDeckForm"
+import '../../styles/_themes.scss'
 
 const DeckBuilderPage = () => { 
 
@@ -11,7 +12,11 @@ const DeckBuilderPage = () => {
 		deckName: string
 		format: string
 		colors: string[]
-	}>({ deckName: "Untitled", format: "", colors: [] })
+		creatureTypes?: string[]
+		creaturePercent?: number
+		landPercent?: number
+		instantSorceryPercent?: number
+	}>({ deckName: "Untitled", format: "", colors: [], })
 	const [showForm, setShowForm] = useState(true)
 
 	// Inline styles for the deck builder wrapper
@@ -31,7 +36,7 @@ const DeckBuilderPage = () => {
 	}
 
   // Update the deck settings and close the New Deck Form
-	const updateDeckSettings = (key: string, value: string | string[]) => {
+	const updateDeckSettings = (key: string, value: string | string[] | number) => {
 		setDeckSettings((prev) => ({ ...prev, [key]: value }))
 	}
 

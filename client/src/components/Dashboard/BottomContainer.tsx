@@ -1,6 +1,3 @@
-// import React from 'react'
-// // import Carousel from "react-multi-carousel";
-// // import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom"
 import { GiCardPick } from "react-icons/gi"
 import styles from "./Dashboard.module.scss"
@@ -14,18 +11,8 @@ function BottomContainer() {
 	}
 
 	return (
-		<div>
-			<div className={styles.bottomContainer}>
-				<div className={styles.title}>
-					{/* onClick handler to title */}
-					<h2 onClick={handleClick} className={styles.clickableTitle}>
-						<i className={styles.icon}>
-							<GiCardPick />
-						</i>
-						Decks
-					</h2>
-				</div>
-			</div>
+	<div>
+	
     <div>
         <div className={styles.bottomContainer}>
              <div className={styles.title}>
