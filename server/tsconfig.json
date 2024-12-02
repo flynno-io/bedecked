@@ -3,6 +3,7 @@
   "compilerOptions": {
     /* Modules */
     "rootDir": "src" /* Specify the root folder within your source files. */,
+    "resolveJsonModule": true /* Enable importing of JSON files as modules. */,
 
     /* Emit */
     "outDir": "dist" /* Specify an output folder for all emitted files. */

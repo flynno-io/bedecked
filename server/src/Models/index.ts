@@ -14,10 +14,6 @@ const Emblem = EmblemFactory(sequelize)
 
 // define relationships
 
-// User and Deck (one-to-many)
-// User.hasMany(Deck, { foreignKey: "userId", as: "decks", onDelete: 'CASCADE' })
-// Deck.belongsTo(User, { foreignKey: "userId", as: "user", onDelete: 'CASCADE' })
-
 // Decks Model --> new
 Deck.hasMany(DeckCard, { foreignKey: 'deckId', as: 'cards' });
 DeckCard.belongsTo(Deck, { foreignKey: 'deckId', as: 'decks' });
