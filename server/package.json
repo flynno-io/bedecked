@@ -8,6 +8,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
+    "start:app": "node dist/server.js",
     "db:update": "node dist/scripts/fetch-scryfall-data",
     "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
