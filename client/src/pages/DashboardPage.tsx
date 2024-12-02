@@ -1,22 +1,17 @@
 // src/pages/DashboardPage.tsx
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
-import Cards from '../../../server/db/card.test.json';
-// import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
-// import { deckRouter } from '../../../server/src/routes/api/deckRouter';
 
-type Card ={
+type Card = {
   id: string;
-  name: string; 
+  name: string;
   image_uris: {
-      small: string; 
+    small: string;
   };
   cmc: number;
   in_deck?: boolean;
-  favorited?: boolean;
 }
 
 // type Deck = {
@@ -26,93 +21,62 @@ type Card ={
 // }
 
 function DashboardPage() {
-    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards)
-    const [displayedDecks] = useState<Card[]>(Cards)
-    const navigate = useNavigate()
 
-    useEffect(() => {
-      const loadData = async () => {
-        try {
-          // const cards = await cardRouter.get()
-          // setDisplayedCards(cards || [])
-          // setDisplayedDecks(decks || [])
-        } catch (error) {
-          console.error('Error loading data', error)
-        }
-      }
-    loadData()
-    }, [])
+  // State to store displayed cards and decks
+  const [displayedCards, setDisplayedCards] = useState<Card[]>([])
+  // const [displayedDecks] = useState<Card[]>(Cards)
 
-    if (!displayedCards || displayedCards.length === 0) {
-    return (
-      <div>
-        <h1>Start browsing for your next Legendary creature</h1>
-        <button onClick={() => navigate("/cards")}>Browse Cards</button>
-      </div>
-    )}
+  // if (!displayedDecks || displayedDecks.length === 0) {
+  //   return (
+  //     <div>
+  //       <h1>Start building your first deck</h1>
+  //       <button onClick={() => navigate("/decks")}>Deck Builder</button>
+  //     </div>
+  //   )}  
 
-  if (!displayedDecks || displayedDecks.length === 0) {
-    return (
-      <div>
-        <h1>Start building your first deck</h1>
-        <button onClick={() => navigate("/decks")}>Deck Builder</button>
-      </div>
-    )}  
+  // Sort cards alphabetically by name
+  const sortAlphabetically = () => {
+    const sortedCards = [...displayedCards].sort((a, b) => a.name.localeCompare(b.name))
+    setDisplayedCards(sortedCards)
+    console.log('Sorted A to Z')
+  }
 
-    // Filtering/sorting handlers
-    // const filterFavoritedCards = () => {
-      // const filteredCards = Cards.filter((card) => card.favorited);
-      // setDisplayedCards(filteredCards);
-      // console.log('Filtered favorited cards')
-    // }
+  // Sort cards by mana (low to high)
+  const sortByMana = () => {
+      const sortedCards = [...displayedCards].sort((a, b) => a.cmc - b.cmc);
+      setDisplayedCards(sortedCards);
+      console.log('Sorted by Mana');
+  };
 
-    const sortAlphabetically = () => {
-      const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name))
-      setDisplayedCards(sortedCards)
-      console.log('Sorted A to Z')
-    }
+  // Sort cards by mana cost (high to low)
+  const sortByCost = () => {
+      const sortedCards = [...displayedCards].sort((a, b) => b.cmc - a.cmc);
+      setDisplayedCards(sortedCards);
+      console.log('Sorted by Cost');
+  };
 
-    const sortByMana = () => {
-        const sortedCards = [...Cards].sort((a, b) => a.cmc - b.cmc);
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Mana');
-    };
-
-    const sortByCost = () => {
-        const sortedCards = [...Cards].sort((a, b) => b.cmc - a.cmc);
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Cost');
-    };
-
-    const sortByRarity = () => {
-        const sortedCards = [...Cards].sort((a, b) => a.rarity.localeCompare(b.rarity));
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Rarity');
-    }
-
-    // const filterByDeck = () => {
-    //     const filteredCards = Cards.filter((card) => card.in_deck);
-    //     setDisplayedCards(filteredCards);
-    //     console.log('Filtered by Deck');
-    
-
-
-  return (
-    <div>
-        <TopContainer 
-            sortAlphabetically={sortAlphabetically}
-            sortByMana={sortByMana}
-            sortByCost={sortByCost}
-            sortByRarity={sortByRarity}
-            // filterByDeck={filterByDeck}
-
-        />
-        <CardGallery displayedCards={displayedCards}/>
-        <BottomContainer />
-        {/* <DeckGallery /> */}
-    </div>
+  // const filterByDeck = () => {
+  //     const filteredCards = Cards.filter((card) => card.in_deck);
+  //     setDisplayedCards(filteredCards);
+  //     console.log('Filtered by Deck');
   
-  )
+
+
+return (
+  <div>
+      <TopContainer 
+          sortAlphabetically={sortAlphabetically}
+          sortByMana={sortByMana}
+          sortByCost={sortByCost}
+          // filterByDeck={filterByDeck}
+
+      />
+      <CardGallery displayedCards={displayedCards}/>
+      <BottomContainer />
+      {/* <DeckGallery /> */}
+  </div>
+
+)
 }
 
 export default DashboardPage
