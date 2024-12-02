@@ -4,7 +4,7 @@ import { DataTypes, Sequelize, Optional, Model } from "sequelize"
 type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless
 type format = "Standard" | "Commander"
 
-interface DeckAttributes {
+export interface DeckAttributes {
 	id: number
 	name: string
 	format: format
@@ -13,7 +13,7 @@ interface DeckAttributes {
 	userId: number // Foreign key to User
 }
 
-interface DeckCreationAttributes extends Optional<DeckAttributes, "id"> {}
+export interface DeckCreationAttributes extends Optional<DeckAttributes, "id"> {}
 
 export class Deck
 	extends Model<DeckAttributes, DeckCreationAttributes>

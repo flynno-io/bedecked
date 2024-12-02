@@ -1,10 +1,12 @@
 import { Router } from "express"
-import { getUserById, createUser, updateUser, deleteUser } from "../../controllers/user-controllers.js"
+import { getUserByEmail, createUser, updateUser, deleteUser, getProfile } from "../../controllers/user-controllers.js"
 
 const router = Router()
 
-// GET /users/:id - Get user by ID
-router.get("/:id", getUserById)
+// GET /users/:email - Get user by ID
+router.get("/:email", getUserByEmail)
+
+router.get("/profile", getProfile)
 
 // POST /users - Create a new user
 router.post("/", createUser)

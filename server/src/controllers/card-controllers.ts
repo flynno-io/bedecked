@@ -6,7 +6,7 @@ import { Op, WhereOptions } from "sequelize"
 type mana = "W" | "U" | "B" | "R" | "G" | "C"  // mana types - white, blue, black, red, green, colorless
 
 // Define filters interface
-interface filters {
+export interface filters {
   name?: string
   type_line?: string
   oracle_text?: string

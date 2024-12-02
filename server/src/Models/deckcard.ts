@@ -4,9 +4,10 @@ interface DeckCardAttributes {
 	id: number
 	deckId: number
 	cardId: number
+  count: number
 }
 
-interface DeckCardCreationAttributes
+export interface DeckCardCreationAttributes
 	extends Optional<DeckCardAttributes, "id"> {}
 
 export class DeckCard
@@ -16,6 +17,7 @@ export class DeckCard
 	public id!: number
 	public deckId!: number
 	public cardId!: number
+  public count!: number
 }
 
 export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
@@ -46,6 +48,11 @@ export function DeckCardFactory(sequelize: Sequelize): typeof DeckCard {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
 			},
+      count: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+      }
 		},
 		{
 			sequelize,
