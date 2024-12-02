@@ -1,9 +1,9 @@
 @use '../../../styles/index.scss';
 @use '../../../styles/_themes.scss';
 
-// $bg-color: var(--bg-color);
-// $accent: var(--accent);
-// $inset-bg: var(--inset-bg);
+$bg-color: var(--bg-color);
+$accent: var(--accent);
+$inset-bg: var(--inset-bg);
 
 .container {
   display: flex;
