@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import TopContainer from "../components/Dashboard/TopContainer";
 import BottomContainer from "../components/Dashboard/BottomContainer";
 import CardGallery from "../components/Dashboard/CardGallery";
-import Cards from '../../../server/db/card.test.json';
+// import Cards from '../../../server/db/card.test.json';
+import { getAllCards } from '../api/mtgAPI';
 // import { cardRouter } from '../../../../server/src/routes/api/card-routes.js';
 // import { deckRouter } from '../../../server/src/routes/api/deckRouter';
 
@@ -26,22 +27,39 @@ type Card ={
 // }
 
 function DashboardPage() {
-    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards)
-    const [displayedDecks] = useState<Card[]>(Cards)
+    const [displayedCards, setDisplayedCards] = useState<Card[]>([])
+    const [displayedDecks] = useState<Card[]>([])
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate()
 
     useEffect(() => {
       const loadData = async () => {
         try {
+          setLoading(true);
+          const filters = { page: 1, limit: 100 };
+          const data = await getAllCards(filters);
+          setDisplayedCards(data.cards);
+          setLoading(false);
           // const cards = await cardRouter.get()
           // setDisplayedCards(cards || [])
           // setDisplayedDecks(decks || [])
         } catch (error) {
           console.error('Error loading data', error)
+          setError('Failed to load cards');
+          setLoading(false);
         }
-      }
-    loadData()
-    }, [])
+      };
+    loadData();
+    }, []);
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>{error}</div>;
+    }
 
     if (!displayedCards || displayedCards.length === 0) {
     return (
@@ -67,28 +85,28 @@ function DashboardPage() {
     // }
 
     const sortAlphabetically = () => {
-      const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name))
+      const sortedCards = [...displayedCards].sort((a, b) => a.name.localeCompare(b.name))
       setDisplayedCards(sortedCards)
       console.log('Sorted A to Z')
     }
 
     const sortByMana = () => {
-        const sortedCards = [...Cards].sort((a, b) => a.cmc - b.cmc);
+        const sortedCards = [...displayedCards].sort((a, b) => a.cmc - b.cmc);
         setDisplayedCards(sortedCards);
         console.log('Sorted by Mana');
     };
 
     const sortByCost = () => {
-        const sortedCards = [...Cards].sort((a, b) => b.cmc - a.cmc);
+        const sortedCards = [...displayedCards].sort((a, b) => b.cmc - a.cmc);
         setDisplayedCards(sortedCards);
         console.log('Sorted by Cost');
     };
 
-    const sortByRarity = () => {
-        const sortedCards = [...Cards].sort((a, b) => a.rarity.localeCompare(b.rarity));
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Rarity');
-    }
+    // const sortByRarity = () => {
+    //     const sortedCards = [...displayedCards].sort((a, b) => a.rarity.localeCompare(b.rarity));
+    //     setDisplayedCards(sortedCards);
+    //     console.log('Sorted by Rarity');
+    // }
 
     // const filterByDeck = () => {
     //     const filteredCards = Cards.filter((card) => card.in_deck);
@@ -103,7 +121,7 @@ function DashboardPage() {
             sortAlphabetically={sortAlphabetically}
             sortByMana={sortByMana}
             sortByCost={sortByCost}
-            sortByRarity={sortByRarity}
+            // sortByRarity={sortByRarity}
             // filterByDeck={filterByDeck}
 
         />
