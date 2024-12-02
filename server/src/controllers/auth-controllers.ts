@@ -17,7 +17,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 
   // Check if user exists
-  const user = await User.findOne({ where: { email } })
+  const user = await User.findOne({ where: { email } }) // get the user object from the database
   if (!user) {
     res.status(404).json({ error: "Authentication failed!" })
     return
@@ -32,7 +32,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
   // Generate JWT token
   const secretKey = process.env.JWT_SECRET_KEY || ""
-  const token = jwt.sign({ username: user.username, email }, secretKey, { expiresIn: "1h" })
+  const token = jwt.sign({ email }, secretKey, { expiresIn: "1h" })
 
   // Return JWT token
   res.json({ token })

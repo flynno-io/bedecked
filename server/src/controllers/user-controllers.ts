@@ -1,13 +1,14 @@
 import { Request, Response } from "express"
 import { User } from "../models/index.js"
+import omit from "lodash/omit.js"
 
 // Get user by ID
-export const getUserById = async (req: Request, res: Response): Promise<void> => {
-	const { id } = req.params
+export const getUserByEmail = async (req: Request, res: Response): Promise<void> => {
+	const { email } = req.params
 	try {
-		const user = await User.findByPk(id)
+		const user = await User.findOne({ where: { email } })
 		if (user) {
-			res.json(user)
+			res.json(omit(user.toJSON(), "password", "createdAt", "updatedAt"))
 		} else {
 			res.status(404).json({ error: "User not found" })
 		}
@@ -62,5 +63,10 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
   } catch (error: any) {
     res.status(400).json({ error: error.message })
   }
+}
+
+export const getProfile = async (req: Request, res: Response): Promise<void> => {
+  const user = req.user
+  res.json(user)
 }
 
