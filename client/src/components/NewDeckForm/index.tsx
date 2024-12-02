@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Select from 'react-select';
+import Select, { MultiValue } from 'react-select';
 import styles from "./NewDeckForm.module.scss";
 
 interface OptionType {
@@ -68,8 +68,8 @@ const NewDeckForm = ({
     }
   };
 
-  const handleCreatureTypeChange = (selectedOptions: OptionType[] | null) => {
-    const selectedTypes = selectedOptions?.map((option) => option.value) || [];
+  const handleCreatureTypeChange = (selectedOptions: MultiValue<OptionType>) => {
+    const selectedTypes = selectedOptions.map((option) => option.value);
     updateDeckSettings("creatureTypes", selectedTypes);
   };
 
@@ -177,16 +177,16 @@ const NewDeckForm = ({
           {loading && <p>Loading creature types...</p>}
           {error && <p>Error: {error}</p>}
           {!loading && !error && (
-            <Select
-              isMulti
-              options={creatureTypeOptions}
-              onChange={handleCreatureTypeChange}
-              value={creatureTypeOptions.filter((option) =>
-                deckSettings.creatureTypes?.includes(option.value)
-              )}
-              className={styles.select}
-              placeholder="Creature Types"
-            />
+           <Select
+            isMulti
+            options={creatureTypeOptions}
+            onChange={handleCreatureTypeChange}
+            defaultValue={deckSettings.creatureTypes?.map((type) => ({
+              value: type,
+              label: type,
+            }))}
+            className={styles.select}
+          />
           )}
         </div>
 
