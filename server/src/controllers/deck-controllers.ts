@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { Card, Deck, DeckCard } from "../models"
+import { Card, Deck, DeckCard } from "../models/index.js"
 import { WhereOptions, Op } from "sequelize"
 import { DeckCardCreationAttributes } from "../models/deckcard.js"
 
