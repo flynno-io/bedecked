@@ -13,12 +13,35 @@ type Card ={
     cmc: number;
     in_deck?: boolean;
 }
-
 type CardCarouselProps = {
   displayedCards: Card[];
 }
 
 const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
+
+  // const [displayedCards, setDisplayedCards] = useState<Card[]>([])
+  // const [loading, setLoading] = useState<boolean>(true)
+  // const [error, setError] = useState<string | null>(null)
+
+  // const fetchCards = async () => {
+  //   try {
+  //     const response = await fetch('/api/cards')
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`)
+  //     }
+  //     const data = await response.json()
+  //     setDisplayedCards(data)
+  //     setLoading(false)
+  //   } catch (error) {
+  //     setError("Failled to load cards")
+  //     setLoading(false)
+  //   }
+  // }
+  
+  // useEffect(() => {
+  //   fetchCards()
+  // }, [])
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -36,6 +59,9 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
       slidesToSlide: 1
     }
   };
+
+  // if (loading) return <p>Loading cards...</p>
+  // if (error) return <p>Error loading cards: {error}</p>
 
   return (
     <Carousel 
