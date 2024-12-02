@@ -15,10 +15,12 @@ interface filters {
 }
 
 const getAllCards = async (filters: filters) => {
+  const token = localStorage.getItem('token');
   const response = await fetch('/api/cards', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     body: JSON.stringify(filters),
   });

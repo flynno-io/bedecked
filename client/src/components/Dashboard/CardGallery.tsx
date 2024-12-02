@@ -16,15 +16,14 @@ type Card ={
     cmc: number;
     in_deck?: boolean;
 }
-type CardCarouselProps = {
+interface CardGalleryProps {
   displayedCards: Card[];
 }
 
-const CardCarousel: React.FC<CardCarouselProps> = ({}) => {
+const CardCarousel: React.FC<CardGalleryProps> = ({ displayedCards }) => {
 
-  // State to store displayed cards
-  const [displayedCards, setDisplayedCards] = useState<Card[]>([])
-
+  // State to store fetch cards
+  const [fetchedCards, setFetchedCards] = useState<Card[]>([])
   const navigate = useNavigate()
 
   // State to manage loading and error states
@@ -34,26 +33,21 @@ const CardCarousel: React.FC<CardCarouselProps> = ({}) => {
   useEffect(() => {
   const fetchCards = async () => {
     try {
-      const response = await fetch('/api/cards')
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const filters = {
-        name: '',
-        limit: 10
-      }
-
-      const data = await getAllCards(filters)
-      setDisplayedCards(data)
-    } catch (err) {
-      setError("Failed to load cards")
+      const data = await getAllCards({name: '', limit: 10})
+      setFetchedCards(data)
       setLoading(false)
+      } catch (err: any) {
+      if (err.message.includes('401')) {
+      setError('Unauthorized: Please log in again.')
+      navigate('/login')
+      } else {
+      setError("Failed to load cards")
     }
-  }
+  }}
   
-    fetchCards()
-  }, [])
+    if (!displayedCards.length) fetchCards()
+  }, [displayedCards])
+
 // Fallback UI if no cards are available 
    if (!displayedCards || displayedCards.length === 0) {
     return (
@@ -70,8 +64,6 @@ const CardCarousel: React.FC<CardCarouselProps> = ({}) => {
   if (error) {
     return <p className={styles.message}>Error loading cards: {error}</p>
   }
-
-   
 
   const responsive = {
     desktop: {
@@ -109,7 +101,7 @@ const CardCarousel: React.FC<CardCarouselProps> = ({}) => {
       transitionDuration={500}
     >
 
-      {displayedCards.map((card) => {
+      {fetchedCards.map((card) => {
           return(
               <div className={styles.card} key={card.id}>
                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
