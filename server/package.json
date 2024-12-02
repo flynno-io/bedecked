@@ -4,7 +4,7 @@
   "description": "backend server for the bedecked web application.",
   "type": "module",
   "main": "server.js",
-  "proxy": "http://localhost:3001", 
+  "proxy": "http://localhost:3001",
   "scripts": {
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
@@ -41,6 +41,6 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.13",
-    "typescript": "^5.6.3"
+    "typescript": "5.7.2"
   }
 }
