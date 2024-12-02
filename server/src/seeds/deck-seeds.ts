@@ -92,11 +92,14 @@ export const seedDecks = async (): Promise<void> => {
 				where: { name: { [Op.iLike]: manaType }},
 			})
 
+      // Add the cards to the deckCard in the deckCard row format
 			const deckCards: DeckCardCreationAttributes[] = cards.map((card) => ({
 				cardId: card.id,
 				deckId: newDeck.id,
 				count: 1,
 			}))
+
+      // Add the basic lands to the deckCard in the deck
 			deckCards.push({
 				cardId: plainsCard.rows[1].id,
 				deckId: newDeck.id,
