@@ -1,15 +1,39 @@
 // src/components/NewDeckForm/index.tsx
-
+import { useState, useEffect } from "react"
 import styles from "./NewDeckForm.module.scss"
 
 interface NewDeckFormProps {
-  deckSettings: { deckName: string, format: string, colors: string[] }
-  updateDeckSettings: (key: string, value: string | string[]) => void
+  deckSettings: { deckName: string, format: string, colors: string[], creatureTypes?: string[] , creaturePercent?: number, landPercent?: number, instantSorceryPercent?: number}
+  updateDeckSettings: (key: string, value: string | string[] | number) => void
   setShowForm: (showForm: boolean) => void
 }
 
 const NewDeckForm = ({ deckSettings, updateDeckSettings, setShowForm }: NewDeckFormProps) => {
   
+  const [creatureTypeOptions, setCreatureTypeOptions] = useState<string[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+      // Fetch creature types from Scryfall API
+      useEffect(() => {
+        const fetchCreatureTypes = async () => {
+          try {
+            const response = await fetch("https://api.scryfall.com/catalog/creature-types")
+            if (!response.ok) {
+              throw new Error(`Failed to fetch creature types: ${response.statusText}`)
+            }
+            const data = await response.json()
+            setCreatureTypeOptions(data.data) // `data.data` contains the creature types array
+          } catch (err: any) {
+            setError(err.message)
+          } finally {
+            setLoading(false)
+          }
+        }
+
+        fetchCreatureTypes()
+      }, [])
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     updateDeckSettings('format', e.target.value)
   }
@@ -22,11 +46,24 @@ const NewDeckForm = ({ deckSettings, updateDeckSettings, setShowForm }: NewDeckF
     }
   }
 
+  const handleCreatureTypeChange = (type: string) => {
+    const currentTypes = deckSettings.creatureTypes || []
+    if (currentTypes.includes(type)) {
+      updateDeckSettings('creatureTypes', currentTypes.filter((t) => t !== type))
+    } else {
+      updateDeckSettings('creatureTypes', [...currentTypes, type])
+    }
+  }
+
+  const handleInputChange = (key: string, value: string | number) => {
+    updateDeckSettings(key, value)
+  }
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
     setShowForm(false)
 	}
-
+  
 	return (
 		<div className={styles.container}>
 			<form className={styles.form} onSubmit={handleSubmit}>
@@ -72,6 +109,55 @@ const NewDeckForm = ({ deckSettings, updateDeckSettings, setShowForm }: NewDeckF
 						<p>Green</p>
 					</label>
 				</fieldset>
+
+        <fieldset className={styles.question}>
+          <legend>Select Creature Types</legend>
+          {loading && <p>Loading creature types...</p>}
+          {error && <p>Error: {error}</p>}
+          {!loading && !error && creatureTypeOptions.map((type) => (
+            <div key={type}>
+              <input id={type} type="checkbox" value={type} onChange={() => handleCreatureTypeChange(type)} defaultChecked={deckSettings.creatureTypes?.includes(type) || false } />
+              <label htmlFor={type}>{type}</label>
+            </div>
+          ))}
+        </fieldset>
+
+        <label className={styles.question} htmlFor="creaturePercent">
+          <p>Creature Percentage</p>
+          <input
+            type="number"
+            id="creaturePercent"
+            min="0"
+            max="100"
+            value={deckSettings.creaturePercent || ''}
+            onChange={(e) => handleInputChange('creaturePercent', parseInt(e.target.value) || 0)}
+          />
+        </label>
+
+        <label className={styles.question} htmlFor="landPercent">
+          <p>Land Percentage</p>
+          <input
+            type="number"
+            id="landPercent"
+            min="0"
+            max="100"
+            value={deckSettings.landPercent || ''}
+            onChange={(e) => handleInputChange('landPercent', parseInt(e.target.value) || 0)}
+          />
+        </label>
+
+        <label className={styles.question} htmlFor="instantSorceryPercent">
+          <p>Instant/Sorcery Percentage</p>
+          <input
+            type="number"
+            id="instantSorceryPercent"
+            min="0"
+            max="100"
+            value={deckSettings.instantSorceryPercent || ''}
+            onChange={(e) => handleInputChange('instantSorceryPercent', parseInt(e.target.value) || 0)}
+          />
+        </label>
+
 				<button type="submit">Create Deck</button>
 			</form>
 		</div>
