@@ -90,12 +90,6 @@ function DashboardPage() {
         console.log('Sorted by Rarity');
     }
 
-    // const sortByDateAdded = () => {
-    //     const sortedCards = [...Cards].sort((a, b) => new Date(b.date_added) - new Date(a.date_added));
-    //     setDisplayedCards(sortedCards);
-    //     console.log('Sorted by Date Added');
-    // };
-
     // const filterByDeck = () => {
     //     const filteredCards = Cards.filter((card) => card.in_deck);
     //     setDisplayedCards(filteredCards);
@@ -110,7 +104,6 @@ function DashboardPage() {
             sortByMana={sortByMana}
             sortByCost={sortByCost}
             sortByRarity={sortByRarity}
-            // sortByDateAdded={sortByDateAdded}
             // filterByDeck={filterByDeck}
 
         />

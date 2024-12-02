@@ -1,7 +1,7 @@
 // import * as React from 'react'; 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import './Dashboard.module.scss'; 
+// import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
+// import './Dashboard.module.scss'; 
 // import Decks from '../../assets/Cards/Cards.json';
 
 // const DeckCarousel = () => {
