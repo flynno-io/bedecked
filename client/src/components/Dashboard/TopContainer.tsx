@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { GiCardPlay } from "react-icons/gi";
 import styles from './Dashboard.module.scss'; 
@@ -7,6 +6,7 @@ type TopContainerProps ={
     sortAlphabetically: () => void; 
     sortByMana: () => void; 
     sortByCost: () => void; 
+    // sortByRarity: () => void;
     // filterByDeck?: () => void; 
 }
 
@@ -14,6 +14,7 @@ const TopContainer: React.FC<TopContainerProps> = ({
     sortAlphabetically, 
     sortByMana,
     sortByCost,
+    // sortByRarity,
     // filterByDeck,
 }) => { 
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ return (
                 <button className={styles.button} onClick={sortAlphabetically}>A to Z</button>
                 <button className={styles.button} onClick={sortByMana}>Mana</button>
                 <button className={styles.button} onClick={sortByCost}>Cost</button>
+                {/* <button className={styles.button} onClick={sortByRarity}>Rarity</button> */}
                 {/* {sortByDateAdded && (
                    <button className={styles.button} onClick={sortByDateAdded}>Date Added</button> 
                 )}

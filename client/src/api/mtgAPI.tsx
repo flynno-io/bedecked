@@ -15,22 +15,37 @@ interface filters {
 }
 
 const getAllCards = async (filters: filters) => {
-  const token = localStorage.getItem('token');
-  const response = await fetch('/api/cards', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-    body: JSON.stringify(filters),
-  });
+  try {
+    const token =localStorage.getItem('token');
 
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
+    if (!token) {
+      throw new Error('Please log in'); 
+    }
+
+    const response = await fetch('/api/cards/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        // may need other required headers, e.g., authorization tokens
+      },
+      body: JSON.stringify(filters || {}),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Failed to fetch cards: ${errorMessage}`);
+    }
+
+    const data = await response.json();
+
+    console.log('Fetched data:', data);
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching cards:', error);
+    throw error;
   }
-
-  const data = await response.json();
-  return data;
 }
 
 const getNextPage = async (url: string) => {

@@ -4,7 +4,7 @@ import { getAllCards, getCardById } from "../../controllers/card-controllers.js"
 const router = Router()
 
 // GET / - Get all cards using query parameters and pagination
-router.get("/", getAllCards)
+router.post("/", getAllCards)
 
 // GET /:id - Get card by ID
 router.get("/:id", getCardById)
