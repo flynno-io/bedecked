@@ -1,5 +1,5 @@
 import type { Request, Response } from "express"
-import { Card } from "../models/index.js"
+import { Card } from "../models"
 import { Op, WhereOptions } from "sequelize"
 
 // Define mana types
