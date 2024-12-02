@@ -1,9 +1,11 @@
 // src/components/Card/CardGallery.tsx
 
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './card.module.scss'; 
+import { getAllCards } from '../../api/mtgAPI';
 
 type Card ={
     id: string;
@@ -14,11 +16,15 @@ type Card ={
     cmc: number;
     in_deck?: boolean;
 }
+
 type CardGalleryProps = {
-  displayedCards: Card[];
+    displayedCards: Card[];
 }
 
-const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
+const CardGallery: React.FC<CardGalleryProps> = () => {
+  const [displayedCards, setDisplayedCards] = useState<Card[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const responsive = {
     desktop: {
@@ -38,8 +44,28 @@ const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
     }
   };
 
-  // if (loading) return <p>Loading cards...</p>
-  // if (error) return <p>Error loading cards: {error}</p>
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const filters = {
+          id: '',
+          limit: 100
+        }
+        const cards = await getAllCards(filters)
+        setDisplayedCards(cards)
+      } catch (err) {
+        setError("Failed to load cards")
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCards()
+  }, [])
+
+  if (loading) return <p className={styles.message}>Loading cards...</p>
+  if (error) return <p className={styles.message}>Error loading cards: {error}</p>
 
   return (
     <Carousel 
@@ -56,16 +82,15 @@ const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
       transitionDuration={500}
     >
 
-      {displayedCards.map((card) => {
-          return(
-              <div className={styles.card} key={card.id}>
-                  {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}
-              </div>
-          )
-      })}
-    
+      {displayedCards.map((card) => (
+        <div className={styles.card} key={card.id}>
+          {card.image_uris && (
+            <img src={card.image_uris.small} alt={card.name} />
+          )}
+          <p className={styles.cardName}>{card.name}</p>
+        </div>
+      ))}
     </Carousel>
-      
   );
 };
 
