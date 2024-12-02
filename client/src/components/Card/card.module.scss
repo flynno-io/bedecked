@@ -43,13 +43,29 @@
     &:hover {
         color:var(--accent);
     }
+    margin: 25px;
 }
 
 .icon {
     font-size: 50px;
 }
 
+.searchBar {
+    display: flex;
+    align-items: center;
+    margin: 25px; 
+    padding: 10px;
+    border-radius: 10px;
+    background:var(--inset-bg);
+    color:var(--text-color);
+    &:focus {
+        outline:var(--accent) auto 5px;
+    }
+}
+
 .button {
+    display: flex; 
+    align-items: center;
     margin: 25px;
     font-family: var(--font-sans);
     background:linear-gradient(to bottom right, var(--bg-color) 50%, var(--accent), var(--bg-color));

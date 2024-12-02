@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { GiCardPlay } from "react-icons/gi";
 import styles from './card.module.scss';
 
@@ -6,27 +7,36 @@ type TopContainerProps ={
     sortAlphabetically: () => void; 
     sortByMana: () => void; 
     sortByCost: () => void; 
-    // sortByDateAdded?: () => void; 
-    // filterByDeck?: () => void; 
+    // filterByDeck?: () => void;
+    onSearch: (query: string) => void;
 }
 
 const TopContainer: React.FC<TopContainerProps> = ({
     sortAlphabetically, 
     sortByMana,
     sortByCost,
-    // sortByDateAdded,
+    onSearch
     // filterByDeck,
+
 }) => { 
     const navigate = useNavigate();
+    
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleClick = () => {
         console.log('Navigating to the Cards Page');
         navigate('/cards')
     }
 
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        onSearch(query);
+    }
+
 return (
     <div>
-        <div className={styles.topContainer}>
+        <div className={styles.topContainer} >
             <div className={styles.title}>
 
                 {/* onClick handler to title */}
@@ -36,6 +46,15 @@ return (
                     </i>
                     CARDS
                 </h2>
+
+                {/* Search bar */}
+                <input 
+                    type="text"
+                    placeholder="Search cards..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className={styles.searchBar}
+                />
 
                 {/* Buttons for filtering/sorting */}
                 <button className={styles.button} onClick={sortAlphabetically}>A to Z</button>

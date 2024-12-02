@@ -17,6 +17,12 @@ type Card ={
 function CardsPage() {
     const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards);
 
+    const handleSearch = (query: string) => {
+      // filter cards based on the search query 
+      const newDisplayedCards = Cards.filter((card) => card.name.toLowerCase().includes(query.toLowerCase()));
+      setDisplayedCards(newDisplayedCards);
+    };
+
     // Filtering/sorting handlers
     const sortAlphabetically = () => {
       const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name));
@@ -42,6 +48,7 @@ function CardsPage() {
             sortAlphabetically={sortAlphabetically}
             sortByMana={sortByMana}
             sortByCost={sortByCost}
+            onSearch={handleSearch}
             // sortByDateAdded={sortByDateAdded}
             // filterByDeck={filterByDeck}
 
