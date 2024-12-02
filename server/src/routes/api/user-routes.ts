@@ -3,6 +3,8 @@ import { getUserByEmail, createUser, updateUser, deleteUser, getProfile } from "
 
 const router = Router()
 
+// *** Root route is /api/users ***
+
 // GET /users/:email - Get user by ID
 router.get("/:email", getUserByEmail)
 

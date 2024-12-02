@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm i && npm run seed && npm run build && npm run start:dev",
-    "start": "npm run client:build && npm run server",
+    "start": "npm run client:build && cd npm run server",
     "start:app": "cd server && npm run start:app",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
     "server": "cd server && npm start",
@@ -15,7 +15,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build && cd ../server && npm run build",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run build",
     "db:flush": "cd server && npm run db:flush"
