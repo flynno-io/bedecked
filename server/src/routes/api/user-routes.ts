@@ -6,6 +6,7 @@ const router = Router()
 // GET /users/:email - Get user by ID
 router.get("/:email", getUserByEmail)
 
+// GET /users/profile - Get user profile using JWT token
 router.get("/profile", getProfile)
 
 // POST /users - Create a new user

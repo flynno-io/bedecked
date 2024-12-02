@@ -1,9 +1,9 @@
 import { Router } from "express"
-import { getAllDecks, getAllDecksById, createDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers.js"
+import { getAllDecks, getAllDecksById, getDeckById, createDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers.js"
 
 const router = Router()
 
-// Route is /deck/user/id
+// *** Root route is /api/decks ***
 
 // GET / - Get all decks using query parameters and pagination
 router.get("/", getAllDecks)
@@ -12,7 +12,7 @@ router.get("/", getAllDecks)
 router.get("/my-decks/", getAllDecksById)
 
 // GET /:id - Get deck by ID
-// router.get("/:id", getDecksByUserId)
+router.get("/:id", getDeckById)
 
 // POST / - Create a new deck
 router.post("/", createDeck)
