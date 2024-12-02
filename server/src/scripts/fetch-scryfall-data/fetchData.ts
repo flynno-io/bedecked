@@ -10,7 +10,7 @@ function logMemoryUsage(stage: string) {
   console.log(`[${stage}] Memory Usage: RSS=${(memoryUsage.rss / 1024 / 1024).toFixed(2)}MB, HeapTotal=${(memoryUsage.heapTotal / 1024 / 1024).toFixed(2)}MB, HeapUsed=${(memoryUsage.heapUsed / 1024 / 1024).toFixed(2)}MB`);
 }
 
-async function fetchScryfallData() {
+export async function fetchScryfallData() {
 	try {
 
     // (BASELINE) Log memory usage before fetching data

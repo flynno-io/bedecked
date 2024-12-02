@@ -53,9 +53,7 @@ export const getAllDecks = async (
 			// link to next page
 			next_page:
 				count > offset + rows.length
-					? `${req.protocol}://${req.get("host")}${req.baseUrl}?page=${
-							page + 1
-					  }&limit=${limit}`
+					? `${req.protocol}://${req.get("host")}${req.baseUrl}?page=${page + 1}&limit=${limit}`
 					: null,
 		})
 	} catch (error: any) {
@@ -73,7 +71,8 @@ export const getDeckByUserId = async (
 		return
 	}
 
-	try { // get all decks for the user and join the cards from the DeckCard table
+	try {
+		// get all decks for the user and join the cards from the DeckCard table
 		const decks = await Deck.findAll({
 			where: { userId },
 			include: [{ model: DeckCard }],
