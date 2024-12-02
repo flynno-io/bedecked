@@ -24,12 +24,6 @@ const login = async (userInfo: UserLogin) => {
 
   const data: LoginResponse = await response.json();
   console.log(data);
-  
-  // save token to local storage
-if (data.token) {
-  localStorage.setItem("authToken", data.token);
-}
-
   return data;
 }
 
@@ -48,12 +42,6 @@ const register = async (userInfo: UserRegister) => {
 
   const data: RegisterResponse = await response.json();
   console.log(data);
-  
-  // save token to local storage
-if (data.token) {
-  localStorage.setItem("authToken", data.token);
-}
-
   return data;
 }
 
