@@ -35,7 +35,7 @@ const NewDeckForm = ({
 const customStyles: StylesConfig<OptionType, true> = {
   control: (base, state) => ({
     ...base,
-    backgroundColor: typeof window !== "undefined" ? 'var(--inset-bg)',
+    backgroundColor: 'var(--inset-bg)',
     borderColor: state.isFocused ? 'var(--bg-color)' : 'var(--input-border)',
     borderWidth: '2px',
     boxShadow: 'none',
@@ -47,12 +47,12 @@ const customStyles: StylesConfig<OptionType, true> = {
   }),
   multiValue: (base) => ({
     ...base,
-    backgroundColor: 'var(--bg-color)',
+    backgroundColor: 'var(--multi-value-bg)',
     color: 'var(--text-color)',
   }),
   multiValueLabel: (base) => ({
     ...base,
-    color: 'var(--inset-bg)',
+    color: 'var(--multi-value-color)',
   }),
   multiValueRemove: (base) => ({
     ...base,
