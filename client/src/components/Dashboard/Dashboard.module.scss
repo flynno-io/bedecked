@@ -74,26 +74,27 @@
     }
 }
 
-// .card {
-//     display: flex; 
-//     flex-direction: column; 
-//     align-items: center;
-//     padding: 25px;
-//     margin: 10px;
-//     border: $black 1px solid;
-//     border-radius: 10px;
-//     background-color: $white;
-//     opacity: 0.6;
-//     transition-duration:0.3s;
-//     &:hover {
-//         background-color: $white;
-//         opacity: 1;
-//     }
-// }
+.card {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding: 25px;
+    margin: 10px;
+    border: $black 1px solid;
+    border-radius: 10px;
+    background-color: $white;
+    opacity: 0.6;
+    transition-duration:0.3s;
+    &:hover {
+        background-color: $white;
+        opacity: 1;
+    }
+}
 
 .message {
     font-size: 20px;
     font-family: var(--font-sans);
     color:var(--text-color);
     align-items: center;
+    display: flex;
 }

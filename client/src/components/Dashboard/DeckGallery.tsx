@@ -3,6 +3,8 @@ import "react-multi-carousel/lib/styles.css";
 import cards from '../../../../server/db/cards.json';
 import styles from './Dashboard.module.scss';
 
+
+
 interface Card {
     cardId: number;
     count: number; 

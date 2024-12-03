@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './card.module.scss'; 
@@ -21,10 +22,42 @@ type CardGalleryProps = {
     displayedCards: Card[];
 }
 
-const CardGallery: React.FC<CardGalleryProps> = () => {
-  const [displayedCards, setDisplayedCards] = useState<Card[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
+
+  // State to store fetch cards
+  const [fetchedCards, setFetchedCards] = useState<Card[]>([])
+  const navigate = useNavigate()
+
+  // State to manage loading and error states
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+  const fetchCards = async () => {
+    try {
+      const data = await getAllCards({name: '', limit: 10})
+      setFetchedCards(data)
+      setLoading(false)
+      } catch (err: any) {
+      if (err.message.includes('401')) {
+      setError('Unauthorized: Please log in again.')
+      navigate('/login')
+      } else {
+      setError("Failed to load cards")
+    }
+  }}
+  
+    if (!displayedCards.length) fetchCards()
+  }, [displayedCards])
+
+// Fallback UI if no cards are available
+  if (loading) {
+    return <p className={styles.message}>Loading cards...</p>
+  }
+
+  if (error) {
+    return <p className={styles.message}>Error loading cards: {error}</p>
+  }
 
   const responsive = {
     desktop: {
@@ -44,29 +77,6 @@ const CardGallery: React.FC<CardGalleryProps> = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const filters = {
-          id: '',
-          limit: 100
-        }
-        const cards = await getAllCards(filters)
-        setDisplayedCards(cards)
-      } catch (err) {
-        setError("Failed to load cards")
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchCards()
-  }, [])
-
-  if (loading) return <p className={styles.message}>Loading cards...</p>
-  if (error) return <p className={styles.message}>Error loading cards: {error}</p>
-
   return (
     <Carousel 
       arrows={true}
@@ -82,13 +92,14 @@ const CardGallery: React.FC<CardGalleryProps> = () => {
       transitionDuration={500}
     >
 
-      {displayedCards.map((card) => (
-        <div className={styles.card} key={card.id}>
-          {card.image_uris && (
-            <img src={card.image_uris.small} alt={card.name} />
-          )}
-          <p className={styles.cardName}>{card.name}</p>
-        </div>
+      {Array.isArray(fetchedCards) && fetchedCards.map((card) => (
+          <div className={styles.card} key={card.id}>
+              {card.image_uris ? (
+                <img src={card.image_uris.small} alt={card.name} />
+              ) : (
+                <p>No image available</p>
+            )}
+      </div>
       ))}
     </Carousel>
   );

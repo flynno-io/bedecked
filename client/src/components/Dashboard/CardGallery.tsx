@@ -83,9 +83,6 @@ const CardCarousel: React.FC<CardGalleryProps> = ({ displayedCards }) => {
     }
   };
 
-  // if (loading) return <p>Loading cards...</p>
-  // if (error) return <p>Error loading cards: {error}</p>
-
   return (
     <Carousel 
       arrows={true}
