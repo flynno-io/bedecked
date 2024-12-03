@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { userRouter } from './user-routes.js'
 import { cardRouter } from './card-routes.js'
 import { deckRouter } from './deck-routes.js'
+import { generateDeckRouter } from '../../controllers/deck-generator-controllers.js'
 
 const router = Router()
 

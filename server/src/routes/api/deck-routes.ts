@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getAllDecks, getAllDecksById, getDeckById, createDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers.js"
+import { getAllDecks, getAllDecksById, getDeckById, createDeck, generateDeck, updateDeck, deleteDeck } from "../../controllers/deck-controllers.js"
 
 const router = Router()
 
@@ -16,6 +16,9 @@ router.post("/:id", getDeckById)
 
 // POST / - Create a new deck
 router.post("/", createDeck)
+
+// Generate a deck
+router.post("/generate-deck", generateDeck)
 
 // PUT /:id - Update deck by ID
 router.put("/:id", updateDeck)

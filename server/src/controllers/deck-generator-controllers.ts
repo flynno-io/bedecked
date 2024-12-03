@@ -1,72 +1,66 @@
-// import { Request, Response } from "express"
-// import { User, Deck, DeckCard } from "../model/index.js"
-// import omit from "lodash/omit.js"
+import { Request, Response } from "express"
+import { Deck, DeckCard } from "../model/index.js"
+import { DeckCardCreationAttributes } from "../model/deckcard.js"
+import { DeckCreationAttributes } from "../model/deck.js"
+import { getCreaturesCards, getLandCards, getSpellCards } from "../utils/generateDeck.js"
 
-// // Get user by ID
-// export const getUserByEmail = async (req: Request, res: Response): Promise<void> => {
-// 	const { email } = req.params
-// 	try {
-// 		const user = await User.findOne({ where: { email } })
-// 		if (user) {
-// 			res.json(omit(user.toJSON(), "password", "createdAt", "updatedAt"))
-// 		} else {
-// 			res.status(404).json({ error: "User not found" })
-// 		}
-// 	} catch (error: any) {
-// 		res.status(400).json({ error: error.message })
-// 	}
-// }
+export interface DeckSettings {
+  info: {
+    name: string
+    format: "Standard" | "Commander" // or any other valid formats
+    colors: ("W" | "U" | "B" | "R" | "G")[]
+    description: string
+  }
+  settings: {
+    creatureTypes: string[]
+    creatureCount: number
+    landCount: number
+    spellsCount: number
+  }
+  creatureCards?: DeckCardCreationAttributes[]
+  spellCards?: DeckCardCreationAttributes[]
+  landCards?: DeckCardCreationAttributes[]
+  deckId?: number
+}
 
-// // Create a new user
-// export const createUser = async (req: Request, res: Response): Promise<void> => {
-// 	const { username, email, password, manaTheme } = req.body
-// 	try {
-// 		const user = await User.create({ username, email, password, manaTheme })
-// 		res.status(201).json(user)
-// 	} catch (error: any) {
-// 		res.status(400).json({ error: error.message })
-// 	}
-// }
+// Create a new Deck => POST /generate-deck
+export const generateDeck = async (req: Request, res: Response): Promise<void> => {
+  const userId = req.user?.id
+  const deck: DeckSettings = req.body.deck
 
-// // Update user by ID
-// export const updateUser = async (req: Request, res: Response): Promise<void> => {
-// 	const { id } = req.params
-// 	const { username, email, password, manaTheme } = req.body
-// 	try {
-// 		const user = await User.findByPk(id)
-// 		if (user) {
-// 			if (username) user.username = username
-// 			if (email) user.email = email
-// 			if (password) user.password = password
-// 			if (manaTheme) user.manaTheme = manaTheme
-// 			await user.save()
-// 			res.json(user)
-// 		} else {
-// 			res.status(404).json({ error: "User not found" })
-// 		}
-// 	} catch (error: any) {
-// 		res.status(400).json({ error: error.message })
-// 	}
-// }
+  // Check if the user exists
+  if (!userId) {
+    res.status(404).send({ message: "User not found" })
+    return
+  } else if (!deck) {
+    res.status(404).send({ message: "Deck data not provided" })
+    return
+  } else {
+    deck.deckId = userId
+  }
 
-// // Delete user by ID
-// export const deleteUser = async (req: Request, res: Response): Promise<void> => {
-//   const { id } = req.params
-//   try {
-//     const user = await User.findByPk(id)
-//     if (user) {
-//       await user.destroy()
-//       res.status(204).end()
-//     } else {
-//       res.status(404).json({ error: "User not found" })
-//     }
-//   } catch (error: any) {
-//     res.status(400).json({ error: error.message })
-//   }
-// }
+  // create a new deck
+  const _newDeck = await Deck.create({ ...deck.info, userId })
+  const newDeck = _newDeck.toJSON() as DeckCreationAttributes & { id: number }
 
-// export const getProfile = async (req: Request, res: Response): Promise<void> => {
-//   const user = req.user
-//   res.json(user)
-// }
+  // Get and add cards to the deck
+  if (newDeck.format === "Standard") {
+    
+    // Get and add the creature cards to the deck
+    deck.creatureCards = await getCreaturesCards(deck)
 
+    // Get and add the spell cards to the deck
+    deck.spellCards = await getSpellCards(deck)
+
+    // Get and add the necessary basic land cards to the deck
+    deck.landCards = await getLandCards(deck)
+
+    // Add the cards to the deckCard in the deckCard row format
+    const deckCards: DeckCardCreationAttributes[] = [...deck.creatureCards, ...deck.spellCards, ...deck.landCards];
+
+    // Add the cards to the deckCard table
+    await DeckCard.bulkCreate(deckCards)
+  } else {
+    console.log("Commander deck")
+  }
+}
