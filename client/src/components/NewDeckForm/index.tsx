@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import Select, { MultiValue } from 'react-select';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import Select, { StylesConfig, MultiValue } from 'react-select';
 import styles from "./NewDeckForm.module.scss";
 
 interface OptionType {
@@ -29,6 +30,39 @@ const NewDeckForm = ({
   const [creatureTypeOptions, setCreatureTypeOptions] = useState<OptionType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+// Custom styles for react-select
+const customStyles: StylesConfig<OptionType, true> = {
+  control: (base, state) => ({
+    ...base,
+    backgroundColor: 'var(--inset-bg)',
+    borderColor: state.isFocused ? 'var(--bg-color)' : 'var(--input-border)',
+    borderWidth: '2px',
+    boxShadow: 'none',
+  }),
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isFocused ? 'var(--bg-color)' : 'var(--inset-bg)',
+    color: state.isFocused ? 'var(--accent)' : 'var(--text-color)',
+  }),
+  multiValue: (base) => ({
+    ...base,
+    backgroundColor: 'var(--multi-value-bg)',
+    color: 'var(--text-color)',
+  }),
+  multiValueLabel: (base) => ({
+    ...base,
+    color: 'var(--multi-value-color)',
+  }),
+  multiValueRemove: (base) => ({
+    ...base,
+    color: 'var(--multi-value-remove-color)',
+    ':hover': {
+      backgroundColor: 'var(--multi-value-remove-hover-bg)',
+      color: 'var(--multi-value-remove-hover-color)',
+    },
+  }),
+};
 
   // Fetch creature types from Scryfall API
   useEffect(() => {
@@ -172,23 +206,22 @@ const NewDeckForm = ({
           </label>
         </fieldset>
 
-        <div className={styles.question}>
+        <label className={styles.question}>
           <legend>Select Creature Types</legend>
-          {loading && <p>Loading creature types...</p>}
           {error && <p>Error: {error}</p>}
           {!loading && !error && (
-           <Select
+           <Select 
             isMulti
+            styles={customStyles}
             options={creatureTypeOptions}
             onChange={handleCreatureTypeChange}
             defaultValue={deckSettings.creatureTypes?.map((type) => ({
               value: type,
               label: type,
             }))}
-            className={styles.select}
           />
           )}
-        </div>
+        </label>
 
         <label className={styles.question} htmlFor="creaturePercent">
           <p>Creature Percentage</p>

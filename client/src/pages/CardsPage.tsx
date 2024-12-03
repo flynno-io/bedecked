@@ -1,8 +1,7 @@
 // src/pages/CardsPage.tsx
 import { useState } from 'react';
 import TopContainer from "../components/Card/TopContainer";
-import CardGallery from '../components/Dashboard/CardGallery';
-import Cards from '../../../server/db/card.test.json';
+import CardGallery from '../components/Card/CardGallery';
 
 type Card ={
   id: string;
@@ -15,29 +14,29 @@ type Card ={
 }
 
 function CardsPage() {
-    const [displayedCards, setDisplayedCards] = useState<Card[]>(Cards);
+    const [displayedCards, setDisplayedCards] = useState<Card[]>([]);
 
     const handleSearch = (query: string) => {
       // filter cards based on the search query 
-      const newDisplayedCards = Cards.filter((card) => card.name.toLowerCase().includes(query.toLowerCase()));
+      const newDisplayedCards = displayedCards.filter((card) => card.name.toLowerCase().includes(query.toLowerCase()));
       setDisplayedCards(newDisplayedCards);
     };
 
     // Filtering/sorting handlers
     const sortAlphabetically = () => {
-      const sortedCards = [...Cards].sort((a, b) => a.name.localeCompare(b.name));
+      const sortedCards = [...displayedCards].sort((a, b) => a.name.localeCompare(b.name));
       setDisplayedCards(sortedCards);
       console.log('Sorted A to Z');
     };
 
     const sortByMana = () => {
-        const sortedCards = [...Cards].sort((a, b) => a.cmc - b.cmc);
+        const sortedCards = [...displayedCards].sort((a, b) => a.cmc - b.cmc);
         setDisplayedCards(sortedCards);
         console.log('Sorted by Mana');
     };
 
     const sortByCost = () => {
-        const sortedCards = [...Cards].sort((a, b) => b.cmc - a.cmc);
+        const sortedCards = [...displayedCards].sort((a, b) => b.cmc - a.cmc);
         setDisplayedCards(sortedCards);
         console.log('Sorted by Cost');
     };

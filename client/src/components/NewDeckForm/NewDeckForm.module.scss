@@ -1,4 +1,9 @@
 @use '../../../styles/index.scss';
+@use '../../../styles/_themes.scss';
+
+$bg-color: var(--bg-color);
+$accent: var(--accent);
+$inset-bg: var(--inset-bg);
 
 .container {
   display: flex;
@@ -75,9 +80,9 @@
 .question {
   display: flex;
   flex-direction: column;
-
   & label > p {
     margin-bottom: 0;
+    font-weight: 700;
   }
 }
 
@@ -184,3 +189,4 @@ fieldset {
   display:block;
   content:'';
 }
+

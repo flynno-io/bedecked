@@ -1,8 +1,11 @@
+//src/components/Dashboard/CardGallery.tsx
+
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './Dashboard.module.scss'; 
-import Card from '../../../../server/db/card.test.json';
-// import cardRouter from '../../../../src/routes/api/cardRouter';
+import { getAllCards } from '../../api/mtgAPI';
 
 type Card ={
     id: string;
@@ -13,34 +16,54 @@ type Card ={
     cmc: number;
     in_deck?: boolean;
 }
-type CardCarouselProps = {
+interface CardGalleryProps {
   displayedCards: Card[];
 }
 
-const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
+const CardCarousel: React.FC<CardGalleryProps> = ({ displayedCards }) => {
 
-  // const [displayedCards, setDisplayedCards] = useState<Card[]>([])
-  // const [loading, setLoading] = useState<boolean>(true)
-  // const [error, setError] = useState<string | null>(null)
+  // State to store fetch cards
+  const [fetchedCards, setFetchedCards] = useState<Card[]>([])
+  const navigate = useNavigate()
 
-  // const fetchCards = async () => {
-  //   try {
-  //     const response = await fetch('/api/cards')
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`)
-  //     }
-  //     const data = await response.json()
-  //     setDisplayedCards(data)
-  //     setLoading(false)
-  //   } catch (error) {
-  //     setError("Failled to load cards")
-  //     setLoading(false)
-  //   }
-  // }
+  // State to manage loading and error states
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+  const fetchCards = async () => {
+    try {
+      const data = await getAllCards({name: '', limit: 10})
+      setFetchedCards(data)
+      setLoading(false)
+      } catch (err: any) {
+      if (err.message.includes('401')) {
+      setError('Unauthorized: Please log in again.')
+      navigate('/login')
+      } else {
+      setError("Failed to load cards")
+    }
+  }}
   
-  // useEffect(() => {
-  //   fetchCards()
-  // }, [])
+    if (!displayedCards.length) fetchCards()
+  }, [displayedCards])
+
+// Fallback UI if no cards are available 
+   if (!displayedCards || displayedCards.length === 0) {
+    return (
+      <div>
+        <h1 className={styles.message}>Start browsing for your next Legendary creature</h1>
+        <button className={styles.button} onClick={() => navigate("/cards")}>Browse Cards</button>
+      </div>
+    )}
+
+  if (loading) {
+    return <p className={styles.message}>Loading cards...</p>
+  }
+
+  if (error) {
+    return <p className={styles.message}>Error loading cards: {error}</p>
+  }
 
   const responsive = {
     desktop: {
@@ -60,9 +83,6 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
     }
   };
 
-  // if (loading) return <p>Loading cards...</p>
-  // if (error) return <p>Error loading cards: {error}</p>
-
   return (
     <Carousel 
       arrows={true}
@@ -78,7 +98,7 @@ const CardCarousel: React.FC<CardCarouselProps> = ({ displayedCards }) => {
       transitionDuration={500}
     >
 
-      {displayedCards.map((card) => {
+      {fetchedCards.map((card) => {
           return(
               <div className={styles.card} key={card.id}>
                   {card.image_uris && <img src={card.image_uris.small} alt={card.name}/>}

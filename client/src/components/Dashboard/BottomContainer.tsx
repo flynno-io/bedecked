@@ -33,12 +33,6 @@ function BottomContainer() {
 					<button className={styles.button}>Date Added</button>
 				</div>
 			</div>
-			<div className={styles.deckContainer}>
-				<p>Deck Gallery</p>
-				<p>deck1</p>
-				<p>deck1</p>
-				<span>deck1</span>
-			</div>
 		</div>
 	</div>
 	)
