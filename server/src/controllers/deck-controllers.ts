@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import { Card, Deck, DeckCard } from "../models/index.js"
+import { Card, Deck, DeckCard } from "../model/index.js"
 import { WhereOptions, Op } from "sequelize"
-import { DeckCardCreationAttributes } from "../models/deckcard.js"
+import { DeckCardCreationAttributes } from "../model/deckcard.js"
 
 // Define deck colors
 type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless

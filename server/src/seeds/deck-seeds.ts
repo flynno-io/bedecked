@@ -1,8 +1,8 @@
-import { Deck, DeckCard } from "../models/index.js"
-import { DeckCreationAttributes } from "../models/deck.js"
-import { Card } from "../models/index.js"
+import { Deck, DeckCard } from "../model/index.js"
+import { DeckCreationAttributes } from "../model/deck.js"
+import { Card } from "../model/index.js"
 import { Op } from "sequelize"
-import { DeckCardCreationAttributes } from "../models/deckcard.js"
+import { DeckCardCreationAttributes } from "../model/deckcard.js"
 
 // Define the decks to seed
 const decks: DeckCreationAttributes[] = [

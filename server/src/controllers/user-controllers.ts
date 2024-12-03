@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { User } from "../models/index.js"
+import { User } from "../model/index.js"
 import omit from "lodash/omit.js"
 
 // Get user by ID
