@@ -45,7 +45,7 @@ In order to use Bedecked, please access via [bedecked.onrender.com](bedecked.ren
 This application was created with React.js, Node.js, PostgresSQL, TypeScript, Sass and the Scryfall API. 
 
 ## Screenshot
-![Screenshot of Bedecked Login/ Register](../client/src/assets/Screenshot/App_Screenshot.png)
+![Screenshot of Bedecked Login/ Register](/client/src/assets/Screenshot/App_Screenshot.png)
 
 ## License
 MIT
