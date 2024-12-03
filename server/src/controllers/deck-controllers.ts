@@ -263,9 +263,13 @@ export const generateDeck = async (req: Request, res: Response): Promise<void> =
     deck.deckId = userId
   }
 
+  console.log("Generating deck...")
+
   // create a new deck
   const _newDeck = await Deck.create({ ...deck.info, userId })
   const newDeck = _newDeck.toJSON() as DeckCreationAttributes & { id: number }
+
+  console.log("New deck created:", newDeck)
 
   // Get and add cards to the deck
   if (newDeck.format === "Standard") {
@@ -284,6 +288,8 @@ export const generateDeck = async (req: Request, res: Response): Promise<void> =
 
     // Add the cards to the deckCard table
     await DeckCard.bulkCreate(deckCards)
+    res.status(201).json(deckCards)
+    return
   } else {
     console.log("Commander deck")
   }

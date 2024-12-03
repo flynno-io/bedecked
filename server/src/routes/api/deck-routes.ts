@@ -8,17 +8,17 @@ const router = Router()
 // GET / - Get all decks using query parameters and pagination
 router.post("/", getAllDecks)
 
-// GET /user/:id - Get all decks by user ID
+// GET /:id - Get all decks by user ID
 router.post("/my-decks/", getAllDecksById)
+
+// POST /generate-deck - Generate a random deck using query parameters
+router.post("/generate-deck/", generateDeck)
 
 // GET /:id - Get deck by ID
 router.post("/:id", getDeckById)
 
 // POST / - Create a new deck
 router.post("/", createDeck)
-
-// Generate a deck
-router.post("/generate-deck", generateDeck)
 
 // PUT /:id - Update deck by ID
 router.put("/:id", updateDeck)

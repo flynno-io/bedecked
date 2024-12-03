@@ -1,6 +1,6 @@
 import { Card } from "../model/index.js"
 import { Op } from "sequelize"
-import { DeckSettings } from "../controllers/deck-generator-controllers.js"
+import { DeckSettings } from "../controllers/deck-controllers.js"
 import { CardCreationAttributes } from "../model/card.js"
 import { DeckCardCreationAttributes } from "../model/deckcard.js"
 
@@ -25,7 +25,7 @@ export const getCreaturesCards = async (
 	deck: DeckSettings
 ): Promise<DeckCardCreationAttributes[]> => {
 	try {
-		const CreatureRandomOffset = Math.floor(Math.random() * 10000)
+		const CreatureRandomOffset: number = Math.floor(Math.random() * 10000)
 
 		// CREATURE TYPES: Get {count} number of creatures of the specified types
 		const { rows } = await Card.findAndCountAll({
@@ -39,6 +39,8 @@ export const getCreaturesCards = async (
 
 		// convert the array of cards objects into json objects
 		const createCardsJSON = rows.map((card) => card.toJSON())
+
+    console.log('Creature Cards:', createCardsJSON)
 
 		// convert the cards to the deckCard row format
 		const createCards = convertToDeckCardFormat(
@@ -80,6 +82,8 @@ export const getSpellCards = async (
 
 		// convert the array of cards objects into json objects
 		const spellCardsJSON = rows.map((card) => card.toJSON())
+
+    console.log('Spell Cards:', spellCardsJSON)
 
 		const spellCards = convertToDeckCardFormat(
 			deck.deckId!,
@@ -138,6 +142,8 @@ export const getLandCards = async (
 			)
 			landCards.push(...landCards) // returns {manaType.length} number of lands
 		}
+
+    console.log('Land Cards:', landCards)
 
     // Check if the total land cards count is equal to the land count
     const totalLandCards = landCards.reduce((acc, card) => acc + card.count, 0)
