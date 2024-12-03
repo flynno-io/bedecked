@@ -35,6 +35,7 @@
 }
 
 .clickableTitle {
+    font-family: var(--font-sans);
     color:var(--text-color);
     display: flex;
     align-items: center;
@@ -90,4 +91,10 @@
     }
 }
 
-
+.message {
+    font-size: 20px;
+    font-family: var(--font-sans);
+    color:var(--text-color);
+    align-items: center;
+    display: flex;
+}

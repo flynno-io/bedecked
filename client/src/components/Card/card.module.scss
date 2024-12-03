@@ -44,6 +44,7 @@
         color:var(--accent);
     }
     margin: 25px;
+    font-family: var(--font-sans);
 }
 
 .icon {
@@ -106,4 +107,9 @@
     }
 }
 
-
+.message {
+    font-size: 30px;
+    color:var(--text-color);
+    margin: 25px;
+    font-family:var(--font-sans);
+}
