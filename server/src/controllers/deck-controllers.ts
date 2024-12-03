@@ -3,7 +3,7 @@ import { Card, Deck, DeckCard } from "../model/index.js"
 import { WhereOptions, Op } from "sequelize"
 import { DeckCardCreationAttributes } from "../model/deckcard.js"
 import { DeckCreationAttributes } from "../model/deck.js"
-import { getCreaturesCards, getLandCards, getSpellCards } from "../utils/generateDeck.js"
+import { getCreaturesCards, getSpellCards, getLandCards } from "../utils/generateDeck.js"
 
 // Define deck colors
 type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless
@@ -263,35 +263,91 @@ export const generateDeck = async (req: Request, res: Response): Promise<void> =
     deck.deckId = userId
   }
 
+  // Check if all required deck settings are provided
+  const requiredSettings = ["info.name", "info.format", "info.colors", "info.description", "settings.creatureTypes", "settings.creatureCount", "settings.landCount", "settings.spellsCount"];
+  for (const setting of requiredSettings) {
+    const keys = setting.split(".");
+    let value = deck as any;
+    for (const key of keys) {
+      value = value[key];
+      if (value === undefined) {
+        res.status(404).send({ message: `Missing ${setting}` });
+        return;
+      }
+    }
+  }
+
   console.log("Generating deck...")
 
-  // create a new deck
-  const _newDeck = await Deck.create({ ...deck.info, userId })
-  const newDeck = _newDeck.toJSON() as DeckCreationAttributes & { id: number }
+  try {
+    // create a new deck
+    const _newDeck = await Deck.create({ ...deck.info, userId })
+    const newDeck = _newDeck.toJSON() as DeckCreationAttributes & { id: number }
+    deck.deckId = newDeck.id
 
-  console.log("New deck created:", newDeck)
+    console.log(`Deck ${newDeck.id} created`)
 
-  // Get and add cards to the deck
-  if (newDeck.format === "Standard") {
-    
-    // Get and add the creature cards to the deck
-    deck.creatureCards = await getCreaturesCards(deck)
+    // Get and add cards to the deck for Standard format
+    if (newDeck.format === "Standard") {
 
-    // Get and add the spell cards to the deck
-    deck.spellCards = await getSpellCards(deck)
+      const deckCards: DeckCardCreationAttributes[] = []
+      
+      // Get and add the creature cards to the deck
+      deck.creatureCards = await getCreaturesCards(deck)
+      deckCards.push(...deck.creatureCards)
 
-    // Get and add the necessary basic land cards to the deck
-    deck.landCards = await getLandCards(deck)
+      // Get and add the spell cards to the deck
+      deck.spellCards = await getSpellCards(deck)
+      deckCards.push(...deck.spellCards)
 
-    // Add the cards to the deckCard in the deckCard row format
-    const deckCards: DeckCardCreationAttributes[] = [...deck.creatureCards, ...deck.spellCards, ...deck.landCards];
+      // Get and add the necessary basic land cards to the deck
+      deck.landCards = await getLandCards(deck)
+      deckCards.push(...deck.landCards)
 
-    // Add the cards to the deckCard table
-    await DeckCard.bulkCreate(deckCards)
-    res.status(201).json(deckCards)
-    return
-  } else {
-    console.log("Commander deck")
+      // Add the cards to the deckCard table
+      await DeckCard.bulkCreate(deckCards)
+
+      // return the new deck with cards
+      try {
+        const finalDeck = await Deck.findByPk(deck.deckId, {
+          include: [
+            {
+              model: DeckCard,
+              as: "cards",
+              include: [
+                {
+                  model: Card,
+                  attributes: [
+                    "name",
+                    "power",
+                    "toughness",
+                    "oracle_text",
+                    "cmc",
+                    "colors",
+                    "type_line",
+                    "image_uris",
+                  ],
+                },
+              ],
+            },
+          ],
+        })
+
+        // return the new deck with cards
+        if (finalDeck) {
+          res.json(finalDeck)
+          return
+        } else {
+          res.status(404).json({ error: "Error returning newly created deck" })
+        }
+      } catch (error: any) {
+        res.status(400).json({ error: error.message })
+      }
+    } else {
+      console.log("Commander deck")
+    }
+  } catch (error: any) {
+    res.status(400).json({ error: error.message })
   }
 }
 

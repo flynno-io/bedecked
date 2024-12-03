@@ -10,14 +10,20 @@ export const convertToDeckCardFormat = (
 	count: number | null,
 	cards: CardCreationAttributes[]
 ): DeckCardCreationAttributes[] => {
-	const deckCards: DeckCardCreationAttributes[] = cards.map((card) => ({
-		cardId: card.id!,
-		deckId: deckId,
-		count: count ? count : 1,
-	}))
+	try {
+		// Map the cards to the deckCard row format
+		const deckCards: DeckCardCreationAttributes[] = cards.map((card) => ({
+			cardId: card.id!,
+			deckId: deckId,
+			count: count ? count : 1,
+		}))
 
-	// Return an array of deckCard objects
-	return deckCards
+		// Return an array of deckCard objects
+		return deckCards
+	} catch (error) {
+		console.error("Error converting cards to deckCard format:", error)
+		throw error
+	}
 }
 
 // Get creature cards
@@ -25,13 +31,18 @@ export const getCreaturesCards = async (
 	deck: DeckSettings
 ): Promise<DeckCardCreationAttributes[]> => {
 	try {
+		// Random offset for the creatures
 		const CreatureRandomOffset: number = Math.floor(Math.random() * 10000)
 
 		// CREATURE TYPES: Get {count} number of creatures of the specified types
 		const { rows } = await Card.findAndCountAll({
 			where: {
-				colors: { [Op.or]: deck.info.colors },
-				type_line: { [Op.or]: deck.settings.creatureTypes },
+				colors: { [Op.overlap]: deck.info.colors },
+				[Op.or]: deck.settings.creatureTypes.map((type) => ({
+					type_line: {
+						[Op.iLike]: `%${type}%`, // Case-insensitive match
+					},
+				})),
 			},
 			offset: CreatureRandomOffset,
 			limit: deck.settings.creatureCount,
@@ -39,8 +50,6 @@ export const getCreaturesCards = async (
 
 		// convert the array of cards objects into json objects
 		const createCardsJSON = rows.map((card) => card.toJSON())
-
-    console.log('Creature Cards:', createCardsJSON)
 
 		// convert the cards to the deckCard row format
 		const createCards = convertToDeckCardFormat(
@@ -73,7 +82,7 @@ export const getSpellCards = async (
 		// SPELL CARDS: Get {count} number of spells
 		const { rows } = await Card.findAndCountAll({
 			where: {
-				colors: { [Op.or]: deck.info.colors },
+				colors: { [Op.overlap]: deck.info.colors },
 				type_line: { [Op.or]: spellTypes },
 			},
 			offset: SpellRandomOffset,
@@ -82,8 +91,6 @@ export const getSpellCards = async (
 
 		// convert the array of cards objects into json objects
 		const spellCardsJSON = rows.map((card) => card.toJSON())
-
-    console.log('Spell Cards:', spellCardsJSON)
 
 		const spellCards = convertToDeckCardFormat(
 			deck.deckId!,
@@ -106,26 +113,31 @@ export const getLandCards = async (
 		const manaType: string[] = []
 		if (deck.info.colors.includes("W")) {
 			manaType.push("Plains")
-		} else if (deck.info.colors.includes("U")) {
+		}
+		if (deck.info.colors.includes("U")) {
 			manaType.push("Island")
-		} else if (deck.info.colors.includes("G")) {
+		}
+		if (deck.info.colors.includes("G")) {
 			manaType.push("Forest")
-		} else if (deck.info.colors.includes("R")) {
+		}
+		if (deck.info.colors.includes("R")) {
 			manaType.push("Mountain")
-		} else if (deck.info.colors.includes("B")) {
+		}
+		if (deck.info.colors.includes("B")) {
 			manaType.push("Swamp")
 		}
 
+		console.log("Passed in deck to land:", deck)
+
 		const cardPerLand = Math.floor(deck.settings.landCount / manaType.length)
 
-		const landCards: DeckCardCreationAttributes[] = []
+		const landCardsArray: DeckCardCreationAttributes[] = []
 
 		// LAND CARDS: Get {count} number of lands
 		for (let i = 0; i < manaType.length; i++) {
 			const { rows } = await Card.findAndCountAll({
 				where: {
-					colors: { [Op.or]: deck.info.colors },
-					name: { [Op.or]: manaType[i] },
+					name: { [Op.like]: manaType[i] },
 				},
 				offset: 0,
 				limit: cardPerLand,
@@ -133,24 +145,28 @@ export const getLandCards = async (
 
 			// convert the array of cards objects into json objects
 			const landCardJSON = rows.map((card) => card.toJSON())
+			const landCard = new Array(landCardJSON[0])
 
 			// convert the cards to the deckCard row format
-			let landCards: DeckCardCreationAttributes[] = convertToDeckCardFormat(
+			const landCards: DeckCardCreationAttributes[] = convertToDeckCardFormat(
 				deck.deckId!,
 				cardPerLand,
-				new Array(landCardJSON[0])
+				landCard
 			)
-			landCards.push(...landCards) // returns {manaType.length} number of lands
+			landCardsArray.push(...landCards)
 		}
 
-    console.log('Land Cards:', landCards)
+		console.log("Land Cards Array:", landCardsArray)
 
-    // Check if the total land cards count is equal to the land count
-    const totalLandCards = landCards.reduce((acc, card) => acc + card.count, 0)
-    console.log('Total Land Cards', totalLandCards)
-    console.log('Is equal to land count', deck.settings.landCount === totalLandCards)
+		// Check if the total land cards count is equal to the land count
+		const totalLandCards = landCardsArray.reduce((acc, card) => acc + card.count, 0)
+		console.log("Total Land Cards", totalLandCards)
+		console.log(
+			"Is equal to land count",
+			deck.settings.landCount === totalLandCards
+		)
 
-		return landCards
+		return landCardsArray
 	} catch (error) {
 		console.error("Error fetching land cards:", error)
 		throw error

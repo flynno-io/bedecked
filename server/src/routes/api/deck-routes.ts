@@ -6,19 +6,19 @@ const router = Router()
 // *** Root route is /api/decks ***
 
 // GET / - Get all decks using query parameters and pagination
-router.post("/", getAllDecks)
+router.get("/", getAllDecks)
 
-// GET /:id - Get all decks by user ID
-router.post("/my-decks/", getAllDecksById)
+// GET /my-decks - Get all decks by user ID
+router.get("/my-decks", getAllDecksById)
 
 // POST /generate-deck - Generate a random deck using query parameters
-router.post("/generate-deck/", generateDeck)
+router.post("/generate-deck", generateDeck)
 
 // GET /:id - Get deck by ID
-router.post("/:id", getDeckById)
+router.get("/:id", getDeckById)
 
-// POST / - Create a new deck
-router.post("/", createDeck)
+// POST /create-deck - Create a new deck
+router.post("/create-deck", createDeck)
 
 // PUT /:id - Update deck by ID
 router.put("/:id", updateDeck)
