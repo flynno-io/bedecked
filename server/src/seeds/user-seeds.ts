@@ -8,7 +8,7 @@ export const seedUsers = async (): Promise<void> => {
 					username: "johndoe",
 					email: "johndoe@example.com",
 					password: "password",
-					manaTheme: "theme-green",
+					manaTheme: "green",
 				},
 				{
 					username: "janedoe",
