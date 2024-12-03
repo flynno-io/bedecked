@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select, { StylesConfig, MultiValue } from 'react-select';
 import styles from "./NewDeckForm.module.scss";
 
@@ -63,6 +64,12 @@ const customStyles: StylesConfig<OptionType, true> = {
     },
   }),
 };
+
+const navigate = useNavigate();
+const handleClick = () => {
+  console.log('Navigating to Your Decks Page')
+  navigate('/decks')
+}
 
   // Fetch creature types from Scryfall API
   useEffect(() => {
@@ -268,7 +275,7 @@ const customStyles: StylesConfig<OptionType, true> = {
           />
         </label>
 
-        <button type="submit">Create Deck</button>
+        <button type="submit" onClick={handleClick}>Create Deck</button>
       </form>
     </div>
   );
