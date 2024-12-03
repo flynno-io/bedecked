@@ -10,7 +10,7 @@ interface RegisterResponse {
 }
 
 const login = async (userInfo: UserLogin) => {
-  const response = await fetch('http://localhost:3001/auth/login', {
+  const response = await fetch('/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const login = async (userInfo: UserLogin) => {
 
 const register = async (userInfo: UserRegister) => {
   const response = await fetch('/auth/login', {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
