@@ -6,7 +6,6 @@
 - [Usage and Deployment](#usage-and-deployment)
 - [Technologies Used](#technologies-used)
 - [Screenshots](#screenshots)
-- 
 - [Contributing](#contributing)
 - [License](#licence)
 - [Questions](#questions)
@@ -46,7 +45,7 @@ In order to use Bedecked, please access via [bedecked.onrender.com](bedecked.ren
 This application was created with React.js, Node.js, PostgresSQL, TypeScript, Sass and the Scryfall API. 
 
 ## Screenshot
-![Screenshot of Bedecked Login/ Register](/assets/Screenshot/App_Screenshot.png)
+![Screenshot of Bedecked Login/ Register](../client/src/assets/Screenshot/App_Screenshot.png)
 
 ## License
 MIT
