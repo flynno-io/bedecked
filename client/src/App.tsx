@@ -1,14 +1,15 @@
 // src/App.tsx
+
 import { Outlet } from "react-router-dom"
 import styles from './App.module.scss'
 import SideNav from "./components/SideNav"
-import { applyUserTheme } from './components/ThemeHandler/themeHandler.ts';
+import { applyUserTheme } from './components/ThemeHandler/themeHandler.tsx';
+import { useEffect } from "react";
 
 function App() {
-  
-  document.addEventListener('DOMContentLoaded', () => {
+  useEffect(() => {
     applyUserTheme();
-  });
+  }, []);
 
   return (
     <div className={styles.container}>

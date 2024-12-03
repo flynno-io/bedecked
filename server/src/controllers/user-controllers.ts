@@ -17,6 +17,21 @@ export const getUserByEmail = async (req: Request, res: Response): Promise<void>
 	}
 }
 
+// Get user theme
+export const getUserTheme = async (req: Request, res: Response): Promise<void> => {
+	const { email } = req.params
+	try {
+		const user = await User.findOne({ where: { email } })
+		if (user) {
+			res.json({ manaTheme: user.manaTheme })
+		} else {
+			res.status(404).json({ error: "User not found" })
+		}
+	} catch (error: any) {
+		res.status(400).json({ error: error.message })
+	}
+}
+
 // Create a new user
 export const createUser = async (req: Request, res: Response): Promise<void> => {
 	const { username, email, password, manaTheme } = req.body
