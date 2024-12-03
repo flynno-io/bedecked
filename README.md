@@ -8,7 +8,7 @@
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#licence)
-- [Questions](#questions)
+- [Contact](#contact)
 
 ## Description
 Bedecked is a randomized yet customizable Magic the Gathering deck builder pulling over 90,000 cards from the Scryfall API to allow users to experience both the fun and creativity of Magic the Gathering.
