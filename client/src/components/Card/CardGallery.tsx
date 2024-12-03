@@ -1,12 +1,10 @@
 // src/components/Card/CardGallery.tsx
 
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from './card.module.scss'; 
-import { getAllCards } from '../../api/mtgAPI';
+
 
 type Card ={
     id: string;
@@ -23,41 +21,6 @@ type CardGalleryProps = {
 }
 
 const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
-
-  // State to store fetch cards
-  const [fetchedCards, setFetchedCards] = useState<Card[]>([])
-  const navigate = useNavigate()
-
-  // State to manage loading and error states
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-  const fetchCards = async () => {
-    try {
-      const data = await getAllCards({name: '', limit: 10})
-      setFetchedCards(data)
-      setLoading(false)
-      } catch (err: any) {
-      if (err.message.includes('401')) {
-      setError('Unauthorized: Please log in again.')
-      navigate('/login')
-      } else {
-      setError("Failed to load cards")
-    }
-  }}
-  
-    if (!displayedCards.length) fetchCards()
-  }, [displayedCards])
-
-// Fallback UI if no cards are available
-  if (loading) {
-    return <p className={styles.message}>Loading cards...</p>
-  }
-
-  if (error) {
-    return <p className={styles.message}>Error loading cards: {error}</p>
-  }
 
   const responsive = {
     desktop: {
@@ -91,16 +54,17 @@ const CardGallery: React.FC<CardGalleryProps> = ({ displayedCards }) => {
       customTransition="all .5"
       transitionDuration={500}
     >
-
-      {Array.isArray(fetchedCards) && fetchedCards.map((card) => (
-          <div className={styles.card} key={card.id}>
-              {card.image_uris ? (
-                <img src={card.image_uris.small} alt={card.name} />
-              ) : (
-                <p>No image available</p>
-            )}
-      </div>
-      ))}
+      { displayedCards ? displayedCards.map((card) => (
+        <div className={styles.card} key={card.id}>
+            {card.image_uris ? (
+              <img src={card.image_uris.small} alt={card.name} />
+            ) : (
+              <p>No image available</p>
+          )}
+        </div>
+      )) : (
+        <p>Loading cards...</p>
+      )}
     </Carousel>
   );
 };

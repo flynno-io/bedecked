@@ -1,61 +1,93 @@
 // src/pages/CardsPage.tsx
-import { useState } from 'react';
-import TopContainer from "../components/Card/TopContainer";
-import CardGallery from '../components/Card/CardGallery';
+import { useState, useEffect } from "react"
+import TopContainer from "../components/Card/TopContainer"
+import CardGallery from "../components/Card/CardGallery"
+import { getAllCards } from "../api/mtgAPI"
+import { useNavigate } from "react-router-dom"
 
-type Card ={
-  id: string;
-  name: string; 
-  image_uris: {
-      small: string; 
-  };
-  cmc: number;
-  in_deck?: boolean;
+type Card = {
+	id: string
+	name: string
+	image_uris: {
+		small: string
+	}
+	cmc: number
+	in_deck?: boolean
 }
 
 function CardsPage() {
-    const [displayedCards, setDisplayedCards] = useState<Card[]>([]);
+	const [displayedCards, setDisplayedCards] = useState<Card[]>([])
+	const navigate = useNavigate()
 
-    const handleSearch = (query: string) => {
-      // filter cards based on the search query 
-      const newDisplayedCards = displayedCards.filter((card) => card.name.toLowerCase().includes(query.toLowerCase()));
-      setDisplayedCards(newDisplayedCards);
-    };
+	// State to manage loading and error states
+	const [error, setError] = useState<string | null>(null)
 
-    // Filtering/sorting handlers
-    const sortAlphabetically = () => {
-      const sortedCards = [...displayedCards].sort((a, b) => a.name.localeCompare(b.name));
-      setDisplayedCards(sortedCards);
-      console.log('Sorted A to Z');
-    };
+	useEffect(() => {
+		const fetchCards = async () => {
+			try {
+				const data = await getAllCards({ name: "", limit: 10 })
+				console.log("cardGallery data:", data.cards)
+				setDisplayedCards(data.cards)
+			} catch (err: unknown) {
+				if (err instanceof Error && err.message.includes("401")) {
+					setError("Unauthorized: Please log in again.")
+					navigate("/login")
+				} else {
+					setError("Failed to load cards")
+				}
+			}
+		}
+		fetchCards()
+	}, [])
 
-    const sortByMana = () => {
-        const sortedCards = [...displayedCards].sort((a, b) => a.cmc - b.cmc);
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Mana');
-    };
+	const handleSearch = (query: string) => {
+		// filter cards based on the search query
+		const newDisplayedCards = displayedCards.filter((card) =>
+			card.name.toLowerCase().includes(query.toLowerCase())
+		)
+		setDisplayedCards(newDisplayedCards)
+	}
 
-    const sortByCost = () => {
-        const sortedCards = [...displayedCards].sort((a, b) => b.cmc - a.cmc);
-        setDisplayedCards(sortedCards);
-        console.log('Sorted by Cost');
-    };
-    
-  return (
-    <div>
-      <TopContainer 
-            sortAlphabetically={sortAlphabetically}
-            sortByMana={sortByMana}
-            sortByCost={sortByCost}
-            onSearch={handleSearch}
-            // sortByDateAdded={sortByDateAdded}
-            // filterByDeck={filterByDeck}
+	// Filtering/sorting handlers
+	const sortAlphabetically = () => {
+		const sortedCards = [...displayedCards].sort((a, b) =>
+			a.name.localeCompare(b.name)
+		)
+		setDisplayedCards(sortedCards)
+		console.log("Sorted A to Z")
+	}
 
-        />
-      <CardGallery displayedCards={displayedCards}/>
-    </div>
-    
-  )
+	const sortByMana = () => {
+		const sortedCards = [...displayedCards].sort((a, b) => a.cmc - b.cmc)
+		setDisplayedCards(sortedCards)
+		console.log("Sorted by Mana")
+	}
+
+	const sortByCost = () => {
+		const sortedCards = [...displayedCards].sort((a, b) => b.cmc - a.cmc)
+		setDisplayedCards(sortedCards)
+		console.log("Sorted by Cost")
+	}
+
+	return (
+		<div>
+			{error ? (
+				<p>{error}</p>
+			) : (
+				<>
+					<TopContainer
+						sortAlphabetically={sortAlphabetically}
+						sortByMana={sortByMana}
+						sortByCost={sortByCost}
+						onSearch={handleSearch}
+						// sortByDateAdded={sortByDateAdded}
+						// filterByDeck={filterByDeck}
+					/>
+					<CardGallery displayedCards={displayedCards} />
+				</>
+			)}
+		</div>
+	)
 }
 
 export default CardsPage
