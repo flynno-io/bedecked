@@ -1,4 +1,4 @@
-import { User } from "../models/index.js"
+import { User } from "../model/index.js"
 
 export const seedUsers = async (): Promise<void> => {
 	try {
