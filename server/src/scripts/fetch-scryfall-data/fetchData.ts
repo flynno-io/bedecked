@@ -2,7 +2,7 @@ import { Card } from "../../model/index.js"
 import pLimit from "p-limit" // Import p-limit package
 
 const BATCH_SIZE = 500 // Define batch size
-const CONCURRENCY_LIMIT = 15 // Limit concurrent database operations
+const CONCURRENCY_LIMIT = 10 // Limit concurrent database operations
 
 // Function to log memory usage
 function logMemoryUsage(stage: string) {
