@@ -20,3 +20,10 @@ sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
 		console.log(`Server is listening on port ${PORT}`)
 	})
 })
+
+app.get('/api/user', (_, res) => {
+	const user = {
+	  manaTheme: 'blue' // Example data, replace with actual user data
+	};
+	res.json(user);
+  });

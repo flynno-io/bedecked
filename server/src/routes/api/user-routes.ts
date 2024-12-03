@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getUserByEmail, createUser, updateUser, deleteUser, getProfile } from "../../controllers/user-controllers.js"
+import { getUserByEmail, getUserTheme, createUser, updateUser, deleteUser, getProfile } from "../../controllers/user-controllers.js"
 
 const router = Router()
 
@@ -7,6 +7,9 @@ const router = Router()
 
 // GET /users/:email - Get user by ID
 router.get("/:email", getUserByEmail)
+
+//GET /users/:theme - Get user theme
+router.get("/:theme", getUserTheme)
 
 // GET /users/profile - Get user profile using JWT token
 router.get("/profile", getProfile)

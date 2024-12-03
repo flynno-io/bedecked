@@ -54,7 +54,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
 			manaTheme: {
 				type: DataTypes.STRING,
 				allowNull: false,
-				defaultValue: "white",
+				defaultValue: "colorless",
 			},
 			password: {
 				type: DataTypes.STRING,

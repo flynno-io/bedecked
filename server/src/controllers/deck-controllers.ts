@@ -2,6 +2,8 @@ import { Request, Response } from "express"
 import { Card, Deck, DeckCard } from "../model/index.js"
 import { WhereOptions, Op } from "sequelize"
 import { DeckCardCreationAttributes } from "../model/deckcard.js"
+import { DeckCreationAttributes } from "../model/deck.js"
+import { getCreaturesCards, getLandCards, getSpellCards } from "../utils/generateDeck.js"
 
 // Define deck colors
 type colors = "W" | "U" | "B" | "R" | "G" | "C" // white, blue, black, red, green, colorless
@@ -15,6 +17,27 @@ interface filters {
 	page?: number
 	limit?: number
 }
+
+// De
+export interface DeckSettings {
+  info: {
+    name: string
+    format: "Standard" | "Commander" // or any other valid formats
+    colors: ("W" | "U" | "B" | "R" | "G")[]
+    description: string
+  }
+  settings: {
+    creatureTypes: string[]
+    creatureCount: number
+    landCount: number
+    spellsCount: number
+  }
+  creatureCards?: DeckCardCreationAttributes[]
+  spellCards?: DeckCardCreationAttributes[]
+  landCards?: DeckCardCreationAttributes[]
+  deckId?: number
+}
+
 
 interface card {
 	cardId: string
@@ -59,9 +82,7 @@ export const getAllDecks = async (
 			// link to next page
 			next_page:
 				count > offset + rows.length
-					? `${req.protocol}://${req.get("host")}${req.baseUrl}?page=${
-							page + 1
-					  }&limit=${limit}`
+					? `${req.protocol}://${req.get("host")}${req.baseUrl}?page=${page + 1}&limit=${limit}`
 					: null,
 		})
 	} catch (error: any) {
@@ -165,12 +186,12 @@ export const createDeck = async (
 	res: Response
 ): Promise<void> => {
 	const { name, format, colors, cards } = req.body
-  const userId = req.user?.id
+	const userId = req.user?.id
 
-  if (!userId) {
-    res.status(401).json({ error: "Unauthorized" })
-    return
-  }
+	if (!userId) {
+		res.status(401).json({ error: "Unauthorized" })
+		return
+	}
 
 	try {
 		// Create a new deck
@@ -224,6 +245,48 @@ export const createDeck = async (
 	} catch (error: any) {
 		res.status(400).json({ error: error.message })
 	}
+}
+
+// Create a new Deck => POST /generate-deck
+export const generateDeck = async (req: Request, res: Response): Promise<void> => {
+  const userId = req.user?.id
+  const deck: DeckSettings = req.body.deck
+
+  // Check if the user exists
+  if (!userId) {
+    res.status(404).send({ message: "User not found" })
+    return
+  } else if (!deck) {
+    res.status(404).send({ message: "Deck data not provided" })
+    return
+  } else {
+    deck.deckId = userId
+  }
+
+  // create a new deck
+  const _newDeck = await Deck.create({ ...deck.info, userId })
+  const newDeck = _newDeck.toJSON() as DeckCreationAttributes & { id: number }
+
+  // Get and add cards to the deck
+  if (newDeck.format === "Standard") {
+    
+    // Get and add the creature cards to the deck
+    deck.creatureCards = await getCreaturesCards(deck)
+
+    // Get and add the spell cards to the deck
+    deck.spellCards = await getSpellCards(deck)
+
+    // Get and add the necessary basic land cards to the deck
+    deck.landCards = await getLandCards(deck)
+
+    // Add the cards to the deckCard in the deckCard row format
+    const deckCards: DeckCardCreationAttributes[] = [...deck.creatureCards, ...deck.spellCards, ...deck.landCards];
+
+    // Add the cards to the deckCard table
+    await DeckCard.bulkCreate(deckCards)
+  } else {
+    console.log("Commander deck")
+  }
 }
 
 // Update deck by ID => PUT /deck/:id
