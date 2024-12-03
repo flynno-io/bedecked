@@ -12,12 +12,13 @@ interface OptionType {
 interface NewDeckFormProps {
   deckSettings: {
     deckName: string;
+    deckDescription: string;
     format: string;
     colors: string[];
     creatureTypes?: string[];
-    creaturePercent?: number;
-    landPercent?: number;
-    instantSorceryPercent?: number;
+    creatureCount?: number;
+    landCount?: number;
+    instantSorceryCount?: number;
   };
   updateDeckSettings: (key: string, value: string | string[] | number) => void;
   setShowForm: (showForm: boolean) => void;
@@ -137,6 +138,17 @@ const handleClick = () => {
           />
         </label>
 
+        <label className={styles.question} htmlFor="deckDescription">
+          <p>Description</p>
+          <input
+            type="text"
+            id="deckDescription"
+            value={deckSettings.deckDescription}
+            onFocus={(e) => e.target.select()}
+            onChange={(e) => updateDeckSettings("deckDescription", e.target.value)}
+          />
+        </label>
+
         <label className={styles.question} htmlFor="format">
           <p>Format</p>
           <select
@@ -230,45 +242,45 @@ const handleClick = () => {
           )}
         </label>
 
-        <label className={styles.question} htmlFor="creaturePercent">
-          <p>Creature Percentage</p>
+        <label className={styles.question} htmlFor="creatureCount">
+          <p>Creature Count</p>
           <input
             type="number"
-            id="creaturePercent"
+            id="creatureCount"
             min="0"
             max="100"
-            value={deckSettings.creaturePercent || ""}
+            value={deckSettings.creatureCount || ""}
             onChange={(e) =>
-              handleInputChange("creaturePercent", parseInt(e.target.value) || 0)
+              handleInputChange("creatureCount", parseInt(e.target.value) || 0)
             }
           />
         </label>
 
-        <label className={styles.question} htmlFor="landPercent">
-          <p>Land Percentage</p>
+        <label className={styles.question} htmlFor="landCount">
+          <p>Land Count</p>
           <input
             type="number"
-            id="landPercent"
+            id="landCount"
             min="0"
             max="100"
-            value={deckSettings.landPercent || ""}
+            value={deckSettings.landCount || ""}
             onChange={(e) =>
-              handleInputChange("landPercent", parseInt(e.target.value) || 0)
+              handleInputChange("landCount", parseInt(e.target.value) || 0)
             }
           />
         </label>
 
-        <label className={styles.question} htmlFor="instantSorceryPercent">
-          <p>Instant/Sorcery Percentage</p>
+        <label className={styles.question} htmlFor="instantSorceryCount">
+          <p>Instant/Sorcery Count</p>
           <input
             type="number"
-            id="instantSorceryPercent"
+            id="instantSorceryCount"
             min="0"
             max="100"
-            value={deckSettings.instantSorceryPercent || ""}
+            value={deckSettings.instantSorceryCount || ""}
             onChange={(e) =>
               handleInputChange(
-                "instantSorceryPercent",
+                "instantSorceryCount",
                 parseInt(e.target.value) || 0
               )
             }
