@@ -1,6 +1,6 @@
 import omit from "lodash/omit.js"
-import { Card } from "../models/index.js"
-import { CardCreationAttributes } from "../models/card.js"
+import { Card } from "../model/index.js"
+import { CardCreationAttributes } from "../model/card.js"
 import testCardData from "../../db/card.test.json" assert { type: "json" }
 
 // This is the list of keys to remove from the testCardData

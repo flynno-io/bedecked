@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { User } from "../models/index.js"
+import { User } from "../model/index.js"
 import jwt from "jsonwebtoken"
 
 // Load environment variables

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
-import { User } from "../models/index.js"
+import { User } from "../model/index.js"
 
 // define the interface for the JWT payload
 interface JwtPayload {
