@@ -1,15 +1,24 @@
 // src/components/SideNav/index.tsx
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink, Link } from "react-router-dom";
 import "./SideMenu.scss";
 import Avatar from "../Avatar";
+import { AuthContext } from "../../context/AuthContext";
+
 
 const SideNav = () => {
   const [isDeckOpen, setIsDeckOpen] = useState(false);
   const toggleDecks = () => {
       setIsDeckOpen(!isDeckOpen);
   };
+
+  const authContext = useContext(AuthContext);
+
+  const handleLogout =() => {
+    authContext?.logout();
+  }
+
     return (
         <div className="container-md">
             <div className="row rows-col-2">
@@ -18,9 +27,19 @@ const SideNav = () => {
                         <Avatar />
                     </Link>
                     <ul className="nav flex-column">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/login">Login or Register</NavLink>
-                        </li>
+                        {authContext?.isAuthenticated ? (
+                            <>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/" onClick={handleLogout}>Logout</NavLink>
+                            </li>
+                        </>
+                        ) : (
+                        <>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/login">Login or Register</NavLink>
+                            </li>
+                        </>
+                        ) }
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
                         </li>

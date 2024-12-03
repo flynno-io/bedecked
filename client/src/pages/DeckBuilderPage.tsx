@@ -9,13 +9,14 @@ const DeckBuilderPage = () => {
 
   // useState hook to manage the deck settings
 	const [deckSettings, setDeckSettings] = useState<{
-		deckName: string
-		format: string
-		colors: string[]
-		creatureTypes?: string[]
-		creaturePercent?: number
-		landPercent?: number
-		instantSorceryPercent?: number
+		deckName: string;
+		deckDescription?: string;
+		format: string;
+		colors: string[];
+		creatureTypes?: string[];
+		creaturePercent?: number;
+		landPercent?: number;
+		instantSorceryPercent?: number;
 	}>({ deckName: "Untitled", format: "", colors: [], })
 	const [showForm, setShowForm] = useState(true)
 

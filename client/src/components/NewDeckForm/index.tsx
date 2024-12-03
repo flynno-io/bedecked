@@ -12,7 +12,7 @@ interface OptionType {
 interface NewDeckFormProps {
   deckSettings: {
     deckName: string;
-    deckDescription: string;
+    deckDescription?: string;
     format: string;
     colors: string[];
     creatureTypes?: string[];

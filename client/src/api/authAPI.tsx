@@ -29,7 +29,7 @@ const login = async (userInfo: UserLogin) => {
 
 const register = async (userInfo: UserRegister) => {
   const response = await fetch('/auth/login', {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },

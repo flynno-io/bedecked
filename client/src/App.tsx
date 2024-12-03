@@ -2,9 +2,14 @@
 import { Outlet } from "react-router-dom"
 import styles from './App.module.scss'
 import SideNav from "./components/SideNav"
-
+import { applyUserTheme } from './components/ThemeHandler/themeHandler.ts';
 
 function App() {
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    applyUserTheme();
+  });
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
